@@ -1,17 +1,19 @@
+'use client';
 import { useState, createContext, useContext, useEffect } from 'react';
-
-import { fetcher } from '../../utils/function/fetcher';
 
 
 const UserDataContext = createContext(),
 	useUserData = () => useContext(UserDataContext);
 
 export default function UserDataProvider (props) {
+	"use client"
 	const { children, staticUser } = props,
 		[userData, setUserData] = useState(staticUser);
 
 	useEffect(() => {
-		fetcher('/api/getFullUser', { method: 'POST' }).then(setUserData);
+		fetch('/api/getFullUser', { method: 'POST' })
+			.then((res) => res.json())
+			.then(setUserData);
 	}, []);
 
 	return (
