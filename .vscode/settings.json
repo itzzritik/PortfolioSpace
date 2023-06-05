@@ -27,7 +27,8 @@
 	],
     
     "cSpell.words": [
-        "keyframes",
-        "stylelint"
-    ]
+		"clsx",
+		"keyframes",
+		"stylelint"
+	]
 }

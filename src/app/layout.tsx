@@ -2,8 +2,9 @@ import React from 'react';
 
 import { Montserrat } from 'next/font/google';
 
-import GlobalContextProvider from '#components/context';
 import { getUserData } from '#utils/function/getUserData';
+
+import GlobalContextProvider from '../data/context';
 
 import './globals.scss';
 
@@ -17,11 +18,13 @@ export const metadata = {
 };
 export default async function RootLayout () {
 	const userData = await getUserData();
-	console.log(userData);
+
 	return (
 		<html>
 			<body style={{ ['--fontFamily' as string]: montserrat.style.fontFamily }}>
-				<GlobalContextProvider userData={userData} />
+				<GlobalContextProvider userData={userData}>
+					<div id='root' />
+				</GlobalContextProvider>
 			</body>
 		</html>
 	);

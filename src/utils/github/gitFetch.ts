@@ -1,18 +1,19 @@
+import { IGitProfile, IGitUser } from '../../data/interface/userData';
+
 export let gitUser: string;
 export const profileUrl = () => `https://raw.githubusercontent.com/${gitUser}/${gitUser}/main/profile`;
 
-export const gitGraphQL = async (query: string) => {
-	return new Promise(async (resolve, reject) => {
+export const gitGraphQL = <T>(query: string) => {
+	return new Promise<IGraphQLResponse<T>>((resolve, reject) => {
 		try {
 			const options = {
 				method: 'POST',
 				headers: { Authorization: `token ${process.env.GITHUB_TOKEN}` },
 				body: JSON.stringify({ query }),
 			};
-			const res = await fetch('https://api.github.com/graphql', options);
-			const { data } = await res.json();
-
-			return resolve(data);
+			fetch('https://api.github.com/graphql', options)
+				.then((res) => res.json())
+				.then(({ data }) => resolve(data));
 		}
 		catch (err) {
 			return reject(err);
@@ -20,11 +21,15 @@ export const gitGraphQL = async (query: string) => {
 	});
 };
 
-export const getGitUser = async (items = 'login name bio location avatarUrl') => {
-	return new Promise(async (resolve, reject) => {
+export const getGitUser = () => {
+	return new Promise<IGitUser>((resolve, reject) => {
 		try {
-			const gitData = await gitGraphQL(`{  viewer { ${items} }}`);
-			return resolve(gitData?.viewer);
+			gitGraphQL<IGitUser>('{  viewer { login name bio location avatarUrl }}').then((data) => {
+				if (!gitUser && data?.viewer?.login) {
+					gitUser = data?.viewer?.login;
+				}
+				resolve(data?.viewer);
+			});
 		}
 		catch (err) {
 			return reject(err);
@@ -32,22 +37,32 @@ export const getGitUser = async (items = 'login name bio location avatarUrl') =>
 	});
 };
 
-export const getGitProfile = async () => {
-	return new Promise(async (resolve, reject) => {
+export const getGitProfile = () => {
+	return new Promise<IGitProfile>((resolve, reject) => {
 		try {
-			if (!gitUser) {
-				gitUser = (await getGitUser('login'))?.login;
-			}
-			const gitData = await gitGraphQL(`{ viewer {
+			if (!gitUser) return reject('Git user not found');
+
+			gitGraphQL<IGraphQLResponseProfile>(`{ viewer {
 				repository(name: "${gitUser}") {
 					profile: object(expression: "HEAD:profile/profile.json") {
 					  ... on Blob { text }
 					}
-				}}}`);
-			return resolve(JSON.parse(gitData?.viewer?.repository?.profile?.text ?? '{}'));
+				}}}`)
+				.then((data) => resolve(JSON.parse(data?.viewer?.repository?.profile?.text ?? '{}')));
 		}
 		catch (err) {
 			return reject(err);
 		}
 	});
 };
+
+interface IGraphQLResponse<T> {
+	viewer: T
+}
+interface IGraphQLResponseProfile {
+	repository: {
+		profile: {
+			text: string
+		}
+	}
+}

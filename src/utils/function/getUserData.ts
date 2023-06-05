@@ -1,27 +1,31 @@
+import { IUserData } from '../../data/interface/userData';
 import { getGitUser, getGitProfile } from '../github/gitFetch';
 
 import { getCountry, getLanguages } from './locale';
 
-export const getUserData = async () => {
-	return new Promise(async (resolve, reject) => {
+export const getUserData = () => {
+	return new Promise<IUserData>((resolve, reject) => {
 		try {
-			const [user, profile] = await Promise.all([getGitUser(), getGitProfile()]);
+			getGitUser().then((user) => {
+				getGitProfile().then((profile) => {
+					if (!user) return reject('Git user not found');
 
-			if (!user) return resolve({});
+					const userData: IUserData = {
+						...user,
+						country: getCountry(user?.location?.split(' ').pop()),
+						languages: getLanguages(profile?.personal?.languages),
+						displayEmail: profile.personal.displayEmail,
+						currentRole: profile.personal.currentRole,
+						dob: profile.personal.dob,
+						hobbies: profile.personal.hobbies,
+						socialHandles: profile.socialHandles,
+						academics: profile.academics,
+						experience: profile.experience,
+					};
 
-			[user.country, user.languages] = await Promise.all([
-				getCountry(user?.location?.split(' ').pop()),
-				getLanguages(profile?.personal?.languages),
-			]);
-			user.displayEmail = profile.personal.displayEmail;
-			user.currentRole = profile.personal.currentRole;
-			user.dob = profile.personal.dob;
-			user.hobbies = profile.personal.hobbies;
-			user.socialHandles = profile.socialHandles;
-			user.academics = profile.academics;
-			user.experience = profile.experience;
-
-			return resolve(user);
+					return resolve(userData);
+				});
+			});
 		}
 		catch (e) {
 			return reject(e);
