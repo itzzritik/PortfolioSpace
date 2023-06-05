@@ -1,16 +1,16 @@
-import React from 'react';
+'use client';
 
 import UserDataProvider, { useUserData } from './UserData';
 
 export default function GlobalContextProvider (props) {
-	const { children, staticUser } = props;
+	const { children, userData } = props;
 
 	return (
-		<UserDataProvider staticUser={staticUser}>
+		<UserDataProvider userData={userData}>
 			{children}
 		</UserDataProvider>
 	);
 }
 export {
-	useUserData
+	useUserData,
 };

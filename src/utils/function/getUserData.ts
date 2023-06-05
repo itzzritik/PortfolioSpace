@@ -1,6 +1,6 @@
+import { getGitUser, getGitProfile } from '../github/gitFetch';
 
 import { getCountry, getLanguages } from './locale';
-import { getGitUser, getGitProfile } from '../github/gitFetch';
 
 export const getUserData = async () => {
 	return new Promise(async (resolve, reject) => {
@@ -11,7 +11,7 @@ export const getUserData = async () => {
 
 			[user.country, user.languages] = await Promise.all([
 				getCountry(user?.location?.split(' ').pop()),
-				getLanguages(profile?.personal?.languages)
+				getLanguages(profile?.personal?.languages),
 			]);
 			user.displayEmail = profile.personal.displayEmail;
 			user.currentRole = profile.personal.currentRole;

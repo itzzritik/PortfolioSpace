@@ -10,7 +10,6 @@
 	"plugins": [
 		"@typescript-eslint",
 		"import",
-		"module-resolver",
 		"react-hooks"
 	],
 	"parser": "@typescript-eslint/parser",
@@ -178,10 +177,7 @@
 				"warnOnUnassignedImports": true
 			}
 		],
-		"module-resolver/use-alias": ["error", {
-			"extensions": [".jsx", ".ts", ".tsx"]
-		}],
-
+		
 		"react/react-in-jsx-scope": "off",
 		"react/jsx-uses-react": "error",
 		"react/jsx-uses-vars": "error",
@@ -219,9 +215,6 @@
     	"react-hooks/exhaustive-deps": "error"
 	},
 	"settings": {
-		"import/resolver": {
-			"babel-module": {}
-		},
 		"react": { "version": "detect" }
 	}
 }

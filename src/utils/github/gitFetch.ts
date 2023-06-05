@@ -5,10 +5,10 @@ export const gitGraphQL = async (query: string) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const options = {
-					method: 'POST',
-					headers: { Authorization: `token ${process.env.GITHUB_TOKEN}` },
-					body: JSON.stringify({ query })
-				};
+				method: 'POST',
+				headers: { Authorization: `token ${process.env.GITHUB_TOKEN}` },
+				body: JSON.stringify({ query }),
+			};
 			const res = await fetch('https://api.github.com/graphql', options);
 			const { data } = await res.json();
 
