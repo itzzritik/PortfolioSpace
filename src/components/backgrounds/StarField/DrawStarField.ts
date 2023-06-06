@@ -1,0 +1,83 @@
+export default function DrawStarField () {
+	if (typeof document === 'undefined') return;
+
+	const canvas = <HTMLCanvasElement> document.getElementById('starfieldCanvas');
+	const pen = canvas.getContext('2d');
+
+	if (!pen) return;
+
+	let width: number;
+	let height: number;
+	let prevTime: number;
+
+	const setCanvasExtents = () => {
+		width = document.body.clientWidth;
+		height = document.body.clientHeight;
+		canvas.width = width;
+		canvas.height = height;
+	};
+	const makeStars = (count: number) => {
+		const out = [];
+		for (let i = 0; i < count; i++) {
+			const s = {
+				x: Math.random() * 1600 - 800,
+				y: Math.random() * 900 - 450,
+				z: Math.random() * 1000,
+			};
+			out.push(s);
+		}
+		return out;
+	};
+	const stars = makeStars(10000);
+	const clear = () => {
+		pen.fillStyle = 'black';
+		pen.fillRect(0, 0, canvas.width, canvas.height);
+	};
+	const putPixel = (x: number, y: number, brightness: number) => {
+		const intensity = brightness * 255;
+		const rgb = 'rgb(' + intensity + ',' + intensity + ',' + intensity + ')';
+		pen.fillStyle = rgb;
+		pen.fillRect(x, y, 1, 1);
+	};
+	const moveStars = (distance: number) => {
+		const count = stars.length;
+		for (let i = 0; i < count; i++) {
+			const s = stars[i];
+			s.z -= distance;
+			while (s.z <= 1) {
+				s.z += 1000;
+			}
+		}
+	};
+	const init = (time: number) => {
+		prevTime = time;
+		requestAnimationFrame(tick);
+	};
+	const tick = (time: number) => {
+		const elapsed = time - prevTime;
+		prevTime = time;
+
+		moveStars(elapsed * 0.1);
+		clear();
+
+		const cx = width / 2;
+		const cy = height / 2;
+		const count = stars.length;
+
+		for (let i = 0; i < count; i++) {
+			const star = stars[i];
+			const x = cx + star.x / (star.z * 0.001);
+			const y = cy + star.y / (star.z * 0.001);
+
+			if (x < 0 || x >= width || y < 0 || y >= height) continue;
+
+			const brightness = 1 - (star.z / 1000.0) ** 2;
+			putPixel(x, y, brightness);
+		}
+		requestAnimationFrame(tick);
+	};
+
+	window.onresize = setCanvasExtents;
+	setCanvasExtents();
+	requestAnimationFrame(init);
+}

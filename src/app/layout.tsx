@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import { Montserrat } from 'next/font/google';
 
@@ -16,16 +16,21 @@ const montserrat = Montserrat({
 export const metadata = {
 	title: 'Ritik Srivastava',
 };
-export default async function RootLayout () {
+export default async function RootLayout (props: IRootProps) {
+	const { children } = props;
 	const userData = await getUserData();
 
 	return (
-		<html>
+		<html lang='en' suppressHydrationWarning>
 			<body style={{ ['--fontFamily' as string]: montserrat.style.fontFamily }}>
 				<GlobalContextProvider userData={userData}>
-					<div id='root' />
+					{ children }
 				</GlobalContextProvider>
 			</body>
 		</html>
 	);
+}
+
+interface IRootProps {
+	children?: ReactNode;
 }

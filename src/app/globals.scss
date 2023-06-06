@@ -1,0 +1,58 @@
+html {
+	overflow-x: hidden;
+
+	// Gradients
+	--gradientRed: linear-gradient(320deg, #F9224B, #F44);
+	--gradientPink: linear-gradient(320deg, #FC2169, #E221FF);
+	--gradientOrange: linear-gradient(320deg, #FF7F22, #FF4141);
+	--gradientBlue: linear-gradient(320deg, #22FCB0, #2181FA);
+	--gradientViolet: linear-gradient(320deg, #3F00E6, #962CFF);
+	--gradientBlack: linear-gradient(120deg, #16141C, #09080B);
+	--gradientWhite: linear-gradient(120deg, #EDF1F4 10%, #C3CBDC);
+	--gradientBackground: var(--gradientViolet);
+
+	// Border Colors
+	--colorBorderPrimary: #ABB0BB;
+
+	// Text Colors
+	--colorContentPrimary: black;
+	--colorContentPrimaryDark: #EEE;
+
+	// Other Colors
+	--colorAccentRGB: 127 81 255;
+	--colorAccent: rgb(var(--colorAccentRGB));
+
+	// Fonts
+	--headerThickness: 100px;
+	--headerLogoSize: 44px;
+	--landingHeight: 260vh;
+	--profileHeight: 400vh;
+}
+
+html,
+body {
+	width: 100%;
+	min-height: 100vh;
+	padding: 0;
+	margin: 0;
+	background: var(--gradientWhite);
+
+	// scroll-snap-type: y proximity;
+	scroll-behavior: smooth;
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	::selection {
+		color: white;
+		background: var(--colorAccent);
+	}
+}
+
+* {
+	font-family: var(--fontFamily), sans-serif;
+	box-sizing: border-box;
+	-webkit-font-smoothing: subpixel-antialiased;
+}
