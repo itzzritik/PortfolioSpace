@@ -10,6 +10,7 @@ import './globals.scss';
 
 const montserrat = Montserrat({
 	weight: ['200', '300', '400', '500'],
+	fallback: ['sans-serif', 'system-ui'],
 	subsets: ['latin'],
 });
 
@@ -21,8 +22,8 @@ export default async function RootLayout (props: IRootProps) {
 	const userData = await getUserData();
 
 	return (
-		<html lang='en' suppressHydrationWarning>
-			<body style={{ ['--fontFamily' as string]: montserrat.style.fontFamily }}>
+		<html lang='en'>
+			<body style={{ ['--fontFamily' as string]: montserrat.style.fontFamily }} suppressHydrationWarning>
 				<GlobalContextProvider userData={userData}>
 					{ children }
 				</GlobalContextProvider>

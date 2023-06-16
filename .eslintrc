@@ -20,22 +20,6 @@
 		"project": ["./tsconfig.json"]
 	},
 	"rules": {
-		"no-restricted-imports": [
-			"error",
-			{
-				"name": "react",
-				"importNames": ["useLayoutEffect"],
-				"message": "`useLayoutEffect from React` causes a warning in SSR. Use `useLayoutEffect from utils/domHelper instead`"
-			}
-		],
-		"no-restricted-syntax": [
-			"error",
-			{
-				"selector": "ImportDeclaration[source.value=/domHelper/] > ImportDefaultSpecifier[local.name!='useLayoutEffect']",
-				"message": "Must use `useLayoutEffect` as the name of the import from `*domHelper` to leverage `eslint-plugin-react-hooks`"
-			}
-		],
-
 		"indent": ["error", "tab", { "SwitchCase": 1 }],
 		"max-len": ["error", { "code": 130 }],
 		"no-return-assign": ["off"],
