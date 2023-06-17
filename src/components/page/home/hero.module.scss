@@ -1,0 +1,101 @@
+.hero {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-end;
+	transform-origin: 0% 30%;
+	transition: transform var(--landingDuration) ease-out;
+
+	> .greeting,
+	> .intro {
+		margin: 0;
+		font-size: 14vw;
+		line-height: 1;
+		font-weight: 500;
+		user-select: none;
+		letter-spacing: -0.5vw;
+		transition: transform var(--landingDuration) ease-out;
+
+		> span {
+			margin-left: -1.5vw;
+		}
+	}
+
+	> .intro {
+		margin-top: -1.5vw;
+		user-select: auto;
+
+		> span {
+			user-select: none;
+		}
+	}
+
+	> .role {
+		margin: 1.5vh 0 0;
+		padding: 0.5vw 1.2vw;
+		font-weight: 400;
+		font-size: 1.2vw;
+		line-height: 1;
+		border-radius: 0.4vw;
+		text-transform: uppercase;
+		color: black;
+		background: var(--colorContentPrimaryDark);
+		box-shadow: 0 0 20px 2px rgb(255 255 255 / 20%);
+		letter-spacing: 0.7vw;
+		transition: transform var(--landingDuration) ease-out;
+	}
+
+	> .footer {
+		position: relative;
+		align-self: flex-start;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		margin: -3vw 0 5vw;
+		overflow: hidden;
+
+		> .separator {
+			width: 100%;
+			height: 1px;
+			background: var(--colorContentPrimaryDark);
+			transition: transform var(--landingDuration) ease-out;
+		}
+
+		> .heroBio {
+			width: fit-content;
+			margin-top: 1vw;
+
+			> p {
+				margin: 0;
+				font-size: 1.9vw;
+				font-weight: 200;
+				line-height: 1.5;
+				clip-path: polygon(0 0, 0% 0, 0% 100%, 0% 100%);
+				transition: clip-path var(--landingDuration) ease-out;
+			}
+		}
+	}
+
+	&.overlay {
+		> .greeting,
+		> .intro {
+			color: var(--colorContentPrimary);
+			background-clip: text;
+		}
+
+		> .role {
+			color: white;
+			background: var(--gradientBackground);
+			box-shadow: 0 0 20px 2px rgb(var(--colorAccentRGB) / 40%);
+		}
+
+		> .footer {
+			> .separator {
+				background: var(--colorContentPrimary);
+			}
+		}
+	}
+}

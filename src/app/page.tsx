@@ -1,5 +1,6 @@
 import StarField from '#components/backgrounds/StarField';
-import Animations from '#components/layouts/animations';
+import LandingSection from '#components/page/home/LandingSection';
+import Animations from '#utils/animations';
 
 import styles from './page.module.scss';
 
@@ -8,6 +9,7 @@ export default function Home () {
 		<div className={styles.home}>
 			<Animations />
 			<StarField className={styles.starField} />
+			<LandingSection />
 		</div>
 	);
 }

@@ -22,7 +22,9 @@
 		"typeRoots": ["./src/types", "./node_modules/@types"],
 		"paths": {
 			"#api/*": ["./src/app/api/*"],
+			"#assets/*": ["./src/assets/*"],
 			"#components/*": ["./src/components/*"],
+			"#data/*": ["./src/data/*"],
 			"#utils/*": ["./src/utils/*"]
 		}
 	},

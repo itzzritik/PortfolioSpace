@@ -26,6 +26,17 @@ interface ISocialHandles {
 	url: string
 	handle: string
 }
+export interface ICountry {
+	name: string
+	code: string
+	flag: string
+}
+export interface ILanguage {
+	code: string
+	name: string
+	nativeName: string
+	flag: string
+}
 
 export interface IGitUser {
 	login: string
@@ -53,13 +64,13 @@ export interface IUserData {
 	dob: Date
 	bio: string
 	displayEmail: string
-	country: object
+	country: ICountry
 	avatarUrl: string
 	academics: IAcademics[]
 	currentRole: string
 	experience: IExperience[]
 	hobbies: string[]
-	languages: object
+	languages: ILanguage[]
 	location: string
 	socialHandles: ISocialHandles[]
 }

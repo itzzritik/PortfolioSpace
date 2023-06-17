@@ -1,0 +1,35 @@
+.landingSection {
+	--landingDuration: 0.2s;
+
+	position: relative;
+	width: 100%;
+	height: 100%;
+
+	> .container {
+		position: sticky;
+		top: 0;
+		width: 100%;
+		height: 100vh;
+		overflow-x: hidden;
+
+		> .primary,
+		> .overlay {
+			position: absolute;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			padding: 0 4vw;
+			color: var(--colorContentPrimaryDark);
+			overflow: hidden;
+			z-index: 4;
+		}
+
+		> .overlay {
+			background: white;
+			color: var(--colorContentPrimary);
+			transition: all var(--landingDuration) ease-out;
+		}
+	}
+}

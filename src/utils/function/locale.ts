@@ -1,5 +1,8 @@
+import { ICountry, ILanguage } from '#data/types/userData';
+
 export const getCountry = (country = '') => {
-	return new Promise((resolve, reject) => {
+	console.log('getCountry', country);
+	return new Promise<ICountry>((resolve, reject) => {
 		try {
 			fetch('https://flagcdn.com/en/codes.json')
 				.then((res) => res.json())
@@ -25,7 +28,7 @@ export const getCountry = (country = '') => {
 };
 
 export const getLanguages = (languages: string[] = []) => {
-	return new Promise((resolve, reject) => {
+	return new Promise<ILanguage[]>((resolve, reject) => {
 		try {
 			fetch('https://gist.githubusercontent.com/piraveen/fafd0d984b2236e809d03a0e306c8a4d/raw/languages.json')
 				.then((res) => res.json())

@@ -1,0 +1,85 @@
+.hamburger {
+    width: var(--headerLogoSize); height: var(--headerLogoSize);
+	overflow: visible;
+	cursor: pointer;
+
+	> path {
+		width: 40px; height: 40px;
+		fill: none;
+		stroke: black;
+		stroke-width: 4;
+		stroke-linecap: round;
+		stroke-dasharray: 40 121;
+		transform-origin: 28px 28px;
+	}
+
+    &.dark {
+		> path {
+            stroke: white;
+		}
+	}
+	&.active {
+		> path {
+			animation: hamburger-active 1.4s linear forwards;
+		}
+	}
+	&.inactive {
+		> path {
+			animation: hamburger-inactive 1.4s linear backwards;
+		}
+	}
+
+	@keyframes hamburger-active {
+		0% {
+			transform: rotate(0) scale(1);
+			stroke-width: 4;
+			stroke: black;
+			stroke-dashoffset: 0px;
+			stroke-dasharray: 40 121;
+		}
+		14% {
+			transform: rotate(-40deg) scale(3.2);
+		}
+		28% {
+			transform: rotate(-90deg) scale(4);
+			stroke-width: 1;
+			stroke: white;
+			stroke-dashoffset: -65px;
+			stroke-dasharray: 5 121;
+		}
+		100% {
+			transform: rotate(-585deg) scale(4);
+			stroke-width: 1;
+			stroke: white;
+			stroke-dashoffset: -65px;
+			stroke-dasharray: 5 121;
+		}
+	}
+	@keyframes hamburger-inactive {
+		0% {
+			transform: rotate(-585deg) scale(1.4);
+			stroke-width: 2.8;
+			stroke: white;
+			stroke-dashoffset: -60px;
+			stroke-dasharray: 40 121;
+		}
+		62% {
+			transform: rotate(-90deg) scale(1.4);
+			stroke-width: 2.8;
+			stroke: white;
+			stroke-dashoffset: -60px;
+			stroke-dasharray: 40 121;
+		}
+		72% {
+			transform: rotate(-45deg) scale(2.5);
+			stroke-width: 2;
+		}
+		100% {
+			transform: rotate(0deg) scale(1);
+			stroke-width: 4;
+			stroke: black;
+			stroke-dashoffset: 0px;
+			stroke-dasharray: 40 121;
+		}
+	}
+}

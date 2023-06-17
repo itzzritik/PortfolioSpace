@@ -1,0 +1,89 @@
+@use 'sass:math';
+
+.minor {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 30%;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	padding: 3vw 4vw;
+
+	> .welcome {
+		display: flex;
+		flex-direction: column;
+
+		> p {
+			font-size: 3vw;
+			font-weight: 300;
+			user-select: none;
+			text-transform: uppercase;
+			margin: 0;
+
+			&:last-of-type {
+				font-size: 1.7vw;
+				font-weight: 200;
+				margin-left: 0.2vw;
+			}
+		}
+	}
+
+	> .location {
+		$flagSize: 3vw;
+
+		display: flex;
+		align-items: center;
+		font-size: math.div($flagSize, 1.5);
+		font-weight: 200;
+		letter-spacing: -0.05vw;
+		margin-top: 2vh;
+		user-select: all;
+		transition: transform var(--landingDuration) ease-out;
+
+		> .flag {
+			width: $flagSize;
+			height: $flagSize;
+			margin: 0 1vw;
+			background-size: 210%;
+			background-position: center;
+			background-repeat: no-repeat;
+			border-radius: 999px;
+			border: 1px solid #DDD;
+		}
+	}
+
+	> .descMail {
+		height: 60px;
+
+		> svg {
+			fill: transparent;
+			stroke: white;
+		}
+
+		> p {
+			font-size: 1.3vw !important;
+			line-height: 1;
+			font-weight: 300;
+			text-transform: none;
+			margin: 12px 0;
+		}
+
+		@media (hover: hover) {
+			&:hover {
+				> svg {
+					fill: white;
+					stroke: transparent;
+				}
+			}
+		}
+
+		&:active {
+			> svg {
+				fill: white;
+				stroke: transparent;
+			}
+		}
+	}
+}
