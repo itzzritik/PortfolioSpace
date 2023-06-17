@@ -1,4 +1,6 @@
-import { ReactElement } from 'react';
+import { FC, SVGProps, SyntheticEvent } from 'react';
+
+import clsx from 'clsx';
 
 import ProgressBar from '#components/layouts/ProgressBar';
 
@@ -6,25 +8,25 @@ import styles from './button.module.scss';
 
 export default function Button (props: ButtonProps) {
 	const { className, dark, Icon, image, label = '', tooltip, back, link, reverse, newTab, onClick, stopPropagation } = props;
-	const performClick = (e) => {
-		if (stopPropagation) e.stopPropagation();
-		if (link) {
-			return newTab ? window.open(link, '_blank') : '';
-		}
-		if (onClick) {
-			return onClick();
-		}
+
+	const performClick = (event: SyntheticEvent) => {
+		if (stopPropagation) event.stopPropagation();
+
+		if (link) return newTab ? window.open(link, '_blank') : '';
+		if (onClick) return onClick();
 	};
 	const IconComponent = Icon ? <Icon className={styles.icon} /> : image ?
 		<span className={styles.image} style={{ backgroundImage: `url(${image})` }} /> : '';
 
-	let buttonClass = styles.button;
-	className && (buttonClass += ` ${className}`);
-	dark && (buttonClass += ` ${styles.dark}`);
-	(Icon || image) && (buttonClass += ` ${styles.icon}`);
-	back && (buttonClass += ` ${styles.back}`);
-	link && (buttonClass += ` ${styles.link}`);
-	label && (buttonClass += ` ${styles.label}`);
+	const buttonClass = clsx(
+		styles.button,
+		className,
+		dark && styles.dark,
+		(Icon || image) && styles.icon,
+		back && styles.back,
+		link && styles.link,
+		label && styles.label,
+	);
 
 	return (
 		<div className={buttonClass} title={tooltip ? tooltip : label} onClick={performClick}>
@@ -39,7 +41,7 @@ export default function Button (props: ButtonProps) {
 interface ButtonProps {
 	className?: string;
 	dark?: boolean;
-	Icon: ReactElement;
+	Icon?: FC<SVGProps<SVGSVGElement>>;
 	image?: string;
 	label?: string;
 	tooltip?: string;

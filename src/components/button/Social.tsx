@@ -1,4 +1,7 @@
+import clsx from 'clsx';
 import { startCase } from 'lodash';
+
+import { ISocialHandles } from '#data/types/userData';
 
 import Facebook from '../../assets/img/social/facebook.svg';
 import Github from '../../assets/img/social/github.svg';
@@ -20,12 +23,14 @@ export default function Social (props: SocialProps) {
 		facebook: Facebook,
 	};
 
-	let socialClass = styles.social;
-	className && (socialClass += ` ${className}`);
-	dark && (socialClass += ` ${styles.dark}`);
+	const classX = clsx(
+		styles.social,
+		className,
+		dark && styles.dark,
+	);
 
 	return (
-		<div className={socialClass}>
+		<div className={classX}>
 			{
 				handles.map(({ platform, handle, url }, i) => (
 					<Button className={`${styles.handle} ${styles[platform]}`} key={i} Icon={icons[platform]} back stopPropagation
@@ -39,11 +44,6 @@ export default function Social (props: SocialProps) {
 
 interface SocialProps {
 	className?: string;
-	handles: ISocialHandle[]
+	handles: ISocialHandles[]
 	dark?: boolean;
-}
-interface ISocialHandle {
-	platform: string;
-	handle: string;
-	url: string;
 }

@@ -1,11 +1,15 @@
+import clsx from 'clsx';
+
 import styles from './progressbar.module.scss';
 
 export default function ProgressBar (props: ProgressBarProps) {
-	const { className, progress, dark } = props;
+	const { className, progress = 0, dark } = props;
 
-	let progressClass = styles.progressBar;
-	className && (progressClass += ` ${className}`);
-	dark && (progressClass += ` ${styles.dark}`);
+	const progressClass = clsx(
+		styles.progressBar,
+		className,
+		dark && styles.dark,
+	);
 
 	return (
 		<div className={progressClass}>
@@ -16,6 +20,6 @@ export default function ProgressBar (props: ProgressBarProps) {
 
 interface ProgressBarProps {
 	className?: string;
-	progress: number;
+	progress?: number;
 	dark?: boolean;
 }
