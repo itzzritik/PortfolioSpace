@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import styles from './progressbar.module.scss';
 
 export default function ProgressBar (props: ProgressBarProps) {
-	const { className, progress = 0, dark } = props;
+	const { className, progress, dark } = props;
 
 	const progressClass = clsx(
 		styles.progressBar,
@@ -13,7 +13,7 @@ export default function ProgressBar (props: ProgressBarProps) {
 
 	return (
 		<div className={progressClass}>
-			<span className={styles.progress} style={{ width: `${Math.min(Math.max(progress, 0), 100)}%` }} />
+			<span className={styles.progress} style={{ width: `${progress && Math.min(Math.max(progress, 0), 100)}%` }} />
 		</div>
 	);
 }

@@ -9,9 +9,9 @@ export default function DrawStarField () {
 	let height: number;
 	let prevTime: number;
 
-	const speed = 0.08;
-	const starCount = 10000;
-	const starSize = 1;
+	const speed = 0.2;
+	const starCount = 1000;
+	const starSize = 2;
 
 	const setCanvasExtents = () => {
 		width = document.body.clientWidth;

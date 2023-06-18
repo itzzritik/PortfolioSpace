@@ -96,7 +96,7 @@
 
 		> .loader {
 			> circle {
-				$radius: 180px;
+				$radius: 200px;
 
 				r: $radius;
 				stroke-dasharray: math.$pi * $radius 0;

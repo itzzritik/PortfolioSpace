@@ -40,7 +40,6 @@
 		height: 100%;
 		z-index: 5;
 		padding: 25%;
-		fill: black;
 		transition: all 0.3s ease-out;
 	}
 
@@ -114,28 +113,30 @@
 		border: 1px solid var(--colorBorderPrimary);
 	}
 
-	&:hover {
-		border: 1px solid transparent !important;
+	@media (hover: hover) {
+		&:hover {
+			border: 1px solid transparent !important;
 
-		> .background {
-			clip-path: circle(100% at 50% 100%);
-		}
+			> .background {
+				clip-path: circle(100% at 50% 100%);
+			}
 
-		> .icon {
-			fill: white;
-		}
+			> .icon {
+				stroke-width: 2;
+			}
 
-		> .image {
-			transform: scale(0.85);
-		}
+			> .image {
+				transform: scale(0.85);
+			}
 
-		> .label {
-			color: white;
-		}
+			> .label {
+				color: white;
+			}
 
-		> .underline {
-			> span {
-				width: 100%;
+			> .underline {
+				> span {
+					width: 100%;
+				}
 			}
 		}
 	}

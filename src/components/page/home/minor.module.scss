@@ -69,21 +69,5 @@
 			text-transform: none;
 			margin: 12px 0;
 		}
-
-		@media (hover: hover) {
-			&:hover {
-				> svg {
-					fill: white;
-					stroke: transparent;
-				}
-			}
-		}
-
-		&:active {
-			> svg {
-				fill: white;
-				stroke: transparent;
-			}
-		}
 	}
 }

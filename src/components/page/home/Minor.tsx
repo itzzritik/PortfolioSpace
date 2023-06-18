@@ -15,7 +15,7 @@ export default function Hero (props: MinorProps) {
 		<div className={styles.minor}>
 			<Social handles={socialHandles} dark />
 			<Button className={styles.descMail} Icon={Email} label={displayEmail} link={`mailto:${displayEmail}`} newTab dark
-				tooltip="Yayyyy! I'm already excited 🎉"
+				tooltip="Yay! I'm already excited 🎉"
 			/>
 		</div>
 		:
