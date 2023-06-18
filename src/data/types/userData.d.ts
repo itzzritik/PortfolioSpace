@@ -1,3 +1,5 @@
+import { ESocialHandles } from '#data/constants/userData';
+
 interface IAcademics {
 	id: string
 	degree: string
@@ -25,13 +27,6 @@ export interface ISocialHandles {
 	platform: ESocialHandles
 	url: string
 	handle: string
-}
-export enum ESocialHandles {
-	GITHUB = 'github',
-	LINKEDIN = 'linkedin',
-	INSTAGRAM = 'instagram',
-	TWITTER = 'twitter',
-	FACEBOOK = 'facebook',
 }
 export interface ICountry {
 	name: string

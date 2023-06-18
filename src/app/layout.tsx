@@ -1,18 +1,11 @@
 import React, { ReactNode } from 'react';
 
-import { Montserrat } from 'next/font/google';
-
 import { getUserData } from '#utils/function/getUserData';
+import { montserrat } from '#utils/helper/fontHelper';
 
 import GlobalContextProvider from '../data/context';
 
 import './globals.scss';
-
-const montserrat = Montserrat({
-	weight: ['200', '300', '400', '500'],
-	fallback: ['sans-serif', 'system-ui'],
-	subsets: ['latin'],
-});
 
 export const metadata = {
 	title: 'Ritik Srivastava',
@@ -23,7 +16,7 @@ export default async function RootLayout (props: IRootProps) {
 
 	return (
 		<html lang='en'>
-			<body style={{ ['--fontFamily' as string]: montserrat.style.fontFamily }} suppressHydrationWarning>
+			<body className={montserrat.variable} suppressHydrationWarning>
 				<GlobalContextProvider userData={userData}>
 					{ children }
 				</GlobalContextProvider>

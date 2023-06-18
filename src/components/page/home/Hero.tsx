@@ -1,19 +1,31 @@
 'use client';
 
+import clsx from 'clsx';
+
+import { ELandingHeroID } from '#data/constants/ReactID';
 import { useUserData } from '#data/context';
 
 import { splitSentence } from '../../../utils/function/general';
 
 import styles from './hero.module.scss';
 
+const { HERO, GREETING, GREETING_OVERLAY, INTRO, INTRO_OVERLAY } = ELandingHeroID;
+
 export default function Hero (props: HeroProps) {
 	const { isOverlay } = props;
 	const { name, currentRole, bio } = useUserData();
 
+	const heroClass = clsx(
+		styles.hero,
+		isOverlay && styles.overlay,
+	);
+
 	return (
-		<div className={`${styles.hero} ${isOverlay ? styles.overlay : ''}`}>
-			<div className={styles.greeting}><span>Hello</span></div>
-			<div className={styles.intro}>
+		<div className={heroClass} id={HERO}>
+			<div className={styles.greeting} id={isOverlay ? GREETING_OVERLAY : GREETING}>
+				<span>Hello</span>
+			</div>
+			<div className={styles.intro} id={isOverlay ? INTRO_OVERLAY : INTRO}>
 				<span>I’m </span>{name?.replace(/ .*/, '')}
 			</div>
 			<h1 className={styles.role}>{currentRole}</h1>

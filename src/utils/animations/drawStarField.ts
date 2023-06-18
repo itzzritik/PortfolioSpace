@@ -1,7 +1,8 @@
 export default function DrawStarField () {
 	const canvas = <HTMLCanvasElement> document.getElementById('starfieldCanvas');
-	const pen = canvas.getContext('2d');
+	if (!canvas) return;
 
+	const pen = canvas.getContext('2d');
 	if (!pen) return;
 
 	let width: number;

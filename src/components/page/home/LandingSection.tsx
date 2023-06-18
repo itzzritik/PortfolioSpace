@@ -1,3 +1,5 @@
+import { ELandingID } from '#data/constants/ReactID';
+
 import Hero from './Hero';
 import Minor from './Minor';
 import styles from './landingSection.module.scss';
@@ -10,7 +12,7 @@ export default function LandingSection () {
 					<Hero />
 					<Minor />
 				</div>
-				<div className={styles.overlay}>
+				<div className={styles.overlay} id={ELandingID.OVERLAY}>
 					<Hero isOverlay />
 					<Minor isOverlay />
 				</div>

@@ -2,15 +2,14 @@
 import { useLayoutEffect } from 'react';
 
 import DrawStarField from './drawStarField';
+import ScrollAnimation from './scrollAnimation';
 
-const RunAnimations = () => {
-	DrawStarField();
-};
 export default function Animations () {
 	useLayoutEffect(() => {
 		if (!window.animating) {
 			window.animating = true;
-			RunAnimations();
+			DrawStarField();
+			ScrollAnimation();
 		}
 	}, []);
 	return null;
