@@ -1,3 +1,5 @@
+import LandingAnimation from './scrollAnimation/landingAnimation';
+
 export default function DrawStarField () {
 	const canvas = <HTMLCanvasElement> document.getElementById('starfieldCanvas');
 	if (!canvas) return;
@@ -62,7 +64,7 @@ export default function DrawStarField () {
 
 		moveStars(elapsed * speed);
 		clear();
-
+		LandingAnimation();
 		const cx = width / 2;
 		const cy = height / 2;
 		const count = stars.length;
