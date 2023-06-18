@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 
+import Navigation from '#components/layouts/Navigation';
 import Splash from '#components/layouts/Splash';
 import { getUserData } from '#utils/function/getUserData';
 import { montserrat } from '#utils/helper/fontHelper';
@@ -20,6 +21,7 @@ export default async function RootLayout (props: IRootProps) {
 			<body className={montserrat.variable} suppressHydrationWarning>
 				<GlobalContextProvider userData={userData}>
 					{ children }
+					<Navigation />
 					<Splash />
 				</GlobalContextProvider>
 			</body>

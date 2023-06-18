@@ -1,0 +1,142 @@
+.header {
+	position: fixed;
+	top: 0;
+	width: var(--headerThickness);
+	height: var(--headerThickness);
+	z-index: 50;
+
+	&.logo {
+		--logoSize: var(--headerLogoSize);
+
+		left: 0;
+		width: calc(var(--logoSize) * 3);
+		display: flex;
+		justify-content: flex-end;
+		align-items: flex-end;
+		cursor: pointer;
+
+		> svg {
+			margin-bottom: 0;
+		}
+
+		&.dark {
+			> svg {
+				stroke: white;
+				fill: white;
+			}
+		}
+	}
+
+	&.menu {
+		right: 0;
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-end;
+		cursor: pointer;
+	}
+
+	&.headerActive {
+		&.logo {
+			> svg {
+				stroke: white;
+				fill: white;
+				transition: all 0.5s ease-out 0.6s;
+			}
+		}
+	}
+}
+
+.navigation {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	color: white;
+	background: black;
+	will-change: clip-path;
+	clip-path:
+		circle(
+			0 at calc(100% - (var(--headerThickness) - (var(--headerLogoSize) / 2)))
+			calc(var(--headerThickness) - (var(--headerLogoSize) / 2))
+		);
+	transition: all 0.55s cubic-bezier(0.19, 1, 0.22, 1) 0.8s;
+	z-index: 49;
+
+	> .connect {
+		position: relative;
+		width: 50%;
+		height: 100%;
+
+		> .about {
+			width: 50%;
+			height: 50%;
+		}
+	}
+
+	> .navList {
+		width: 50%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
+
+		> .navItem {
+			min-width: 300px;
+			font-size: 50px;
+			font-weight: 300;
+			line-height: 0;
+			margin-left: 15vw;
+			padding: 0 20px;
+			text-transform: capitalize;
+			color: #888;
+			opacity: 0;
+			will-change: transform, opacity;
+			transform: translate3d(150%, 0, 0) scale(0.2);
+			cursor: pointer;
+
+			@media (hover: hover) {
+				&:hover {
+					color: var(--colorAccent);
+				}
+			}
+
+			&:active {
+				color: var(--colorAccent);
+			}
+		}
+
+		@for $i from 1 through 4 {
+			> .navItem:nth-child(#{$i}) {
+				transition: all 0.5s cubic-bezier(0.36, 0, 0.66, -0.56) $i * 0.08s, color 0.6s cubic-bezier(0.36, 0, 0.66, -0.56);
+			}
+		}
+	}
+
+	&.navActive {
+		clip-path:
+			circle(
+				140% at calc(100% - (var(--headerThickness) - (var(--headerLogoSize) / 2)))
+				calc(var(--headerThickness) - (var(--headerLogoSize) / 2))
+			);
+		transition: all 0.45s cubic-bezier(0.895, 0.03, 0.685, 0.22) 0.2s;
+
+		> .navList {
+			> .navItem {
+				opacity: 1;
+				transform: translate3d(0, 0, 0) scale(1);
+			}
+
+			@for $i from 1 through 4 {
+				> .navItem:nth-child(#{$i}) {
+					transition:
+						all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s + ($i * 0.08s),
+						color 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+				}
+			}
+		}
+	}
+}

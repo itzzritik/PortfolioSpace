@@ -1,0 +1,36 @@
+.logo {
+	--logoSize: var(--headerLogoSize);
+
+	> svg {
+		width: var(--logoSize);
+		height: var(--logoSize);
+		fill: black;
+		stroke: black;
+		stroke-width: 15px;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		margin-bottom: calc(var(--logoSize) / -3.5);
+		transition: all 0.5s ease-out;
+
+		&.ritik {
+			margin-right: -4px;
+		}
+
+		&.srivastava {
+			margin-left: -4px;
+		}
+	}
+
+	&.outlined {
+		> svg {
+			fill: transparent;
+		}
+	}
+
+	&.dark {
+		> svg {
+			stroke: white;
+			fill: white;
+		}
+	}
+}

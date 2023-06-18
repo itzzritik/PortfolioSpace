@@ -1,10 +1,14 @@
 import LandingAnimation from './landingAnimation';
 
 export default function ScrollAnimation () {
-	document.addEventListener('scroll', () => {
-		// console.time('ScrollAnimation');
-		LandingAnimation();
+	['scroll', 'resize'].forEach((event) =>
+		window.addEventListener(event, () => {
+			console.log(event);
 
-		// console.timeEnd('ScrollAnimation');
-	});
+			// console.time('ScrollAnimation');
+			LandingAnimation();
+
+			// console.timeEnd('ScrollAnimation');
+		}),
+	);
 }
