@@ -9,8 +9,7 @@ export default function Animations () {
 		if (!window.animating) {
 			window.animating = true;
 			DrawStarField();
-
-			// ScrollAnimation();
+			ScrollAnimation();
 		}
 	}, []);
 	return null;

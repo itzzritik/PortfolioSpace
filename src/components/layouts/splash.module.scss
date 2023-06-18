@@ -1,0 +1,154 @@
+@use 'sass:math';
+
+.splash {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+	background: white;
+	transition: all 0.5s linear 1.5s;
+
+	> div {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		will-change: transform;
+		background: var(--gradientBackground);
+
+		&.left {
+			clip-path: polygon(0 0, calc(35% + 1px) 0%, calc(65% + 1px) 100%, 0% 100%);
+		}
+
+		&.right {
+			clip-path: polygon(calc(35% - 1px) 0, 100% 0, 100% 100%, calc(65% - 1px) 100%);
+		}
+	}
+
+	> .loader {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+
+		> circle {
+			$radius: 30;
+
+			cx: 50%;
+			cy: 50%;
+			r: $radius;
+			fill: none;
+			stroke: white;
+			stroke-width: 3px;
+			stroke-linecap: round;
+			stroke-dasharray: math.div(math.$pi * $radius, 2);
+			animation: rotate 0.5s linear infinite;
+			transform-origin: 50% 50%;
+		}
+	}
+
+	> svg {
+		$iconWidth: 80px;
+
+		position: absolute;
+		width: $iconWidth;
+		height: $iconWidth;
+		stroke: white;
+		stroke-width: 15px;
+		fill: #FFF0;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-dasharray: 1790;
+		stroke-dashoffset: 1790;
+		margin-top: 18px;
+
+		&.ritik {
+			right: calc(50% - 6px);
+			transform-origin: 100% 50%;
+		}
+
+		&.srivastava {
+			left: calc(50% - 6px);
+			transform-origin: 0% 50%;
+		}
+	}
+
+	&.loaded {
+		background: transparent;
+
+		> div {
+			transition: all 0.7s cubic-bezier(0.96, 0.03, 0.93, 0.04) 1s;
+
+			&.left {
+				transform: translate3d(-100vw, 0, 0);
+			}
+
+			&.right {
+				transform: translate3d(100vw, 0, 0);
+			}
+		}
+
+		> .loader {
+			> circle {
+				$radius: 180px;
+
+				r: $radius;
+				stroke-dasharray: math.$pi * $radius 0;
+				transition: all 0.6s ease-out;
+				opacity: 0;
+				animation: rotate 1s linear infinite 0.5s;
+			}
+		}
+
+		> svg {
+			&.ritik {
+				animation: loadLogo 0.85s ease-out both, translateRitik 0.52s cubic-bezier(0.96, 0.03, 0.93, 0.04) both 0.9s;
+			}
+
+			&.srivastava {
+				animation: loadLogo 0.85s ease-out both, translateSrivastava 0.52s cubic-bezier(0.96, 0.03, 0.93, 0.04) both 0.9s;
+			}
+		}
+	}
+
+	@keyframes rotate {
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+
+	@keyframes loadLogo {
+		0% {
+			fill: #FFF0;
+			stroke-dashoffset: 1790;
+		}
+
+		50% {
+			fill: #FFF0;
+			stroke-dashoffset: 0;
+		}
+
+		100% {
+			fill: #FFFF;
+			stroke-dashoffset: 0;
+		}
+	}
+
+	@keyframes translateRitik {
+		100% {
+			transform: translate3d(-100vw, 0, 0) rotate(-75deg) scale(45);
+		}
+	}
+
+	@keyframes translateSrivastava {
+		100% {
+			transform: translate3d(100vw, 0, 0) rotate(-75deg) scale(45);
+		}
+	}
+}
