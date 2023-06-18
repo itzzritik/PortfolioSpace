@@ -1,4 +1,5 @@
 import { ELandingHeroID, ELandingID } from '#data/constants/ReactID';
+import { IElements } from '#data/types/common';
 
 const { CONTAINER, OVERLAY } = ELandingID;
 const {
@@ -35,7 +36,7 @@ const Landing: IElements = {
 };
 
 const selectElements = () => {
-	if (Object.values(Landing).every((a) => a !== null)) return AllElementsSelected = true;
+	if (Object.values(Landing).every((element) => element !== null)) return AllElementsSelected = true;
 
 	Landing.Container = document.getElementById(CONTAINER);
 	Landing.Overlay = document.getElementById(OVERLAY);
@@ -108,8 +109,4 @@ export default function LandingAnimation () {
 	OverlayAnimation(scrollPart1);
 	HeroPart1Animation(scrollPart1);
 	HeroPart2Animation(scrollPart2);
-}
-
-interface IElements {
-	[key: string]: HTMLElement | null;
 }

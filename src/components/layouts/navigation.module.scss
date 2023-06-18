@@ -7,6 +7,7 @@
 
 	&.logo {
 		--logoSize: var(--headerLogoSize);
+		--displayColor: black;
 
 		left: 0;
 		width: calc(var(--logoSize) * 3);
@@ -17,13 +18,8 @@
 
 		> svg {
 			margin-bottom: 0;
-		}
-
-		&.dark {
-			> svg {
-				stroke: white;
-				fill: white;
-			}
+			stroke: var(--displayColor);
+			fill: var(--displayColor);
 		}
 	}
 
@@ -82,14 +78,13 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		align-items: flex-start;
+		align-items: flex-end;
 
 		> .navItem {
-			min-width: 300px;
+			width: calc(350px + 15vw);
 			font-size: 50px;
 			font-weight: 300;
 			line-height: 0;
-			margin-left: 15vw;
 			padding: 0 20px;
 			text-transform: capitalize;
 			color: #888;

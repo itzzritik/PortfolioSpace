@@ -6,7 +6,7 @@ import S from '#assets/img/logo/s.svg';
 import styles from './logo.module.scss';
 
 export default function logo (props: LogoProps) {
-	const { className, outlined } = props;
+	const { id, className, outlined } = props;
 
 	const logoClass = clsx(
 		styles.logo,
@@ -15,7 +15,7 @@ export default function logo (props: LogoProps) {
 	);
 
 	return (
-		<div className={logoClass} title='Ritik Srivastava'>
+		<div className={logoClass} id={id} title='Ritik Srivastava'>
 			<R className={styles.ritik} />
 			<S className={styles.srivastava} />
 		</div>
@@ -23,6 +23,7 @@ export default function logo (props: LogoProps) {
 }
 
 interface LogoProps {
+	id?: string;
 	className?: string;
 	outlined?: boolean;
 }

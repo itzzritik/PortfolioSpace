@@ -1,3 +1,8 @@
+export enum EHeaderID {
+	LOGO = 'header-logo',
+	HAMBURGER = 'header-hamburger',
+}
+
 export enum ELandingID {
 	CONTAINER = 'landing-container',
 	OVERLAY = 'landing-overlay',

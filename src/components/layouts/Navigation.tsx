@@ -4,12 +4,16 @@ import { useState } from 'react';
 
 import clsx from 'clsx';
 
+import { EHeaderID } from '#data/constants/ReactID';
+
 import Hamburger from '../button/Hamburger';
 import Logo from '../icon/Logo';
 
 import styles from './navigation.module.scss';
 
+const { LOGO, HAMBURGER } = EHeaderID;
 const navLabels = ['about me', 'experience', 'projects', 'resume'];
+
 export default function Navigation () {
 	const [active, setActive] = useState(false);
 
@@ -24,9 +28,9 @@ export default function Navigation () {
 
 	return (
 		<>
-			<Logo className={`${headerClass} ${styles.logo}`} />
+			<Logo className={`${headerClass} ${styles.logo}`} id={LOGO} />
 			<div className={`${headerClass} ${styles.menu}`} onClick={() => setActive((val) => !val)}>
-				<Hamburger dark={scrollY >= (innerWidth / 3.5)} active={active} />
+				<Hamburger id={HAMBURGER} active={active} />
 			</div>
 			<div className={navigationClass}>
 				<div className={styles.connect}>
