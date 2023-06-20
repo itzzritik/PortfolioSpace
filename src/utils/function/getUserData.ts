@@ -22,7 +22,7 @@ export const getUserData = () => {
 					academics: profile.academics,
 					experience: profile.experience,
 				};
-
+				console.log(userData.displayEmail);
 				return resolve(userData);
 			});
 		}

@@ -4,7 +4,11 @@ import styles from './starfield.module.scss';
 
 export default function StarField (props: IStarFieldProps) {
 	const { className } = props;
-	const classX = clsx(styles.starField, className);
+
+	const classX = clsx(
+		styles.starField,
+		className,
+	);
 
 	return (
 		<canvas id='starfieldCanvas' className={classX} />

@@ -1,0 +1,15 @@
+.scroller {
+	position: sticky;
+	top: 0;
+	width: 3px; height: 100vh;
+	display: flex;
+	justify-content: center; align-items: center;
+	transform: translateX(12.5vh);
+	z-index: 10;
+	
+	> .progressBar {
+		position: absolute;
+		width: 60vh; height: 3px;
+		transform: rotate(90deg);
+	}
+}

@@ -1,7 +1,6 @@
 import { ICountry, ILanguage } from '#data/types/userData';
 
 export const getCountry = (country = '') => {
-	console.log('getCountry', country);
 	return new Promise<ICountry>((resolve, reject) => {
 		try {
 			fetch('https://flagcdn.com/en/codes.json')

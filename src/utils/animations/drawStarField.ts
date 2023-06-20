@@ -14,8 +14,8 @@ export default function DrawStarField () {
 	const starSize = 2;
 
 	const setCanvasExtents = () => {
-		width = document.body.clientWidth;
-		height = document.body.clientHeight;
+		width = window.innerWidth;
+		height = window.innerHeight;
 		canvas.width = width;
 		canvas.height = height;
 	};

@@ -4,8 +4,6 @@ import LandingAnimation from './landingAnim';
 export default function ScrollAnimation () {
 	['scroll', 'resize'].forEach((event) =>
 		window.addEventListener(event, () => {
-			console.log(event);
-
 			// console.time('ScrollAnimation');
 			LandingAnimation();
 			HeaderAnimation();

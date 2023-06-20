@@ -1,5 +1,6 @@
 import StarField from '#components/backgrounds/StarField';
 import LandingSection from '#components/page/home/LandingSection';
+import ProfileSection from '#components/page/home/ProfileSection';
 import { ELandingID } from '#data/constants/ReactID';
 import Animations from '#utils/animations';
 
@@ -12,6 +13,9 @@ export default function Home () {
 			<StarField className={styles.starField} />
 			<div className={styles.landingContainer} id={ELandingID.CONTAINER}>
 				<LandingSection />
+			</div>
+			<div className={styles.profileContainer}>
+				{<ProfileSection />}
 			</div>
 		</div>
 	);

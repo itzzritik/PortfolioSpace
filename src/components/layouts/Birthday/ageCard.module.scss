@@ -1,0 +1,18 @@
+.ageCard {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 500px;
+	height: 300px;
+	border-radius: 12px;
+	background: white;
+	z-index: 99;
+
+	> span {
+		color: black;
+
+		> .value {
+			font-family: Inconsolata, monospace;
+		}
+	}
+}

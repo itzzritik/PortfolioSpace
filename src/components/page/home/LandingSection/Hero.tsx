@@ -6,8 +6,7 @@ import clsx from 'clsx';
 
 import { ELandingHeroID } from '#data/constants/ReactID';
 import { useUserData } from '#data/context';
-
-import { splitSentence } from '../../../utils/function/general';
+import { splitSentence } from '#utils/function/general';
 
 import styles from './hero.module.scss';
 

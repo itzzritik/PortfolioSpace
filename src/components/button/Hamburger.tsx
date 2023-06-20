@@ -9,7 +9,7 @@ export default function Hamburger (props: HamburgerProps) {
 
 	const HamburgerClass = clsx(
 		styles.hamburger,
-		active && styles.active,
+		active ? styles.active : styles.inactive,
 	);
 
 	return (

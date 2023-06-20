@@ -8,7 +8,10 @@ export const gitGraphQL = <T>(query: string) => {
 		try {
 			const options = {
 				method: 'POST',
-				headers: { Authorization: `token ${process.env.GITHUB_TOKEN}` },
+				headers: {
+					'cache-control': 'no-cache',
+					Authorization: `token ${process.env.GITHUB_TOKEN}`,
+				},
 				body: JSON.stringify({ query }),
 			};
 			fetch('https://api.github.com/graphql', options)
