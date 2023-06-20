@@ -8,7 +8,7 @@
 		'months days hours minutes seconds';
 
 	> span {
-		display: flex;
+		display: inline-flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
@@ -29,8 +29,14 @@
 
 		&.title {
 			grid-area: title;
-			font-size: 32px;
+			flex-direction: row;
+			gap: 8px;
+			max-height: 48px;
+			font-size: 24px;
 			font-weight: 300;
+			color: black;
+			text-transform: capitalize;
+			overflow: hidden;
 		}
 
 		&.years {

@@ -1,5 +1,6 @@
 import { EStartFieldSpeed } from '#data/types/common.d';
 
+window.starFieldSpeed = EStartFieldSpeed.SLOW;
 export default function DrawStarField () {
 	const canvas = <HTMLCanvasElement> document.getElementById('starfieldCanvas');
 	if (!canvas) return;
@@ -11,8 +12,8 @@ export default function DrawStarField () {
 	let height: number;
 	let prevTime: number;
 
-	const starCount = 1000;
-	const starSize = 2;
+	const starCount = 1200;
+	const starSize = 1.5;
 
 	const setCanvasExtents = () => {
 		width = window.innerWidth;
@@ -40,8 +41,12 @@ export default function DrawStarField () {
 	const putPixel = (x: number, y: number, brightness: number) => {
 		const intensity = brightness * 255;
 		const rgb = 'rgb(' + intensity + ',' + intensity + ',' + intensity + ')';
+
+		pen.beginPath();
 		pen.fillStyle = rgb;
-		pen.fillRect(x, y, starSize, starSize);
+		pen.arc(x, y, starSize, 0, 2 * Math.PI);
+		pen.fill();
+		pen.closePath();
 	};
 	const moveStars = (distance: number) => {
 		const count = stars.length;
@@ -59,11 +64,12 @@ export default function DrawStarField () {
 	};
 	const tick = (time: number) => {
 		const elapsed = time - prevTime;
+		const speed = window.starFieldSpeed ?? EStartFieldSpeed?.SLOW;
 		prevTime = time;
 
-		const speed = window.starFieldSpeed ?? EStartFieldSpeed?.SLOW;
 		moveStars(elapsed * speed);
 		clear();
+
 		const cx = width / 2;
 		const cy = height / 2;
 		const count = stars.length;

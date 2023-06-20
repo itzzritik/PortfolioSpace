@@ -17,7 +17,7 @@ const BirthdayModal = (props: IBirthdayModalProps) => {
 		const handleMouseMove = (event: MouseEvent) => {
 			setModalPos({
 				x: event.clientX + 24,
-				y: window.innerHeight - 350 - 32 < event.clientY ? event.clientY - 350 - 24 : event.clientY + 24,
+				y: event.clientY > window.innerHeight - 350 - 32 ? window.innerHeight - 350 - 8 : event.clientY + 24,
 			});
 		};
 		window.addEventListener('mousemove', handleMouseMove);

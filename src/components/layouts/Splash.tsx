@@ -23,7 +23,10 @@ export default function Splash () {
 	}, [animateSplash]);
 
 	useLayoutEffect(() => {
-		setTimeout(() => setAnimateSplash(true), 300);
+		setTimeout(() => {
+			window.scrollTo(0, 0);
+			setAnimateSplash(true);
+		}, 300);
 	}, []);
 
 	if (loaded) return null;

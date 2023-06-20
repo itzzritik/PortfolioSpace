@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import { dateFields } from '#data/constants/common';
+import { sample } from 'lodash';
+import TextTransition from 'react-text-transition';
+
+import { BirthDayTitle, dateFields } from '#data/constants/BirthdayCard';
 import { IDateFormat } from '#data/types/common';
 import { calculateAge } from '#utils/function/general';
 
@@ -9,15 +12,27 @@ import styles from './ageCard.module.scss';
 export default function AgeCard (props: IAgeCardProps) {
 	const { dob } = props;
 	const [age, setAge] = useState<IDateFormat>(calculateAge(dob));
+	const [title, setTitle] = useState(sample(BirthDayTitle));
 
 	useEffect(() => {
 		const interval = setInterval(() => setAge(calculateAge(dob)), 1000);
 		return () => clearInterval(interval);
 	}, [dob]);
 
+	useEffect(() => {
+		const intervalId = setInterval(
+			() => setTitle(sample(BirthDayTitle)),
+			3000,
+		);
+		return () => clearTimeout(intervalId);
+	}, []);
+
 	return (
 		<div className={styles.ageCard}>
-			<span className={styles.title}>Exploring world since</span>
+			<span className={styles.title}>
+				<TextTransition inline>{title}</TextTransition>
+				since
+			</span>
 			{
 				dateFields.map((field, index) => {
 					return (

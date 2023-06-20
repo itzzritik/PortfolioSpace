@@ -1,4 +1,4 @@
-import { dateFields } from '#data/constants/common';
+import { dateFields } from '#data/constants/BirthdayCard';
 
 export interface IElements {
 	[key: string]: HTMLElement | null;

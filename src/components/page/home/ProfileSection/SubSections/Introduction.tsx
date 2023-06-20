@@ -24,7 +24,7 @@ export default function Introduction (props: IIntroductionProps) {
 			<Hello className={styles.hello} />
 			<div className={styles.about}>
 				<span>
-					I’m {name}, a {<Birthday dob={dob} label=' year old' />}{' '}
+					I’m {name}, a {<Birthday dob={dob} label='-year-old' />}{' '}
 					tech enthusiast based in {location}, heavily fueled by
 					my passion and embrace the mindset of a “lifelong learner”
 					constantly striving to enhance both my technical expertise
