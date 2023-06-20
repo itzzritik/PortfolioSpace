@@ -1,5 +1,10 @@
-interface Window {
-	animating?: boolean;
+export declare global {
+	import { EStartFieldSpeed } from '#data/types/common';
+
+	interface Window {
+		animating?: boolean;
+		starFieldSpeed: EStartFieldSpeed;
+	}
 }
 
 declare module '*.svg' {

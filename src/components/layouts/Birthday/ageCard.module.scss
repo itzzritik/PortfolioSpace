@@ -1,18 +1,55 @@
 .ageCard {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	width: 500px;
-	height: 300px;
-	border-radius: 12px;
-	background: white;
-	z-index: 99;
+	flex: 1;
+	display: grid;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+	grid-template-areas:
+		'title title title title title'
+		'years years years years years'
+		'months days hours minutes seconds';
 
 	> span {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 		color: black;
 
+		> .label {
+			font-size: 12px;
+			font-weight: 500;
+			text-transform: uppercase;
+			user-select: none;
+			text-align: center;
+		}
+
 		> .value {
-			font-family: Inconsolata, monospace;
+			font-size: 32px;
+			font-weight: 400;
+		}
+
+		&.title {
+			grid-area: title;
+			font-size: 32px;
+			font-weight: 300;
+		}
+
+		&.years {
+			margin-top: -12px;
+			margin-bottom: -12px;
+
+			> .label {
+				position: absolute;
+				font-size: 90px;
+				font-weight: 500;
+				letter-spacing: 35px;
+				margin-left: 38px;
+				opacity: 0.05;
+			}
+
+			> .value {
+				font-size: 164px;
+				font-weight: 200;
+			}
 		}
 	}
 }

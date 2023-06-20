@@ -8,7 +8,6 @@ export const getUserData = () => {
 		try {
 			getGitUser().then(async (user) => {
 				if (!user) return reject('Git user not found');
-
 				const profile = await getGitProfile();
 				const userData: IUserData = {
 					...user,
@@ -22,7 +21,6 @@ export const getUserData = () => {
 					academics: profile.academics,
 					experience: profile.experience,
 				};
-				console.log(userData.displayEmail);
 				return resolve(userData);
 			});
 		}

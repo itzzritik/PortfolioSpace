@@ -1,35 +1,31 @@
 import { useEffect, useState } from 'react';
 
-import moment from 'moment';
+import { dateFields } from '#data/constants/common';
+import { IDateFormat } from '#data/types/common';
+import { calculateAge } from '#utils/function/general';
 
 import styles from './ageCard.module.scss';
 
-const fields: moment.unitOfTime.Base[] = ['years', 'months', 'days', 'hours', 'minutes', 'seconds', 'milliseconds'];
 export default function AgeCard (props: IAgeCardProps) {
-	const { date, position } = props;
-	const today = moment();
-	const dob = moment(date);
-	const [birthday, setBirthday] = useState<IDateFormat>({} as IDateFormat);
+	const { dob } = props;
+	const [age, setAge] = useState<IDateFormat>(calculateAge(dob));
 
 	useEffect(() => {
-		const interval = setInterval(() => {
-			fields.forEach((field) => {
-				const diff = today.diff(dob, field);
-				const padding = field === 'milliseconds' ? 3 : 2;
-
-				setBirthday((prev) => ({ ...prev, [field]: diff.toString().padStart(padding, '0') }));
-				dob.add(diff, field);
-			});
-		}, 1);
-
+		const interval = setInterval(() => setAge(calculateAge(dob)), 1000);
 		return () => clearInterval(interval);
-	}, [birthday, dob, today]);
+	}, [dob]);
 
 	return (
-		<div className={styles.ageCard} style={{ top: position?.top, left: (position?.left ?? 0) + (position?.width ?? 0) }}>
+		<div className={styles.ageCard}>
+			<span className={styles.title}>Exploring world since</span>
 			{
-				fields.map((field, index) => {
-					return <span key={index}><span className={styles.value}>{birthday?.[field]}</span> {field}, </span>;
+				dateFields.map((field, index) => {
+					return (
+						<span key={index} className={styles[field]} style={{ gridArea: field }}>
+							<span className={styles.label}>{field}</span>{' '}
+							<span className={styles.value}>{age?.[field]}</span>
+						</span>
+					);
 				})
 			}
 		</div>
@@ -37,9 +33,5 @@ export default function AgeCard (props: IAgeCardProps) {
 }
 
 interface IAgeCardProps {
-	date: Date;
-	position?: DOMRect;
-}
-type IDateFormat = {
-	[key in moment.unitOfTime.Base]: string;
+	dob: string;
 }

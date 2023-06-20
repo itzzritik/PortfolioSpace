@@ -8,8 +8,8 @@ interface IAcademics {
 	location: string
 	picture: string
 	url: string
-	fromDate: Date
-	toDate: Date
+	fromDate: string
+	toDate: string
 }
 interface IExperience {
 	id: string
@@ -20,8 +20,8 @@ interface IExperience {
 	location: string
 	picture: string
 	url: string
-	fromDate: Date
-	toDate: Date
+	fromDate: string
+	toDate: string
 }
 export interface ISocialHandles {
 	platform: ESocialHandles
@@ -51,7 +51,7 @@ export interface IGitProfile {
 	personal: {
 		title: string
 		currentRole: string
-		dob: Date
+		dob: string
 		displayEmail: string
 		languages: string[]
 		hobbies: string[]
@@ -63,7 +63,7 @@ export interface IGitProfile {
 export interface IUserData {
 	login: string
 	name: string
-	dob: Date
+	dob: string
 	bio: string
 	displayEmail: string
 	country: ICountry

@@ -3,6 +3,7 @@ import { FC, SVGProps, SyntheticEvent } from 'react';
 import clsx from 'clsx';
 
 import ProgressBar from '#components/layouts/ProgressBar';
+import { EStartFieldSpeed } from '#data/types/common.d';
 
 import styles from './button.module.scss';
 
@@ -29,7 +30,17 @@ export default function Button (props: ButtonProps) {
 	);
 
 	return (
-		<div className={buttonClass} title={tooltip ? tooltip : label} onClick={performClick}>
+		<div
+			className={buttonClass}
+			title={tooltip ? tooltip : label}
+			onClick={performClick}
+			onMouseEnter={() => {
+				window.starFieldSpeed = EStartFieldSpeed.MEDIUM;
+			}}
+			onMouseLeave={() => {
+				window.starFieldSpeed = EStartFieldSpeed.SLOW;
+			}}
+		>
 			{back ? <span className={styles.background} /> : <ProgressBar className={styles.underline} dark={dark} />}
 			{!reverse && IconComponent}
 			{label && <p className={styles.label}>{label}</p>}

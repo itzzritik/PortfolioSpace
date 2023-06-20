@@ -1,17 +1,40 @@
-import { useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import clsx from 'clsx';
-import moment from 'moment';
+
+import { EStartFieldSpeed } from '#data/types/common.d';
+import { calculateAge } from '#utils/function/general';
 
 import AgeCard from './AgeCard';
 import styles from './birthday.module.scss';
 
+const BirthdayModal = (props: IBirthdayModalProps) => {
+	const { dob } = props;
+
+	const [modalPos, setModalPos] = useState({ x: -1, y: -1 });
+
+	useEffect(() => {
+		const handleMouseMove = (event: MouseEvent) => {
+			setModalPos({
+				x: event.clientX + 24,
+				y: window.innerHeight - 350 - 32 < event.clientY ? event.clientY - 350 - 24 : event.clientY + 24,
+			});
+		};
+		window.addEventListener('mousemove', handleMouseMove);
+		return () => window.removeEventListener('mousemove', handleMouseMove);
+	}, []);
+
+	if (modalPos.x < 0 || modalPos.y < 0) return null;
+
+	return (
+		<div className={styles.birthdayModal} style={{ left: modalPos.x, top: modalPos.y }}>
+			<AgeCard dob={dob} />
+		</div>
+	);
+};
 export default function Birthday (props: IBirthdayProps) {
 	const { className, dob, label } = props;
-	const ref = useRef<HTMLElement>(null);
 	const [showCard, setShowCard] = useState(false);
-
-	const age = moment().diff(moment(dob), 'years');
 
 	const birthdayClass = clsx(
 		styles.age,
@@ -22,22 +45,31 @@ export default function Birthday (props: IBirthdayProps) {
 		<>
 			<span
 				className={birthdayClass}
-				ref={ref}
-				onMouseEnter={() => setShowCard(true)}
-				onMouseLeave={() => setShowCard(false)}
+				onMouseEnter={() => {
+					window.starFieldSpeed = EStartFieldSpeed.MEDIUM;
+					setShowCard(true);
+				}}
+				onMouseLeave={() => {
+					window.starFieldSpeed = EStartFieldSpeed.SLOW;
+					setShowCard(false);
+				}}
 			>
-				{age}{label}
+				{calculateAge(dob)?.years}{label}
 			</span>
 			{
 				showCard && dob &&
-				<AgeCard date={dob} position={ref?.current?.getBoundingClientRect()} />
+				<BirthdayModal dob={dob} />
 			}
+
 		</>
 	);
 }
 
 interface IBirthdayProps {
 	className?: string;
-	dob: Date;
+	dob: string;
 	label?: string;
+}
+interface IBirthdayModalProps {
+	dob: string;
 }

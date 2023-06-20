@@ -1,3 +1,16 @@
 .age {
+	display: inline-flex;
+	font-weight: 300;
 	cursor: pointer;
+}
+
+.birthdayModal {
+	position: fixed;
+	top: 50%; left: 50%;
+	width: 550px; height: 350px;
+	display: flex;
+	background: white;
+	padding: 32px;
+	border-radius: 24px;
+	z-index: 99;
 }
