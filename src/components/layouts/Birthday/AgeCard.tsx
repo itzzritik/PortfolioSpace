@@ -30,7 +30,7 @@ export default function AgeCard (props: IAgeCardProps) {
 	return (
 		<div className={styles.ageCard}>
 			<span className={styles.title}>
-				<TextTransition inline>{title}</TextTransition>
+				<TextTransition translateValue='80%' inline>{title}</TextTransition>
 				since
 			</span>
 			{

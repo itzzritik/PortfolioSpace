@@ -1,6 +1,5 @@
 import { EStartFieldSpeed } from '#data/types/common.d';
 
-window.starFieldSpeed = EStartFieldSpeed.SLOW;
 export default function DrawStarField () {
 	const canvas = <HTMLCanvasElement> document.getElementById('starfieldCanvas');
 	if (!canvas) return;
@@ -12,7 +11,7 @@ export default function DrawStarField () {
 	let height: number;
 	let prevTime: number;
 
-	const starCount = 1200;
+	const starCount = 1000;
 	const starSize = 1.5;
 
 	const setCanvasExtents = () => {

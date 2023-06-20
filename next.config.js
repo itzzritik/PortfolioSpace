@@ -11,7 +11,6 @@ const nextConfig = {
 				{
 					loader: "@svgr/webpack",
 					options: {
-						icon: true,
 						typescript: true,
 						ext: "tsx",
 					},

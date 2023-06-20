@@ -21,7 +21,7 @@ export default function Introduction (props: IIntroductionProps) {
 	return (
 		<div className={introductionClass}>
 			<h1>Introduction</h1>
-			<Hello className={styles.hello} />
+			<Hello className={`${styles.hello} ${styles.write}`} />
 			<div className={styles.about}>
 				<span>
 					I’m {name}, a {<Birthday dob={dob} label='-year-old' />}{' '}

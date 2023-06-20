@@ -5,11 +5,11 @@ export declare global {
 		animating?: boolean;
 		starFieldSpeed: EStartFieldSpeed;
 	}
-}
 
-declare module '*.svg' {
-	import { FC, SVGProps } from 'react';
+	declare module '*.svg' {
+		import { FC, SVGProps } from 'react';
 
-    const SVG: FC<SVGProps<SVGSVGElement>>;
-    export default SVG;
+		const SVG: FC<SVGProps<SVGSVGElement>>;
+		export default SVG;
+	}
 }
