@@ -1,18 +1,20 @@
-import ProgressBar from '#components/layouts/ProgressBar';
+import clsx from 'clsx';
+
+import ProgressStyles from '#components/layouts/progressbar.module.scss';
 
 import styles from './scroller.module.scss';
 
 export default function Scroller (props: IScrollerProps) {
-	const { progress, dark } = props;
-
+	const { id } = props;
 	return (
 		<div className={styles.scroller}>
-			<ProgressBar className={styles.progressBar} progress={progress} dark={dark} />
+			<div className={clsx(ProgressStyles.progressBar, styles.progressBar)}>
+				<span className={ProgressStyles.progress} id={id} />
+			</div>
 		</div>
 	);
 }
 
 interface IScrollerProps {
-	progress?: number;
-	dark?: boolean;
+	id: string;
 }

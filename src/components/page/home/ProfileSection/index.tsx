@@ -5,12 +5,12 @@ import { EProfileID } from '#data/constants/ReactID';
 import ProfileNavigation from './ProfileNavigation';
 import styles from './profileSection.module.scss';
 
-const { PROFILE } = EProfileID;
+const { PROFILE, PROFILE_SCROLL } = EProfileID;
 
 export default function ProfileSection () {
 	return (
 		<div className={styles.profileSection} id={PROFILE}>
-			<Scroller />
+			<Scroller id={PROFILE_SCROLL} />
 			<ProfileNavigation />
 			<div className={styles.sections}>
 				{

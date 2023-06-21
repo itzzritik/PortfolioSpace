@@ -33,6 +33,7 @@ export enum ELandingHeroID {
 
 export enum EProfileID {
 	PROFILE = 'profile',
+	PROFILE_SCROLL = 'profile-scroll',
 	INTRODUCTION_HELLO = 'introduction-hello',
 }
 

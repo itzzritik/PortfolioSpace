@@ -2,36 +2,40 @@ import { profileSectionReversed } from '#data/constants/Profile';
 import { EProfileID, EProfileNavigationID } from '#data/constants/ReactID';
 import { IElements } from '#data/types/common';
 
-const { PROFILE, INTRODUCTION_HELLO } = EProfileID;
+const { PROFILE, PROFILE_SCROLL, INTRODUCTION_HELLO } = EProfileID;
 const { DISC, INTRODUCTION, ACADEMICS, SKILLS, LANGUAGES } = EProfileNavigationID;
 
 let AllElementsSelected = false;
 const Profile: IElements = {
+	Profile: null,
+	ProfileScroll: null,
+	IntroHello: null,
+
 	NavDisc: null,
 	NavIntroduction: null,
 	NavAcademics: null,
 	NavSkills: null,
 	NavLanguages: null,
-
-	Profile: null,
-	IntroHello: null,
 };
 
 const selectElements = () => {
 	if (Object.values(Profile).every((element) => element !== null)) return AllElementsSelected = true;
+
+	Profile.Profile = document.getElementById(PROFILE);
+	Profile.ProfileScroll = document.getElementById(PROFILE_SCROLL);
+	Profile.IntroHello = document.getElementById(INTRODUCTION_HELLO);
 
 	Profile.NavDisc = document.getElementById(DISC);
 	Profile.NavIntroduction = document.getElementById(INTRODUCTION);
 	Profile.NavAcademics = document.getElementById(ACADEMICS);
 	Profile.NavSkills = document.getElementById(SKILLS);
 	Profile.NavLanguages = document.getElementById(LANGUAGES);
-
-	Profile.Profile = document.getElementById(PROFILE);
-	Profile.IntroHello = document.getElementById(INTRODUCTION_HELLO);
 };
 
+const ScrollAnimation = (scrollPercent: number) => {
+	Profile.ProfileScroll?.style.setProperty('width', `${scrollPercent}%`);
+};
 const IntroductionAnimation = (scrollPercent: number) => {
-	console.log(scrollPercent);
 	Profile.IntroHello?.style.setProperty('stroke-dashoffset', scrollPercent >= 60 ? '0' : '3330');
 	Profile.IntroHello?.style.setProperty('transition-duration', scrollPercent >= 60 ? '1.2s' : '0.7s');
 };
@@ -62,11 +66,12 @@ export default function ProfileAnimation () {
 	const profileRect = Profile.Profile?.getBoundingClientRect();
 	if (!profileRect) return;
 
-	const profileScroll = (window.innerHeight - profileRect?.top) * 100 / window.innerHeight;
+	const profileScroll = (window.innerHeight - profileRect?.top) * 100 / profileRect?.height;
+	const profileSectionScroll = (window.innerHeight - profileRect?.top) * 100 / window.innerHeight;
 
-	if (profileScroll > 0)
-		NavigationAnimation(profileScroll);
+	ScrollAnimation(profileScroll);
+	NavigationAnimation(profileSectionScroll);
 
-	if (profileScroll > 0 && profileScroll < 200)
-		IntroductionAnimation(profileScroll);
+	if (profileSectionScroll > 0 && profileSectionScroll < 200)
+		IntroductionAnimation(profileSectionScroll);
 }
