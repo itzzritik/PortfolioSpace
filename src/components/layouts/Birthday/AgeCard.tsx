@@ -4,7 +4,7 @@ import { sample } from 'lodash';
 import TextTransition from 'react-text-transition';
 
 import { BirthDayTitle, dateFields } from '#data/constants/BirthdayCard';
-import { IDateFormat } from '#data/types/common';
+import { IDateFormat } from '#data/types/common.d';
 import { calculateAge } from '#utils/function/general';
 
 import styles from './ageCard.module.scss';

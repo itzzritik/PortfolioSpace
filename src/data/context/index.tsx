@@ -2,7 +2,7 @@
 
 import { ReactNode } from 'react';
 
-import { IUserData } from '../types/userData';
+import { IUserData } from '#data/types/userData.d';
 
 import UserDataProvider, { useUserData } from './UserData';
 

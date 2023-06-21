@@ -1,4 +1,4 @@
-import { ICountry, ILanguage } from '#data/types/userData';
+import { ICountry, ILanguage } from '#data/types/userData.d';
 
 export const getCountry = (country = '') => {
 	return new Promise<ICountry>((resolve, reject) => {

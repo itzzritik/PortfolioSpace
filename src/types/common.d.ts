@@ -1,5 +1,5 @@
 export declare global {
-	import { EStartFieldSpeed } from '#data/types/common';
+	import { EStartFieldSpeed } from '#data/types/common.d';
 
 	interface Window {
 		animating?: boolean;

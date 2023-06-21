@@ -1,5 +1,5 @@
 import { ELandingHeroID, ELandingID } from '#data/constants/ReactID';
-import { IElements } from '#data/types/common';
+import { IElements } from '#data/types/common.d';
 
 const { CONTAINER, OVERLAY } = ELandingID;
 const {

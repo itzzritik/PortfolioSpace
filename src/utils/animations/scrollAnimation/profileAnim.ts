@@ -1,6 +1,6 @@
 import { profileSectionReversed } from '#data/constants/Profile';
 import { EProfileID, EProfileNavigationID } from '#data/constants/ReactID';
-import { IElements } from '#data/types/common';
+import { IElements } from '#data/types/common.d';
 
 const { PROFILE, PROFILE_SCROLL, INTRODUCTION_HELLO } = EProfileID;
 const { DISC, INTRODUCTION, ACADEMICS, SKILLS, LANGUAGES } = EProfileNavigationID;
@@ -36,8 +36,8 @@ const ScrollAnimation = (scrollPercent: number) => {
 	Profile.ProfileScroll?.style.setProperty('width', `${scrollPercent}%`);
 };
 const IntroductionAnimation = (scrollPercent: number) => {
-	Profile.IntroHello?.style.setProperty('stroke-dashoffset', scrollPercent >= 60 ? '0' : '3330');
-	Profile.IntroHello?.style.setProperty('transition-duration', scrollPercent >= 60 ? '1.2s' : '0.7s');
+	Profile.IntroHello?.style.setProperty('stroke-dashoffset', scrollPercent >= 50 ? '0' : '3330');
+	Profile.IntroHello?.style.setProperty('transition-duration', scrollPercent >= 50 ? '1.2s' : '0.7s');
 };
 
 const midAngle = 540;

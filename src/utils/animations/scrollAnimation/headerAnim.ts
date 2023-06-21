@@ -1,5 +1,5 @@
 import { EHeaderID } from '#data/constants/ReactID';
-import { IElements } from '#data/types/common';
+import { IElements } from '#data/types/common.d';
 
 const { LOGO, HAMBURGER } = EHeaderID;
 

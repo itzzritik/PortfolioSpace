@@ -1,4 +1,4 @@
-import { IUserData } from '#data/types/userData';
+import { IUserData } from '#data/types/userData.d';
 import { getGitUser, getGitProfile } from '#utils/github/gitFetch';
 
 import { getCountry, getLanguages } from './locale';

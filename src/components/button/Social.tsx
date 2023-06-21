@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { startCase } from 'lodash';
 
-import { ISocialHandles } from '#data/types/userData';
+import { ISocialHandles } from '#data/types/userData.d';
 
 import Facebook from '../../assets/img/social/facebook.svg';
 import Github from '../../assets/img/social/github.svg';

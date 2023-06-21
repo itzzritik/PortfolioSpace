@@ -1,6 +1,6 @@
 import { useState, createContext, useContext, useEffect, ReactNode } from 'react';
 
-import { IUserData } from '../types/userData';
+import { IUserData } from '#data/types/userData.d';
 
 const UserDataContext = createContext({} as IUserData);
 const useUserData = () => useContext(UserDataContext);

@@ -2,7 +2,7 @@ import Academics from '#components/page/home/ProfileSection/SubSections/Academic
 import Introduction from '#components/page/home/ProfileSection/SubSections/Introduction';
 import Languages from '#components/page/home/ProfileSection/SubSections/Languages';
 import Skills from '#components/page/home/ProfileSection/SubSections/Skills';
-import { EOrbit, IProfileSection } from '#data/types/profile';
+import { EOrbit, IProfileSection } from '#data/types/profile.d';
 
 import { EProfileNavigationID } from './ReactID';
 

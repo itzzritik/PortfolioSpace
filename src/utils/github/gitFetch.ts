@@ -1,4 +1,4 @@
-import { IGitProfile, IGitUser } from '#data/types/userData';
+import { IGitProfile, IGitUser } from '#data/types/userData.d';
 
 export let gitUser: string;
 export const profileUrl = () => `https://raw.githubusercontent.com/${gitUser}/${gitUser}/main/profile`;
