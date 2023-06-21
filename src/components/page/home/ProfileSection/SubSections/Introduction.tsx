@@ -26,16 +26,13 @@ export default function Introduction (props: IIntroductionProps) {
 			<Hello className={styles.hello} id={INTRODUCTION_HELLO} />
 			<div className={styles.about}>
 				<span>
-					I’m {name}, a {<Birthday dob={dob} label='-year-old' />}{' '}
-					tech enthusiast based in {location}, heavily fueled by
-					my passion and embrace the mindset of a “lifelong learner”
-					constantly striving to enhance both my technical expertise
-					and personal growth!
+					I’m {name}, a {<Birthday dob={dob} label='-year-old' />} tech enthusiast based in {location}.
+					Heavily fueled by my passion and embrace the mindset of a “lifelong learner” constantly striving
+					to enhance both my technical expertise and personal growth!
 				</span>
 				<span>
-					Besides my enthusiasm for all things tech, I find joy in
-					engaging with various hobbies such as {hobbies[0]},{' '}
-					{hobbies[1]}, {hobbies[2]}, and {hobbies[3]}.
+					Besides my enthusiasm for all things tech, I find joy in engaging with various hobbies such
+					as {hobbies[0]}, {hobbies[1]}, {hobbies[2]}, and {hobbies[3]}.
 				</span>
 			</div>
 			<Button

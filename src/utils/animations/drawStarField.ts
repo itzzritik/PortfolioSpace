@@ -11,8 +11,8 @@ export default function DrawStarField () {
 	let height: number;
 	let prevTime: number;
 
-	const starCount = 1000;
-	const starSize = 1.5;
+	const starCount = 1500;
+	const starSize = 1;
 
 	const setCanvasExtents = () => {
 		width = window.innerWidth;

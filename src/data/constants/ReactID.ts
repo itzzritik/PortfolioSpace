@@ -35,3 +35,11 @@ export enum EProfileID {
 	PROFILE = 'profile',
 	INTRODUCTION_HELLO = 'introduction-hello',
 }
+
+export enum EProfileNavigationID {
+	DISC = 'profile-navigation-disc',
+	INTRODUCTION = 'profile-navigation-introduction',
+	ACADEMICS = 'profile-navigation-academics',
+	SKILLS = 'profile-navigation-skills',
+	LANGUAGES = 'profile-navigation-languages',
+}

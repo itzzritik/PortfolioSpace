@@ -1,27 +1,20 @@
 import Scroller from '#components/layouts/Scroller';
+import { profileSections } from '#data/constants/Profile';
 import { EProfileID } from '#data/constants/ReactID';
 
-import Academics from './SubSections/Academics';
-import Introduction from './SubSections/Introduction';
-import Languages from './SubSections/Languages';
-import Skills from './SubSections/Skills';
+import ProfileNavigation from './ProfileNavigation';
 import styles from './profileSection.module.scss';
 
 const { PROFILE } = EProfileID;
-export default function ProfileSection () {
-	const sections = [
-		{ name: 'intro', view: Introduction, orbit: 'right', rings: false },
-		{ name: 'academics', view: Academics, orbit: 'left', rings: false },
-		{ name: 'skills', view: Skills, orbit: 'center', rings: true },
-		{ name: 'languages', view: Languages, orbit: 'right', rings: false },
-	];
 
+export default function ProfileSection () {
 	return (
 		<div className={styles.profileSection} id={PROFILE}>
 			<Scroller />
+			<ProfileNavigation />
 			<div className={styles.sections}>
 				{
-					sections.map(({ view: Section }, i) => (
+					profileSections.map(({ view: Section }, i) => (
 						<div className={styles.sectionItem} key={i}>
 							<Section />
 						</div>

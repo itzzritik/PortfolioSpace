@@ -1,0 +1,110 @@
+@use 'sass:math';
+@use 'sass:list';
+
+.profileNavigation {
+	--systemSize: 75vh;
+	--discItemSize: 70vmin;
+
+	position: sticky;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: flex-end;
+	pointer-events: none;
+	align-items: center;
+
+	> .solarSystem {
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: var(--systemSize);
+		height: var(--systemSize);
+		border-radius: 999px;
+		transform: translateX(calc(var(--systemSize) / 3));
+
+		> .navOrbit {
+			position: absolute;
+			display: block;
+			border-radius: 99999px;
+			border: 2px solid rgb(255 255 255 / 10%);
+			border-style: dashed;
+
+			$discCount: 10;
+
+			@for $i from 1 through $discCount {
+				&:nth-of-type(#{$i}) {
+					width: calc(var(--discItemSize) * 0.9 * #{$i});
+					height: calc(var(--discItemSize) * 0.9 * #{$i});
+				}
+			}
+		}
+
+		> .navDiscItem {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: var(--discItemSize);
+			height: var(--discItemSize);
+			margin: calc(var(--discItemSize) / -2);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: white;
+			z-index: 5;
+			text-transform: capitalize;
+			border-radius: 999px;
+			will-change: transform;
+			cursor: pointer;
+			transform-style: preserve-3d;
+			transition: transform 0.05s linear;
+
+			> .spinner {
+				position: absolute;
+				border-radius: 999px;
+				border: 1px solid var(--colorAccent);
+				border-style: dotted;
+				border-bottom-color: transparent;
+				will-change: transform;
+
+				$discCount: 15;
+
+				@for $i from 1 through $discCount {
+					&:nth-of-type(#{$i}) {
+						border-width: math.random(5) + px;
+
+						@if math.random() > 0.5 {
+							border-top-color: transparent;
+						}
+
+						width: calc(100% - 10px * #{$i});
+						height: calc(100% - 10px * #{$i});
+						animation: spin math.random(10) + s infinite linear;
+					}
+				}
+			}
+
+			> .background {
+				position: absolute;
+				width: calc(100% - 300px);
+				height: calc(100% - 300px);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				border-radius: 999px;
+				overflow: hidden;
+				color: white;
+				font-size: 2.5em;
+				text-transform: capitalize;
+				background: var(--gradientViolet);
+				box-shadow: 0 0 50px 50px rgb(var(--colorAccentRGB) / 20%);
+			}
+
+			@keyframes spin {
+				0% { transform: rotateX(70deg) rotateY(-10deg) rotateZ(0deg); }
+				100% { transform: rotateX(70deg) rotateY(-10deg) rotateZ(360deg); }
+			}
+		}
+	}
+}
