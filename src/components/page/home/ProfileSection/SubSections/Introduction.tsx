@@ -5,10 +5,12 @@ import clsx from 'clsx';
 import Hello from '#assets/img/text/hello.svg';
 import Button from '#components/button/Button';
 import Birthday from '#components/layouts/Birthday';
+import { EProfileID } from '#data/constants/ReactID';
 import { useUserData } from '#data/context';
 
 import styles from './introduction.module.scss';
 
+const { INTRODUCTION_HELLO } = EProfileID;
 export default function Introduction (props: IIntroductionProps) {
 	const { className } = props;
 	const { name, dob, location, hobbies = [] } = useUserData();
@@ -21,7 +23,7 @@ export default function Introduction (props: IIntroductionProps) {
 	return (
 		<div className={introductionClass}>
 			<h1>Introduction</h1>
-			<Hello className={`${styles.hello} ${styles.write}`} />
+			<Hello className={styles.hello} id={INTRODUCTION_HELLO} />
 			<div className={styles.about}>
 				<span>
 					I’m {name}, a {<Birthday dob={dob} label='-year-old' />}{' '}

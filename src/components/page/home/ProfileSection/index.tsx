@@ -1,4 +1,5 @@
 import Scroller from '#components/layouts/Scroller';
+import { EProfileID } from '#data/constants/ReactID';
 
 import Academics from './SubSections/Academics';
 import Introduction from './SubSections/Introduction';
@@ -6,6 +7,7 @@ import Languages from './SubSections/Languages';
 import Skills from './SubSections/Skills';
 import styles from './profileSection.module.scss';
 
+const { PROFILE } = EProfileID;
 export default function ProfileSection () {
 	const sections = [
 		{ name: 'intro', view: Introduction, orbit: 'right', rings: false },
@@ -15,7 +17,7 @@ export default function ProfileSection () {
 	];
 
 	return (
-		<div className={styles.profileSection}>
+		<div className={styles.profileSection} id={PROFILE}>
 			<Scroller />
 			<div className={styles.sections}>
 				{

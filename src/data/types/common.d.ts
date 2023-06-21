@@ -9,7 +9,7 @@ export type IDateFormat = {
 }
 
 export enum EStartFieldSpeed {
-	SLOW = 0.2,
-	MEDIUM = 0.6,
+	SLOW = 0.1,
+	MEDIUM = 0.4,
 	FAST = 1,
 }

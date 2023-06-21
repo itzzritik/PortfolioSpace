@@ -14,11 +14,6 @@
 		stroke-dasharray: 3330;
 		stroke-dashoffset: 3330;
 		transition: stroke-dashoffset 0.7s ease-out;
-
-		&.write {
-			stroke-dashoffset: 0;
-			transition: stroke-dashoffset 1.2s ease-out;
-		}
 	}
 
 	> .about {
@@ -44,6 +39,6 @@
 		--backgroundSize: 1.5vw;
 
 		color: white;
-		margin-bottom: 80px;
+		margin-bottom: 40px;
 	}
 }

@@ -30,3 +30,8 @@ export enum ELandingHeroID {
 	BIO_2 = 'landing-hero-bio-2',
 	BIO_OVERLAY_2 = 'landing-hero-bio-overlay-2',
 }
+
+export enum EProfileID {
+	PROFILE = 'profile',
+	INTRODUCTION_HELLO = 'introduction-hello',
+}
