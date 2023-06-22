@@ -40,7 +40,7 @@ export enum EProfileID {
 
 export enum EProfileNavigationID {
 	INTRODUCTION = 'profile-navigation-introduction',
-	ACADEMICS = 'profile-navigation-academics',
+	EXPERTISE = 'profile-navigation-expertise',
 	SKILLS = 'profile-navigation-skills',
 	LANGUAGES = 'profile-navigation-languages',
 }
