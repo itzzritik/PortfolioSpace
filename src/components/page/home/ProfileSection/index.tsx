@@ -14,9 +14,9 @@ export default function ProfileSection () {
 			<ProfileNavigation />
 			<div className={styles.sections}>
 				{
-					profileSections.map(({ view: Section }, i) => (
+					profileSections.map(({ View }, i) => (
 						<div className={styles.sectionItem} key={i}>
-							<Section />
+							<View />
 						</div>
 					))
 				}

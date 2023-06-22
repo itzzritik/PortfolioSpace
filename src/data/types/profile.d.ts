@@ -4,7 +4,8 @@ import { EProfileNavigationID } from '#data/constants/ReactID';
 
 export interface IProfileSection {
 	name: string,
-	view: FC,
+	View: FC,
+	Planet?: FC,
 	id: EProfileNavigationID,
 	orbit: EOrbit,
 	rings: boolean

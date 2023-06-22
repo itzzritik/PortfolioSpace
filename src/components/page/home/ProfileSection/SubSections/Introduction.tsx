@@ -1,7 +1,9 @@
 'use client';
 
 import clsx from 'clsx';
+import { useLottie } from 'lottie-react';
 
+import HelloSaturn from '#assets/animations/space/HelloSaturn.json';
 import Hello from '#assets/img/text/hello.svg';
 import Button from '#components/button/Button';
 import Birthday from '#components/layouts/Birthday';
@@ -11,6 +13,7 @@ import { useUserData } from '#data/context';
 import styles from './introduction.module.scss';
 
 const { INTRODUCTION_HELLO } = EProfileID;
+
 export default function Introduction (props: IIntroductionProps) {
 	const { className } = props;
 	const { name, dob, location, hobbies = [] } = useUserData();
@@ -44,6 +47,14 @@ export default function Introduction (props: IIntroductionProps) {
 		</div>
 	);
 }
+
+export const IntroductionPlanet = () => {
+	const { View } = useLottie({
+		className: styles.introductionPlanet,
+		animationData: HelloSaturn,
+	});
+	return View;
+};
 
 interface IIntroductionProps {
 	className?: string;
