@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hotjar/browser": "^1.0.9",
     "clsx": "^1.2.1",
     "lodash": "^4.17.21",
     "next": "13.4.2",
