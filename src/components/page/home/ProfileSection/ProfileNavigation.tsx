@@ -7,7 +7,7 @@ export default function ProfileNavigation () {
 	return (
 		<div className={styles.profileNavigation}>
 			<div className={styles.solarSystem} id={EProfileNavigationID.DISC}>
-				{ Array(10).fill(0).map((v, i) => <span className={styles.navOrbit} key={i} />) }
+				{ Array(1).fill(0).map((v, i) => <span className={styles.navOrbit} key={i} />) }
 				{profileSectionReversed.map((item, index) => {
 					return (
 						<div className={styles.navDiscItem} key={index} id={item?.id}>

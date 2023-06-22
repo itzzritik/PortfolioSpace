@@ -10,8 +10,8 @@ const { INTRODUCTION, ACADEMICS, SKILLS, LANGUAGES } = EProfileNavigationID;
 
 export const profileSections: IProfileSection[] = [
 	{ name: 'intro', view: Introduction, id: INTRODUCTION, orbit: EOrbit.RIGHT, rings: false },
-	{ name: 'academics', view: Academics, id: ACADEMICS, orbit: EOrbit.LEFT, rings: false },
-	{ name: 'skills', view: Skills, id: SKILLS, orbit: EOrbit.CENTRE, rings: true },
+	{ name: 'academics', view: Academics, id: ACADEMICS, orbit: EOrbit.RIGHT, rings: false },
+	{ name: 'skills', view: Skills, id: SKILLS, orbit: EOrbit.RIGHT, rings: false },
 	{ name: 'languages', view: Languages, id: LANGUAGES, orbit: EOrbit.RIGHT, rings: false },
 ];
 export const profileSectionReversed = [...profileSections].reverse();
