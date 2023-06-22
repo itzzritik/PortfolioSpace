@@ -1,21 +1,15 @@
 import { profileSectionReversed } from '#data/constants/Profile';
-import { EProfileID, EProfileNavigationID } from '#data/constants/ReactID';
+import { EProfileID } from '#data/constants/ReactID';
 import { IElements } from '#data/types/common.d';
 
-const { PROFILE, PROFILE_SCROLL, INTRODUCTION_HELLO } = EProfileID;
-const { DISC, INTRODUCTION, ACADEMICS, SKILLS, LANGUAGES } = EProfileNavigationID;
+const { PROFILE, PROFILE_SCROLL, PROFILE_NAVIGATION, INTRODUCTION_HELLO } = EProfileID;
 
 let AllElementsSelected = false;
 const Profile: IElements = {
 	Profile: null,
 	ProfileScroll: null,
+	ProfileNavigation: null,
 	IntroHello: null,
-
-	NavDisc: null,
-	NavIntroduction: null,
-	NavAcademics: null,
-	NavSkills: null,
-	NavLanguages: null,
 };
 
 const selectElements = () => {
@@ -23,13 +17,9 @@ const selectElements = () => {
 
 	Profile.Profile = document.getElementById(PROFILE);
 	Profile.ProfileScroll = document.getElementById(PROFILE_SCROLL);
-	Profile.IntroHello = document.getElementById(INTRODUCTION_HELLO);
+	Profile.ProfileNavigation = document.getElementById(PROFILE_NAVIGATION);
 
-	Profile.NavDisc = document.getElementById(DISC);
-	Profile.NavIntroduction = document.getElementById(INTRODUCTION);
-	Profile.NavAcademics = document.getElementById(ACADEMICS);
-	Profile.NavSkills = document.getElementById(SKILLS);
-	Profile.NavLanguages = document.getElementById(LANGUAGES);
+	Profile.IntroHello = document.getElementById(INTRODUCTION_HELLO);
 };
 
 const ScrollAnimation = (scrollPercent: number) => {
@@ -45,18 +35,17 @@ const diffAngleScale = 100;
 const scaleMin = 0.05;
 const orbitDistance = { right: 2.38, centre: 0.78, left: 0.475 };
 const sectionLength = profileSectionReversed.length;
+const angleBetweenItem = 360 / sectionLength;
 const NavigationAnimation = (scrollPercent: number) => {
-	const angleBetweenItem = 360 / sectionLength;
 	let totalAngle = 180 + (angleBetweenItem * (scrollPercent / 100));
 
-	profileSectionReversed.map((item) => {
-		const transform = `rotate(-${totalAngle}deg)
-				translate(${(Profile.NavDisc?.clientWidth ?? 0) / orbitDistance[item.orbit]}px)
-				rotate(${totalAngle}deg)
-				scale(${Math.max(scaleMin, 1 - Math.abs(totalAngle - midAngle) / diffAngleScale)})`;
+	profileSectionReversed.forEach((item) => {
+		document.getElementById(item?.id)?.style.setProperty('transform', `rotate(-${totalAngle}deg)
+			translate(${(Profile.ProfileNavigation?.clientWidth ?? 0) / orbitDistance[item.orbit]}px)
+			rotate(${totalAngle}deg)
+			scale(${Math.max(scaleMin, 1 - Math.abs(totalAngle - midAngle) / diffAngleScale)})`);
 
 		totalAngle += angleBetweenItem;
-		document.getElementById(item?.id)?.style.setProperty('transform', transform);
 	});
 };
 

@@ -1,12 +1,12 @@
 import { profileSectionReversed } from '#data/constants/Profile';
-import { EProfileNavigationID } from '#data/constants/ReactID';
+import { EProfileID } from '#data/constants/ReactID';
 
 import styles from './profileNavigation.module.scss';
 
 export default function ProfileNavigation () {
 	return (
 		<div className={styles.profileNavigation}>
-			<div className={styles.solarSystem} id={EProfileNavigationID.DISC}>
+			<div className={styles.solarSystem} id={EProfileID.PROFILE_NAVIGATION}>
 				{ Array(1).fill(0).map((v, i) => <span className={styles.navOrbit} key={i} />) }
 				{profileSectionReversed.map((item, index) => {
 					return (

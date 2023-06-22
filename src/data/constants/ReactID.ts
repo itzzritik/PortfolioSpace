@@ -34,11 +34,11 @@ export enum ELandingHeroID {
 export enum EProfileID {
 	PROFILE = 'profile',
 	PROFILE_SCROLL = 'profile-scroll',
+	PROFILE_NAVIGATION = 'profile-nav-disc',
 	INTRODUCTION_HELLO = 'introduction-hello',
 }
 
 export enum EProfileNavigationID {
-	DISC = 'profile-navigation-disc',
 	INTRODUCTION = 'profile-navigation-introduction',
 	ACADEMICS = 'profile-navigation-academics',
 	SKILLS = 'profile-navigation-skills',
