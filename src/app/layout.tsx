@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 
-import HotjarPlugin from '#components/general/HotjarPlugin';
 import Navigation from '#components/layouts/Navigation';
 import Splash from '#components/layouts/Splash';
+import HotjarPlugin from '#components/plugins/HotjarPlugin';
 import { getUserData } from '#utils/function/getUserData';
 import { montserrat } from '#utils/helper/fontHelper';
 
