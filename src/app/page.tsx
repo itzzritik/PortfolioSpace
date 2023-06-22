@@ -12,16 +12,16 @@ import { ELandingID } from '#data/constants/ReactID';
 import styles from './page.module.scss';
 
 export default function Home () {
-	const [screenWidth, setScreenWidth] = useState(0);
+	const [unsupported, setUnsupported] = useState(false);
 
 	useLayoutEffect(() => {
-		const handleResize = () => setScreenWidth(window.innerWidth);
+		const handleResize = () => setUnsupported((val) => val || window.innerWidth <= 1280);
 		handleResize();
 		window.addEventListener('resize', handleResize);
 		return () => window.removeEventListener('resize', handleResize);
 	}, []);
 
-	if (screenWidth <= 1000) {
+	if (unsupported) {
 		return <UnderConstruction message='This screen size is currently not supported!' />;
 	}
 
