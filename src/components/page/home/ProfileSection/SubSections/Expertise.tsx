@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import clsx from 'clsx';
 import { useLottie } from 'lottie-react';
 
-import DancingNeptune from '#assets/animations/space/DancingNeptune.json';
+import AnimDancingNeptune from '#assets/animations/space/DancingNeptune.json';
 
 import styles from './expertise.module.scss';
 
@@ -25,14 +25,14 @@ export default function Expertise (props: IExpertiseProps) {
 }
 
 export const ExpertisePlanet = () => {
-	const { View, setSpeed } = useLottie({
+	const { View: LottieView, setSpeed } = useLottie({
 		className: styles.expertisePlanet,
-		animationData: DancingNeptune,
+		animationData: AnimDancingNeptune,
 	});
 
 	useEffect(() => setSpeed(0.8), [setSpeed]);
 
-	return View;
+	return LottieView;
 };
 
 interface IExpertiseProps {
