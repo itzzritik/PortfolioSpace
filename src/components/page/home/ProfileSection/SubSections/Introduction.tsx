@@ -38,12 +38,7 @@ export default function Introduction (props: IIntroductionProps) {
 					as {hobbies[0]}, {hobbies[1]}, {hobbies[2]}, and {hobbies[3]}.
 				</span>
 			</div>
-			<Button
-				className={styles.more}
-				label='more about me'
-				link='/about'
-				back
-			/>
+			<Button className={styles.more} label='more about me' link='/about' back />
 		</div>
 	);
 }

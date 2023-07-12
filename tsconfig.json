@@ -19,7 +19,7 @@
 				"name": "next"
 			}
 		],
-		"typeRoots": ["./src/types", "./node_modules/@types"],
+		"typeRoots": ["src/types", "node_modules/@types"],
 		"paths": {
 			"#api/*": ["./src/app/api/*"],
 			"#assets/*": ["./src/assets/*"],

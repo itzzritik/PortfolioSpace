@@ -32,6 +32,7 @@
 		"keyframes",
 		"scroller",
 		"stylelint",
-		"svgr"
+		"svgr",
+		"xtreme"
 	]
 }
