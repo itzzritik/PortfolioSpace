@@ -6,7 +6,7 @@
       "type": "node",
       "request": "launch",
       "runtimeExecutable": "doppler",
-      "runtimeArgs": ["run", "--", "yarn","dev"]
+      "runtimeArgs": ["run", "--", "pnpm","dev"]
     }
   ]
 }
