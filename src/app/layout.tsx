@@ -13,6 +13,7 @@ import './globals.scss';
 export const metadata = {
 	title: 'Ritik Srivastava',
 };
+
 export default async function RootLayout (props: IRootProps) {
 	const { children } = props;
 	const userData = await getUserData();

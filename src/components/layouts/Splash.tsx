@@ -3,13 +3,17 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
 
 import clsx from 'clsx';
+import { usePathname } from 'next/navigation';
 
 import R from '#assets/img/logo/r.svg';
 import S from '#assets/img/logo/s.svg';
 
 import styles from './splash.module.scss';
 
+const noAnimationPaths = ['/cv'];
+
 export default function Splash () {
+	const pathname = usePathname();
 	const [loaded, setLoaded] = useState(false);
 	const [animateSplash, setAnimateSplash] = useState(false);
 
@@ -19,15 +23,16 @@ export default function Splash () {
 	);
 
 	useEffect(() => {
-		animateSplash && setTimeout(() => setLoaded(true), 2200);
+		if (animateSplash) setTimeout(() => setLoaded(true), 2200);
 	}, [animateSplash]);
 
 	useLayoutEffect(() => {
-		setTimeout(() => {
-			window.scrollTo(0, 0);
-			setAnimateSplash(true);
-		}, 300);
-	}, []);
+		if (!noAnimationPaths.includes(pathname))
+			setTimeout(() => {
+				window.scrollTo(0, 0);
+				setAnimateSplash(true);
+			}, 300);
+	}, [pathname]);
 
 	if (loaded) return null;
 
