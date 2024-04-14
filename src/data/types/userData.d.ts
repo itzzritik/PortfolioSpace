@@ -60,6 +60,11 @@ export interface IGitProfile {
 	academics: IAcademics[]
 	experience: IExperience[]
 }
+
+export type TGitLinks = {
+	[key: string]: string;
+};
+
 export interface IUserData {
 	login: string
 	name: string

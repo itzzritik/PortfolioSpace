@@ -1,4 +1,4 @@
-import { IGitProfile, IGitUser } from '#data/types/userData.d';
+import { IGitProfile, IGitUser, TGitLinks } from '#data/types/userData.d';
 import { API } from '#utils/constants/github';
 import { base64ToJson } from '#utils/function/general';
 
@@ -36,6 +36,16 @@ export const getGitProfile = async () => {
 	if (!profile.content) throw { status: 404, message: 'Profile not found', sha: profile.sha };
 
 	const contentJson = base64ToJson<IGitProfile>(profile.content);
+	return contentJson;
+};
+
+export const getGitLinks = async () => {
+	if (!gitUser) await getGitUser();
+	if (!gitUser) throw { status: 404, message: 'Git user not found'};
+	const profile =  await gitFetcher<TProfileReq>('GET', API.file(gitUser, 'links.json'));
+	
+	if (!profile.content) return null;
+	const contentJson = base64ToJson<TGitLinks>(profile.content);
 	return contentJson;
 };
 
