@@ -45,7 +45,7 @@ export interface IGitUser {
 	name: string
 	bio: string
 	location: string
-	avatarUrl: string
+	avatar_url: string
 }
 export interface IGitProfile {
 	personal: {

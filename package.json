@@ -11,30 +11,30 @@
   },
   "dependencies": {
     "@hotjar/browser": "^1.0.9",
-    "clsx": "^2.0.0",
+    "clsx": "^2.1.0",
     "lodash": "^4.17.21",
     "lottie-react": "^2.4.0",
-    "next": "14.0.4",
+    "next": "14.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-text-transition": "^3.1.0",
-    "sass": "^1.69.5"
+    "sass": "^1.75.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
-    "@types/lodash": "^4.14.202",
-    "@types/node": "^20.10.4",
-    "@types/react": "^18.2.45",
-    "@types/react-dom": "^18.2.17",
-    "@typescript-eslint/eslint-plugin": "^6.14.0",
-    "@typescript-eslint/parser": "^6.14.0",
-    "eslint": "^8.55.0",
-    "eslint-config-next": "^14.0.4",
+    "@types/lodash": "^4.17.0",
+    "@types/node": "^20.12.7",
+    "@types/react": "^18.2.77",
+    "@types/react-dom": "^18.2.25",
+    "@typescript-eslint/eslint-plugin": "^7.6.0",
+    "@typescript-eslint/parser": "^7.6.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^14.2.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "stylelint": "^16.0.2",
-    "stylelint-config-standard-scss": "^12.0.0",
+    "stylelint": "^16.3.1",
+    "stylelint-config-standard-scss": "^13.1.0",
     "stylelint-order": "^6.0.4",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.5"
   }
 }

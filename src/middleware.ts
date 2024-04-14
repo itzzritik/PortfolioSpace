@@ -1,0 +1,5 @@
+import { NextFetchEvent, NextRequest, NextResponse } from 'next/server';
+
+export default function middleware (req: NextRequest, event: NextFetchEvent) {
+	return NextResponse.next();
+};
