@@ -12,7 +12,7 @@ export const gitFetcher = async <T>(method: string, route: string, body?: object
 			'Content-Type': 'application/json',
 			'Accept': 'application/vnd.github+json',
 			'cache-control': 'no-cache',
-			Authorization: `token ${process.env.GITHUB_TOKEN_PROFILE}`,
+			Authorization: `token ${process.env.GITHUB_TOKEN}`,
 		},
 		...(body && { body: JSON.stringify(body) }),
 	};
