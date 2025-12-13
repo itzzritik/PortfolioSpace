@@ -1,15 +1,11 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 
-import styles from './progressbar.module.scss';
+import styles from "./progressbar.module.scss";
 
-export default function ProgressBar (props: ProgressBarProps) {
+export default function ProgressBar(props: ProgressBarProps) {
 	const { className, progress, dark } = props;
 
-	const progressClass = clsx(
-		styles.progressBar,
-		className,
-		dark && styles.dark,
-	);
+	const progressClass = clsx(styles.progressBar, className, dark && styles.dark);
 
 	return (
 		<div className={progressClass}>

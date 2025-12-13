@@ -1,14 +1,11 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 
-import styles from './skills.module.scss';
+import styles from "./skills.module.scss";
 
-export default function Skills (props: ISkillsProps) {
+export default function Skills(props: ISkillsProps) {
 	const { className } = props;
 
-	const skillsClass = clsx(
-		styles.skills,
-		className,
-	);
+	const skillsClass = clsx(styles.skills, className);
 
 	return (
 		<div className={skillsClass}>

@@ -1,26 +1,25 @@
-import { ICountry, ILanguage } from '#data/types/userData.d';
+import type { ICountry, ILanguage } from "#data/types/userData.d";
 
-export const getCountry = (country = '') => {
+export const getCountry = (country = "") => {
 	return new Promise<ICountry>((resolve, reject) => {
 		try {
-			fetch('https://flagcdn.com/en/codes.json')
+			fetch("https://flagcdn.com/en/codes.json")
 				.then((res) => res.json())
 				.then((countryList) => {
 					const countryName = countryList[country];
 					const countryCode = countryName
 						? country
 						: Object.keys(countryList).find((code) => {
-							return new RegExp('\\b' + country?.toLowerCase() + '\\b', 'i').test(countryList[code]);
-						});
+								return new RegExp("\\b" + country?.toLowerCase() + "\\b", "i").test(countryList[code]);
+							});
 
 					return resolve({
-						name: countryName || country || '',
-						code: countryCode || '',
-						flag: countryCode ? `https://flagcdn.com/${countryCode.toLowerCase()}.svg` : '',
+						name: countryName || country || "",
+						code: countryCode || "",
+						flag: countryCode ? `https://flagcdn.com/${countryCode.toLowerCase()}.svg` : "",
 					});
 				});
-		}
-		catch (e) {
+		} catch (e) {
 			return reject(e);
 		}
 	});
@@ -29,7 +28,7 @@ export const getCountry = (country = '') => {
 export const getLanguages = (languages: string[] = []) => {
 	return new Promise<ILanguage[]>((resolve, reject) => {
 		try {
-			fetch('https://gist.githubusercontent.com/piraveen/fafd0d984b2236e809d03a0e306c8a4d/raw/languages.json')
+			fetch("https://gist.githubusercontent.com/piraveen/fafd0d984b2236e809d03a0e306c8a4d/raw/languages.json")
 				.then((res) => res.json())
 				.then((languageJson) => {
 					const languageList = Object.keys(languageJson).reduce((accumulator: TLanguage[], languageCode) => {
@@ -46,8 +45,7 @@ export const getLanguages = (languages: string[] = []) => {
 
 					return resolve(languageList);
 				});
-		}
-		catch (e) {
+		} catch (e) {
 			return reject(e);
 		}
 	});
@@ -57,11 +55,11 @@ export interface ILanguageJson {
 	[k: string]: {
 		name: string;
 		nativeName: string;
-	}
+	};
 }
 type TLanguage = {
-	code: string,
-	name: string,
-	nativeName: string,
-	flag: string
-}
+	code: string;
+	name: string;
+	nativeName: string;
+	flag: string;
+};

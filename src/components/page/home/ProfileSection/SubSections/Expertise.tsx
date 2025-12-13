@@ -1,21 +1,17 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
+import clsx from "clsx";
+import { useLottie } from "lottie-react";
+import { useEffect } from "react";
 
-import clsx from 'clsx';
-import { useLottie } from 'lottie-react';
+import AnimDancingNeptune from "#assets/animations/space/DancingNeptune.json";
 
-import AnimDancingNeptune from '#assets/animations/space/DancingNeptune.json';
+import styles from "./expertise.module.scss";
 
-import styles from './expertise.module.scss';
-
-export default function Expertise (props: IExpertiseProps) {
+export default function Expertise(props: IExpertiseProps) {
 	const { className } = props;
 
-	const expertiseClass = clsx(
-		styles.expertise,
-		className,
-	);
+	const expertiseClass = clsx(styles.expertise, className);
 
 	return (
 		<div className={expertiseClass}>

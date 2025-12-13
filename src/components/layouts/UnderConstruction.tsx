@@ -1,10 +1,10 @@
-import { useLottie } from 'lottie-react';
+import { useLottie } from "lottie-react";
 
-import AnimUnderConstruction from '#assets/animations/UnderConstruction.json';
+import AnimUnderConstruction from "#assets/animations/UnderConstruction.json";
 
-import styles from './underConstruction.module.scss';
+import styles from "./underConstruction.module.scss";
 
-export default function UnderConstruction (props: IUnderConstructionProps) {
+export default function UnderConstruction(props: IUnderConstructionProps) {
 	const { className, message } = props;
 
 	const { View: LottieView } = useLottie({
@@ -13,10 +13,10 @@ export default function UnderConstruction (props: IUnderConstructionProps) {
 	});
 
 	return (
-		<div className={`${styles.underConstruction} ${className ? className : ''}`}>
+		<div className={`${styles.underConstruction} ${className ? className : ""}`}>
 			{LottieView}
 			<h1>Under Construction!</h1>
-			<p>{message ? message : 'This page is under development!'}</p>
+			<p>{message ? message : "This page is under development!"}</p>
 		</div>
 	);
 }

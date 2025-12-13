@@ -1,14 +1,11 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 
-import styles from './languages.module.scss';
+import styles from "./languages.module.scss";
 
-export default function Languages (props: ILanguagesProps) {
+export default function Languages(props: ILanguagesProps) {
 	const { className } = props;
 
-	const languageClass = clsx(
-		styles.languages,
-		className,
-	);
+	const languageClass = clsx(styles.languages, className);
 
 	return (
 		<div className={languageClass}>

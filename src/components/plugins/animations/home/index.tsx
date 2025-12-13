@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { useLayoutEffect } from 'react';
+import { useLayoutEffect } from "react";
 
-import { EStartFieldSpeed } from '#data/types/common.d';
+import { EStartFieldSpeed } from "#data/types/common";
 
-import DrawStarField from './drawStarField';
-import ScrollAnimation from './scrollAnimation';
+import DrawStarField from "./drawStarField";
+import ScrollAnimation from "./scrollAnimation";
 
-export default function HomeAnimations () {
+export default function HomeAnimations() {
 	useLayoutEffect(() => {
 		if (!window.animating) {
 			window.animating = true;

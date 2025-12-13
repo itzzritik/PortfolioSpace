@@ -1,10 +1,10 @@
-import { EStartFieldSpeed } from '#data/types/common.d';
+import { EStartFieldSpeed } from "#data/types/common";
 
-export default function DrawStarField () {
-	const canvas = <HTMLCanvasElement> document.getElementById('starfieldCanvas');
+export default function DrawStarField() {
+	const canvas = <HTMLCanvasElement>document.getElementById("starfieldCanvas");
 	if (!canvas) return;
 
-	const pen = canvas.getContext('2d');
+	const pen = canvas.getContext("2d");
 	if (!pen) return;
 
 	let width: number;
@@ -34,12 +34,12 @@ export default function DrawStarField () {
 	};
 	const stars = makeStars(starCount);
 	const clear = () => {
-		pen.fillStyle = 'black';
+		pen.fillStyle = "black";
 		pen.fillRect(0, 0, canvas.width, canvas.height);
 	};
 	const putPixel = (x: number, y: number, brightness: number) => {
 		const intensity = brightness * 255;
-		const rgb = 'rgb(' + intensity + ',' + intensity + ',' + intensity + ')';
+		const rgb = "rgb(" + intensity + "," + intensity + "," + intensity + ")";
 
 		pen.beginPath();
 		pen.fillStyle = rgb;

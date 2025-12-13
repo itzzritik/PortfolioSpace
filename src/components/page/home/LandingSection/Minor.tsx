@@ -1,24 +1,22 @@
-'use client';
+"use client";
 
-import Email from '#assets/img/social/email.svg';
-import Button from '#components/button/Button';
-import Social from '#components/button/Social';
-import { useUserData } from '#data/context';
+import Email from "#assets/img/social/email.svg";
+import Button from "#components/button/Button";
+import Social from "#components/button/Social";
+import { useUserData } from "#data/context";
 
-import styles from './minor.module.scss';
+import styles from "./minor.module.scss";
 
-export default function Hero (props: MinorProps) {
+export default function Hero(props: MinorProps) {
 	const { isOverlay } = props;
 	const { socialHandles, displayEmail, country, location } = useUserData();
 
-	return !isOverlay ?
+	return !isOverlay ? (
 		<div className={styles.minor}>
 			<Social handles={socialHandles} dark />
-			<Button className={styles.descMail} Icon={Email} label={displayEmail} link={`mailto:${displayEmail}`} newTab dark
-				tooltip="Yay! I'm already excited 🎉"
-			/>
+			<Button className={styles.descMail} Icon={Email} label={displayEmail} link={`mailto:${displayEmail}`} newTab dark tooltip="Yay! I'm already excited 🎉" />
 		</div>
-		:
+	) : (
 		<div className={styles.minor}>
 			<div className={styles.welcome}>
 				<p>welcome</p>
@@ -28,8 +26,8 @@ export default function Hero (props: MinorProps) {
 				<span className={styles.flag} style={{ backgroundImage: `url(${country?.flag})` }} />
 				{location}
 			</div>
-		</div>;
-
+		</div>
+	);
 }
 
 interface MinorProps {

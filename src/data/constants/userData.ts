@@ -1,7 +1,7 @@
 export enum ESocialHandles {
-	GITHUB = 'github',
-	LINKEDIN = 'linkedin',
-	INSTAGRAM = 'instagram',
-	TWITTER = 'twitter',
-	FACEBOOK = 'facebook',
+	GITHUB = "github",
+	LINKEDIN = "linkedin",
+	INSTAGRAM = "instagram",
+	X = "x",
+	FACEBOOK = "facebook",
 }

@@ -1,16 +1,9 @@
-import { ELandingHeroID, ELandingID } from '#data/constants/ReactID';
-import { IElements } from '#data/types/common.d';
+import { ELandingHeroID, ELandingID } from "#data/constants/ReactID";
+import type { IElements } from "#data/types/common";
 
 const { CONTAINER, OVERLAY } = ELandingID;
-const {
-	HERO, HERO_OVERLAY,
-	GREETING, GREETING_OVERLAY,
-	INTRO, INTRO_OVERLAY,
-	ROLE, ROLE_OVERLAY,
-	SEPARATOR, SEPARATOR_OVERLAY,
-	BIO_1, BIO_OVERLAY_1,
-	BIO_2, BIO_OVERLAY_2,
-} = ELandingHeroID;
+const { HERO, HERO_OVERLAY, GREETING, GREETING_OVERLAY, INTRO, INTRO_OVERLAY, ROLE, ROLE_OVERLAY, SEPARATOR, SEPARATOR_OVERLAY, BIO_1, BIO_OVERLAY_1, BIO_2, BIO_OVERLAY_2 } =
+	ELandingHeroID;
 
 let AllElementsSelected = false;
 
@@ -36,7 +29,10 @@ const Landing: IElements = {
 };
 
 const selectElements = () => {
-	if (Object.values(Landing).every((element) => element !== null)) return AllElementsSelected = true;
+	if (Object.values(Landing).every((element) => element !== null)) {
+		AllElementsSelected = true;
+		return true;
+	}
 
 	Landing.Container = document.getElementById(CONTAINER);
 	Landing.Overlay = document.getElementById(OVERLAY);
@@ -58,47 +54,46 @@ const selectElements = () => {
 
 const OverlayAnimation = (scrollPart1: number) => {
 	const overlayIndex = scrollPart1 * 100;
-	Landing.Overlay?.style?.setProperty('clip-path',
+	Landing.Overlay?.style?.setProperty(
+		"clip-path",
 		useCircleOverlay
 			? `circle(${150 - overlayIndex}% at 90px 70px)`
-			: `polygon(100% 0, 100% 100%, ${overlayIndex - 20}% 100%, ${overlayIndex - 5}% 50%, ${overlayIndex - 20}% 0)`,
+			: `polygon(100% 0, 100% 100%, ${overlayIndex - 20}% 100%, ${overlayIndex - 5}% 50%, ${overlayIndex - 20}% 0)`
 	);
 };
 
-const translate = (elementWidth: number, scrollPart1: number) => {
-	return ((Landing.Hero?.clientWidth ?? 0) - elementWidth) * Math.min(scrollPart1, 1);
-};
+const translate = (elementWidth: number, scrollPart1: number) => ((Landing.Hero?.clientWidth ?? 0) - elementWidth) * Math.min(scrollPart1, 1);
 const HeroPart1Animation = (scrollPart1: number) => {
-	const GreetingX = `translate3d(-${translate((Landing.Greeting?.clientWidth ?? 0), scrollPart1)}px, 0, 0)`;
-	Landing.Greeting?.style?.setProperty('transform', GreetingX);
-	Landing.GreetingOverlay?.style?.setProperty('transform', GreetingX);
+	const GreetingX = `translate3d(-${translate(Landing.Greeting?.clientWidth ?? 0, scrollPart1)}px, 0, 0)`;
+	Landing.Greeting?.style?.setProperty("transform", GreetingX);
+	Landing.GreetingOverlay?.style?.setProperty("transform", GreetingX);
 
-	const IntroX = `translate3d(-${translate((Landing.Intro?.clientWidth ?? 0), scrollPart1)}px, 0, 0)`;
-	Landing.Intro?.style?.setProperty('transform', IntroX);
-	Landing.IntroOverlay?.style?.setProperty('transform', IntroX);
+	const IntroX = `translate3d(-${translate(Landing.Intro?.clientWidth ?? 0, scrollPart1)}px, 0, 0)`;
+	Landing.Intro?.style?.setProperty("transform", IntroX);
+	Landing.IntroOverlay?.style?.setProperty("transform", IntroX);
 
 	const RoleX = `translate3d(-${translate((Landing.Role?.clientWidth ?? 0) * -0.21, scrollPart1)}px, 0, 0)`;
-	Landing.Role?.style?.setProperty('transform', RoleX);
-	Landing.RoleOverlay?.style?.setProperty('transform', RoleX);
+	Landing.Role?.style?.setProperty("transform", RoleX);
+	Landing.RoleOverlay?.style?.setProperty("transform", RoleX);
 
-	Landing.Separator?.style?.setProperty('transform', `translate3d(${Math.min((scrollPart1 - 1.5), 0) * 100}%, 0, 0)`);
-	Landing.SeparatorOverlay?.style?.setProperty('transform', `translate3d(${Math.min((scrollPart1 - 1.5), 0) * 100}%, 0, 0)`);
+	Landing.Separator?.style?.setProperty("transform", `translate3d(${Math.min(scrollPart1 - 1.5, 0) * 100}%, 0, 0)`);
+	Landing.SeparatorOverlay?.style?.setProperty("transform", `translate3d(${Math.min(scrollPart1 - 1.5, 0) * 100}%, 0, 0)`);
 };
 const HeroPart2Animation = (scrollPart2: number) => {
 	const HeroScale = `scale(${1 - Math.min(scrollPart2 * 0.35, 0.3)}) translate3d(${scrollPart2 / 2}vw, 0, 0)`;
-	Landing.Hero?.style?.setProperty('transform', HeroScale);
-	Landing.HeroOverlay?.style?.setProperty('transform', HeroScale);
+	Landing.Hero?.style?.setProperty("transform", HeroScale);
+	Landing.HeroOverlay?.style?.setProperty("transform", HeroScale);
 
 	const bioClipValue1 = scrollPart2 * 200;
-	Landing.Bio1?.style?.setProperty('clip-path', `polygon(0 0, ${bioClipValue1}% 0, ${bioClipValue1}% 100%, 0 100%)`);
-	Landing.BioOverlay1?.style?.setProperty('clip-path', `polygon(0 0, ${bioClipValue1}% 0, ${bioClipValue1}% 100%, 0 100%)`);
+	Landing.Bio1?.style?.setProperty("clip-path", `polygon(0 0, ${bioClipValue1}% 0, ${bioClipValue1}% 100%, 0 100%)`);
+	Landing.BioOverlay1?.style?.setProperty("clip-path", `polygon(0 0, ${bioClipValue1}% 0, ${bioClipValue1}% 100%, 0 100%)`);
 
-	const bioClipValue2 = bioClipValue1 >= 100 ? ((scrollPart2 * 2.2) - 1) * 100 : 0;
-	Landing.Bio2?.style?.setProperty('clip-path', `polygon(0 0, ${bioClipValue2}% 0, ${bioClipValue2}% 100%, 0 100%)`);
-	Landing.BioOverlay2?.style?.setProperty('clip-path', `polygon(0 0, ${bioClipValue2}% 0, ${bioClipValue2}% 100%, 0 100%)`);
+	const bioClipValue2 = bioClipValue1 >= 100 ? (scrollPart2 * 2.2 - 1) * 100 : 0;
+	Landing.Bio2?.style?.setProperty("clip-path", `polygon(0 0, ${bioClipValue2}% 0, ${bioClipValue2}% 100%, 0 100%)`);
+	Landing.BioOverlay2?.style?.setProperty("clip-path", `polygon(0 0, ${bioClipValue2}% 0, ${bioClipValue2}% 100%, 0 100%)`);
 };
 
-export default function LandingAnimation () {
+export default function LandingAnimation() {
 	if (!AllElementsSelected) return selectElements();
 
 	const scrollAvailable = (Landing.Container?.clientHeight ?? 0) - window.innerHeight;

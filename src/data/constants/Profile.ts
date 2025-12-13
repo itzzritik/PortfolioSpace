@@ -1,16 +1,16 @@
-import Expertise, { ExpertisePlanet } from '#components/page/home/ProfileSection/SubSections/Expertise';
-import Introduction, { IntroductionPlanet } from '#components/page/home/ProfileSection/SubSections/Introduction';
-import Languages from '#components/page/home/ProfileSection/SubSections/Languages';
-import Skills from '#components/page/home/ProfileSection/SubSections/Skills';
-import { EOrbit, IProfileSection } from '#data/types/profile.d';
+import Expertise, { ExpertisePlanet } from "#components/page/home/ProfileSection/SubSections/Expertise";
+import Introduction, { IntroductionPlanet } from "#components/page/home/ProfileSection/SubSections/Introduction";
+import Languages from "#components/page/home/ProfileSection/SubSections/Languages";
+import Skills from "#components/page/home/ProfileSection/SubSections/Skills";
+import { EOrbit, type IProfileSection } from "#data/types/profile";
 
-import { EProfileNavigationID } from './ReactID';
+import { EProfileNavigationID } from "./ReactID";
 
 const { INTRODUCTION, EXPERTISE, SKILLS, LANGUAGES } = EProfileNavigationID;
 
 export const profileSections: IProfileSection[] = [
 	{
-		name: 'intro',
+		name: "intro",
 		View: Introduction,
 		Planet: IntroductionPlanet,
 		id: INTRODUCTION,
@@ -18,7 +18,7 @@ export const profileSections: IProfileSection[] = [
 		rings: false,
 	},
 	{
-		name: 'expertise',
+		name: "expertise",
 		View: Expertise,
 		Planet: ExpertisePlanet,
 		id: EXPERTISE,
@@ -26,14 +26,14 @@ export const profileSections: IProfileSection[] = [
 		rings: false,
 	},
 	{
-		name: 'skills',
+		name: "skills",
 		View: Skills,
 		id: SKILLS,
 		orbit: EOrbit.RIGHT,
 		rings: false,
 	},
 	{
-		name: 'languages',
+		name: "languages",
 		View: Languages,
 		id: LANGUAGES,
 		orbit: EOrbit.RIGHT,

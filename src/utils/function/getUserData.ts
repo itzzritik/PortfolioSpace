@@ -1,10 +1,10 @@
-import { IUserData } from '#data/types/userData.d';
-import { getGitUser, getGitProfile } from '#utils/github/gitFetch';
+import type { IUserData } from "#data/types/userData.d";
+import { getGitProfile, getGitUser } from "#utils/github/gitFetch";
 
-import { getCountry, getLanguages } from './locale';
+import { getCountry, getLanguages } from "./locale";
 
 export const getUserData = async () => {
-	const { login, name, bio, location, avatar_url }  = await getGitUser();
+	const { login, name, bio, location, avatar_url } = await getGitUser();
 	const profile = await getGitProfile();
 
 	const userData: IUserData = {
@@ -13,7 +13,7 @@ export const getUserData = async () => {
 		bio,
 		location,
 		avatarUrl: avatar_url,
-		country: await getCountry(location?.split(' ').pop()),
+		country: await getCountry(location?.split(" ").pop()),
 		languages: await getLanguages(profile?.personal?.languages),
 		displayEmail: profile.personal.displayEmail,
 		currentRole: profile.personal.currentRole,

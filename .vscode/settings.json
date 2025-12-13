@@ -1,17 +1,17 @@
 {
-    "css.validate": false,
+	"css.validate": false,
 	"less.validate": false,
 	"scss.validate": false,
 	"stylelint.validate": ["css", "scss"],
-    "files.eol": "\n",
+	"files.eol": "\n",
 	"editor.tabSize": 4,
 	"editor.insertSpaces": false,
 	"editor.detectIndentation": false,
 	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": "explicit",
-		"source.fixAll.stylelint": "explicit"
+		"source.fixAll.stylelint": "explicit",
+		"source.fixAll.biome": "explicit",
+		"source.organizeImports.biome": "explicit"
 	},
-
 	"gitmoji.showEmojiCode": true,
 	"gitmoji.addCustomEmoji": [
 		{
@@ -25,14 +25,34 @@
 			"description": "Typescript (TS) related updates"
 		}
 	],
-    
-    "cSpell.words": [
-		"clsx",
-		"Hotjar",
-		"keyframes",
-		"scroller",
-		"stylelint",
-		"svgr",
-		"xtreme"
-	]
+	"cSpell.words": ["clsx", "Hotjar", "keyframes", "scroller", "stylelint", "svgr", "xtreme"],
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"[javascript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[css]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[graphql]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"editor.formatOnSave": true,
+	"editor.formatOnPaste": true,
+	"emmet.showExpandedAbbreviation": "never"
 }

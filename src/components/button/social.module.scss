@@ -21,25 +21,25 @@
 
 		&.linkedin {
 			> span {
-				background: #0077B5;
+				background: #0077b5;
 			}
 		}
 
 		&.instagram {
 			> span {
-				background: #E1306C;
+				background: #e1306c;
 			}
 		}
 
 		&.facebook {
 			> span {
-				background: #3B5998;
+				background: #3b5998;
 			}
 		}
 
-		&.twitter {
+		&.x {
 			> span {
-				background: #1DA1F2;
+				background: #1da1f2;
 			}
 		}
 	}
@@ -53,25 +53,25 @@
 
 		&.linkedin {
 			> svg {
-				fill: #0077B5;
+				fill: #0077b5;
 			}
 		}
 
 		&.instagram {
 			> svg {
-				fill: #E1306C;
+				fill: #e1306c;
 			}
 		}
 
 		&.facebook {
 			> svg {
-				fill: #3B5998;
+				fill: #3b5998;
 			}
 		}
 
-		&.twitter {
+		&.x {
 			> svg {
-				fill: #1DA1F2;
+				fill: #000000;
 			}
 		}
 	}

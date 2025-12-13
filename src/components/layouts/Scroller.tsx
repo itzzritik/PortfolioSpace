@@ -1,10 +1,10 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 
-import ProgressStyles from '#components/layouts/progressbar.module.scss';
+import ProgressStyles from "#components/layouts/progressbar.module.scss";
 
-import styles from './scroller.module.scss';
+import styles from "./scroller.module.scss";
 
-export default function Scroller (props: IScrollerProps) {
+export default function Scroller(props: IScrollerProps) {
 	const { id } = props;
 	return (
 		<div className={styles.scroller}>

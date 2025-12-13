@@ -1,46 +1,46 @@
 export enum EHeaderID {
-	LOGO = 'header-logo',
-	HAMBURGER = 'header-hamburger',
+	LOGO = "header-logo",
+	HAMBURGER = "header-hamburger",
 }
 
 export enum ELandingID {
-	CONTAINER = 'landing-container',
-	OVERLAY = 'landing-overlay',
+	CONTAINER = "landing-container",
+	OVERLAY = "landing-overlay",
 }
 
 export enum ELandingHeroID {
-	HERO = 'landing-hero',
-	HERO_OVERLAY = 'landing-hero-overlay',
+	HERO = "landing-hero",
+	HERO_OVERLAY = "landing-hero-overlay",
 
-	GREETING = 'landing-hero-greeting',
-	GREETING_OVERLAY = 'landing-hero-greeting-overlay',
+	GREETING = "landing-hero-greeting",
+	GREETING_OVERLAY = "landing-hero-greeting-overlay",
 
-	INTRO = 'landing-hero-intro',
-	INTRO_OVERLAY = 'landing-hero-intro-overlay',
+	INTRO = "landing-hero-intro",
+	INTRO_OVERLAY = "landing-hero-intro-overlay",
 
-	ROLE = 'landing-hero-role',
-	ROLE_OVERLAY = 'landing-hero-role-overlay',
+	ROLE = "landing-hero-role",
+	ROLE_OVERLAY = "landing-hero-role-overlay",
 
-	SEPARATOR = 'landing-hero-separator',
-	SEPARATOR_OVERLAY = 'landing-hero-separator-overlay',
+	SEPARATOR = "landing-hero-separator",
+	SEPARATOR_OVERLAY = "landing-hero-separator-overlay",
 
-	BIO_1 = 'landing-hero-bio',
-	BIO_OVERLAY_1 = 'landing-hero-bio-overlay',
+	BIO_1 = "landing-hero-bio",
+	BIO_OVERLAY_1 = "landing-hero-bio-overlay",
 
-	BIO_2 = 'landing-hero-bio-2',
-	BIO_OVERLAY_2 = 'landing-hero-bio-overlay-2',
+	BIO_2 = "landing-hero-bio-2",
+	BIO_OVERLAY_2 = "landing-hero-bio-overlay-2",
 }
 
 export enum EProfileID {
-	PROFILE = 'profile',
-	PROFILE_SCROLL = 'profile-scroll',
-	PROFILE_NAVIGATION = 'profile-nav-disc',
-	INTRODUCTION_HELLO = 'introduction-hello',
+	PROFILE = "profile",
+	PROFILE_SCROLL = "profile-scroll",
+	PROFILE_NAVIGATION = "profile-nav-disc",
+	INTRODUCTION_HELLO = "introduction-hello",
 }
 
 export enum EProfileNavigationID {
-	INTRODUCTION = 'profile-navigation-introduction',
-	EXPERTISE = 'profile-navigation-expertise',
-	SKILLS = 'profile-navigation-skills',
-	LANGUAGES = 'profile-navigation-languages',
+	INTRODUCTION = "profile-navigation-introduction",
+	EXPERTISE = "profile-navigation-expertise",
+	SKILLS = "profile-navigation-skills",
+	LANGUAGES = "profile-navigation-languages",
 }

@@ -1,18 +1,13 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 
-import styles from './starfield.module.scss';
+import styles from "./starfield.module.scss";
 
-export default function StarField (props: IStarFieldProps) {
+export default function StarField(props: IStarFieldProps) {
 	const { className } = props;
 
-	const classX = clsx(
-		styles.starField,
-		className,
-	);
+	const classX = clsx(styles.starField, className);
 
-	return (
-		<canvas id='starfieldCanvas' className={classX} />
-	);
+	return <canvas id="starfieldCanvas" className={classX} />;
 }
 
 interface IStarFieldProps {

@@ -1,23 +1,17 @@
-'use client';
+"use client";
 
-import { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
-import { IUserData } from '#data/types/userData.d';
+import type { IUserData } from "#data/types/userData.d";
 
-import UserDataProvider, { useUserData } from './UserData';
+import UserDataProvider, { useUserData } from "./UserData";
 
-export default function GlobalContextProvider (props: IGlobalContextProviderProps) {
+export default function GlobalContextProvider(props: IGlobalContextProviderProps) {
 	const { children, userData } = props;
 
-	return (
-		<UserDataProvider userData={userData}>
-			{children}
-		</UserDataProvider>
-	);
+	return <UserDataProvider userData={userData}>{children}</UserDataProvider>;
 }
-export {
-	useUserData,
-};
+export { useUserData };
 
 interface IGlobalContextProviderProps {
 	children: ReactNode;

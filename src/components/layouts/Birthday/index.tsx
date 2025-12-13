@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react';
+import clsx from "clsx";
+import { useEffect, useState } from "react";
 
-import clsx from 'clsx';
+import { EStartFieldSpeed } from "#data/types/common";
+import { calculateAge } from "#utils/function/general";
 
-import { EStartFieldSpeed } from '#data/types/common.d';
-import { calculateAge } from '#utils/function/general';
-
-import AgeCard from './AgeCard';
-import styles from './birthday.module.scss';
+import AgeCard from "./AgeCard";
+import styles from "./birthday.module.scss";
 
 const BirthdayModal = (props: IBirthdayModalProps) => {
 	const { dob } = props;
@@ -20,8 +19,8 @@ const BirthdayModal = (props: IBirthdayModalProps) => {
 				y: event.clientY > window.innerHeight - 350 - 32 ? window.innerHeight - 350 - 8 : event.clientY + 24,
 			});
 		};
-		window.addEventListener('mousemove', handleMouseMove);
-		return () => window.removeEventListener('mousemove', handleMouseMove);
+		window.addEventListener("mousemove", handleMouseMove);
+		return () => window.removeEventListener("mousemove", handleMouseMove);
 	}, []);
 
 	if (modalPos.x < 0 || modalPos.y < 0) return null;
@@ -32,14 +31,11 @@ const BirthdayModal = (props: IBirthdayModalProps) => {
 		</div>
 	);
 };
-export default function Birthday (props: IBirthdayProps) {
+export default function Birthday(props: IBirthdayProps) {
 	const { className, dob, label } = props;
 	const [showCard, setShowCard] = useState(false);
 
-	const birthdayClass = clsx(
-		styles.age,
-		className,
-	);
+	const birthdayClass = clsx(styles.age, className);
 
 	return (
 		<>
@@ -52,15 +48,11 @@ export default function Birthday (props: IBirthdayProps) {
 				onMouseLeave={() => {
 					window.starFieldSpeed = EStartFieldSpeed.SLOW;
 					setShowCard(false);
-				}}
-			>
-				{calculateAge(dob)?.years}{label}
+				}}>
+				{calculateAge(dob)?.years}
+				{label}
 			</span>
-			{
-				showCard && dob &&
-				<BirthdayModal dob={dob} />
-			}
-
+			{showCard && dob && <BirthdayModal dob={dob} />}
 		</>
 	);
 }

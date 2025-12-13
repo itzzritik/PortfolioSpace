@@ -1,25 +1,21 @@
-import { useState, createContext, useContext, useEffect, ReactNode } from 'react';
+import { createContext, type ReactNode, useContext, useEffect, useState } from "react";
 
-import { IUserData } from '#data/types/userData.d';
+import type { IUserData } from "#data/types/userData.d";
 
 const UserDataContext = createContext({} as IUserData);
 const useUserData = () => useContext(UserDataContext);
 
-export default function UserDataProvider (props: IUserDataProviderProps) {
+export default function UserDataProvider(props: IUserDataProviderProps) {
 	const { children, userData: staticUser } = props;
 	const [userData, setUserData] = useState<IUserData>(staticUser);
 
 	useEffect(() => {
-		fetch('/getFullUser')
+		fetch("/getFullUser")
 			.then((res) => res.json())
 			.then(setUserData);
 	}, []);
 
-	return (
-		<UserDataContext.Provider value={userData}>
-			{children}
-		</UserDataContext.Provider>
-	);
+	return <UserDataContext.Provider value={userData}>{children}</UserDataContext.Provider>;
 }
 export { useUserData };
 

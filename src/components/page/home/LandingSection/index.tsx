@@ -1,10 +1,10 @@
-import { ELandingID } from '#data/constants/ReactID';
+import { ELandingID } from "#data/constants/ReactID";
 
-import Hero from './Hero';
-import Minor from './Minor';
-import styles from './landingSection.module.scss';
+import Hero from "./Hero";
+import styles from "./landingSection.module.scss";
+import Minor from "./Minor";
 
-export default function LandingSection () {
+export default function LandingSection() {
 	return (
 		<div className={styles.landingSection}>
 			<div className={styles.container}>
