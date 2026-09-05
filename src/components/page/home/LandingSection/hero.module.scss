@@ -1,6 +1,8 @@
 @use 'media' as *;
 
 .hero {
+	--scrollPart2: 0; // 0 → 1 while the bio reveals, set by landingAnim.ts
+
 	position: relative;
 	width: 100%;
 	height: 100%;
@@ -9,6 +11,9 @@
 	justify-content: center;
 	align-items: flex-end;
 	transform-origin: 0% 30%;
+
+	// desktop: the title shrinks aside to make room for the bio
+	transform: scale(calc(1 - min(var(--scrollPart2) * 0.35, 0.3))) translate3d(calc(var(--scrollPart2) * 0.5vw), 0, 0);
 	transition: transform var(--landingDuration) ease-out;
 
 	> .greeting,
@@ -100,6 +105,8 @@
 	}
 
 	@include compact {
+		transform: none;
+
 		> .role {
 			font-size: 0.85rem;
 		}

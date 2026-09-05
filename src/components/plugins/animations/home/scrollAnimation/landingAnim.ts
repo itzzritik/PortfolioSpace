@@ -79,9 +79,9 @@ const HeroPart1Animation = (scrollPart1: number) => {
 	Landing.SeparatorOverlay?.style?.setProperty("transform", `translate3d(${Math.min(scrollPart1 - 1.5, 0) * 100}%, 0, 0)`);
 };
 const HeroPart2Animation = (scrollPart2: number) => {
-	const HeroScale = `scale(${1 - Math.min(scrollPart2 * 0.35, 0.3)}) translate3d(${scrollPart2 / 2}vw, 0, 0)`;
-	Landing.Hero?.style?.setProperty("transform", HeroScale);
-	Landing.HeroOverlay?.style?.setProperty("transform", HeroScale);
+	// hero.module.scss turns this progress into the desktop shrink; compact layouts leave the title full size
+	Landing.Hero?.style?.setProperty("--scrollPart2", `${scrollPart2}`);
+	Landing.HeroOverlay?.style?.setProperty("--scrollPart2", `${scrollPart2}`);
 
 	const bioClipValue1 = scrollPart2 * 200;
 	Landing.Bio1?.style?.setProperty("clip-path", `polygon(0 0, ${bioClipValue1}% 0, ${bioClipValue1}% 100%, 0 100%)`);

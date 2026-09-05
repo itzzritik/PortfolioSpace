@@ -51,8 +51,8 @@
 		}
 	}
 
-	// Stacked layout: the planet becomes a header the copy scrolls under. The system is turned a quarter so the
-	// active planet hangs below its centre and the orbit arcs across the top, never through the copy.
+	// Stacked layout: the planet becomes a header the copy scrolls under, dimmed by a light veil. The system is turned
+	// a quarter so the active planet hangs below its centre and the orbit arcs across the top, never through the copy.
 	@include compact {
 		--systemSize: calc(var(--planetSize) * 2.38);
 
@@ -64,7 +64,7 @@
 			position: absolute;
 			inset: 0 0 auto;
 			height: var(--planetArea);
-			background: linear-gradient(black 78%, transparent);
+			background: linear-gradient(rgb(0 0 0 / 55%) 60%, transparent);
 		}
 
 		> .solarSystem {
