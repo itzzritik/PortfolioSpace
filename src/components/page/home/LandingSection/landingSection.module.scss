@@ -9,27 +9,25 @@
 		position: sticky;
 		top: 0;
 		width: 100%;
-		height: 100vh;
-		overflow-x: hidden;
+		height: 100dvh;
+		overflow: hidden;
 
 		> .primary,
 		> .overlay {
 			position: absolute;
-			top: 0;
-			width: 100%;
-			height: 100%;
+			inset: 0;
 			display: flex;
 			flex-direction: column;
 			padding: 0 4vw;
 			color: var(--colorContentPrimaryDark);
 			overflow: hidden;
-			z-index: 4;
+			isolation: isolate;
 		}
 
 		> .overlay {
 			background: white;
 			color: var(--colorContentPrimary);
-			transition: all var(--landingDuration) ease-out;
+			transition: clip-path var(--landingDuration) ease-out;
 		}
 	}
 }

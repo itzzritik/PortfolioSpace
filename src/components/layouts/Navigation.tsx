@@ -26,7 +26,7 @@ export default function Navigation() {
 				<Hamburger id={HAMBURGER} active={active} />
 			</div>
 			<div className={navigationClass}>
-				<div className={styles.connect}>{}</div>
+				<div className={styles.connect} />
 				<div className={styles.navList}>
 					{navLabels.map((label, i) => (
 						<div key={i} className={styles.navItem}>

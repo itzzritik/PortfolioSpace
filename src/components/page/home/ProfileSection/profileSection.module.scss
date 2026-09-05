@@ -1,38 +1,66 @@
+@use 'media' as *;
+
 .profileSection {
 	position: relative;
-	width: 100%;
-	height: 100%;
-	display: flex;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+
+	// Scroller, planet system and copy share one grid cell: the copy sets the height, the other two stick inside it.
+	> * {
+		grid-area: 1 / 1;
+	}
 
 	> .sections {
-		position: absolute;
-		left: 0;
+		position: relative;
 		width: 60%;
-		height: 100%;
+		isolation: isolate; // keeps z-indexed descendants (button labels…) under the planet header
+
 
 		> .sectionItem {
 			position: relative;
-			width: 100%;
-			height: 100vh;
-			padding-left: 250px;
-			scroll-snap-align: center;
+			display: flex;
+			min-height: 100dvh;
+			padding-left: 15.5rem;
+			overflow-x: clip; // spinning rings and reveal offsets must never widen the page
 
 			> div {
+				flex: 1;
 				display: flex;
+				flex-direction: column;
+				min-width: 0;
 
 				> h1 {
 					position: absolute;
 					left: 0;
 					top: 50%;
+					margin: 0 0 0 2vh;
 					transform: translateY(-50%) rotate(180deg);
 					writing-mode: vertical-rl;
-					margin-left: 2vh;
 					font-size: 7vh;
 					font-weight: 300;
 					color: var(--colorContentPrimaryDark);
 					text-transform: uppercase;
-					letter-spacing: 2px;
+					letter-spacing: 0.125rem;
 					user-select: none;
+				}
+			}
+		}
+	}
+
+	@include compact {
+		> .sections {
+			width: 100%;
+
+			> .sectionItem {
+				padding: var(--planetArea) 5vw 2rem;
+
+				> div > h1 {
+					position: static;
+					transform: none;
+					writing-mode: horizontal-tb;
+					margin: 0 0 1.25rem;
+					font-size: clamp(1.75rem, 7vw, 2.5rem);
+					letter-spacing: 0.08em;
 				}
 			}
 		}

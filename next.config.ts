@@ -4,6 +4,9 @@ const isGitHubActions = process.env.GITHUB_ACTIONS === "true";
 
 const nextConfig: NextConfig = {
 	output: "export",
+	sassOptions: {
+		loadPaths: ["src/styles"],
+	},
 	basePath: isGitHubActions ? "/PortfolioSpace" : "",
 	images: {
 		unoptimized: true,

@@ -5,6 +5,7 @@ import { Lottie } from "lottie-react";
 import { useEffect, useRef, useState } from "react";
 
 import AnimDancingNeptune from "#assets/animations/space/DancingNeptune.json";
+import SectionHeader from "#components/layouts/SectionHeader";
 import { useUserData } from "#data/context";
 import type { IExperience } from "#data/types/userData.d";
 import useInView from "#utils/hooks/useInView";
@@ -50,20 +51,17 @@ export default function Expertise(props: IExpertiseProps) {
 	return (
 		<div className={expertiseClass} ref={ref}>
 			<h1>Expertise</h1>
-			<div className={styles.header}>
-				<span>Where I have worked</span>
-				<span className={styles.line} />
-				<span className={styles.summary}>
-					{experience.length} roles since {since}
-				</span>
-			</div>
+			<SectionHeader className={styles.header} label="Where I have worked" summary={`${experience.length} roles since ${since}`} visible={inView} />
 			<div className={styles.body}>
 				<div className={styles.rail} onMouseEnter={() => setTouched(true)}>
 					{experience.map((item, index) => (
 						<button
 							className={clsx(styles.item, index === active && styles.active)}
 							key={item.company}
-							onClick={() => setActive(index)}
+							onClick={() => {
+								setTouched(true);
+								setActive(index);
+							}}
 							onFocus={() => {
 								setTouched(true);
 								setActive(index);

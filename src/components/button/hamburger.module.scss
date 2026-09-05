@@ -6,7 +6,6 @@
 	cursor: pointer;
 
 	> path {
-		width: 40px; height: 40px;
 		fill: none;
 		stroke: var(--displayColor);
 		stroke-width: 4;
@@ -31,7 +30,7 @@
 		0% {
 			transform: rotate(0) scale(1);
 			stroke-width: 4;
-			stroke: black;
+			stroke: var(--displayColor);
 			stroke-dashoffset: 0;
 			stroke-dasharray: 40 121;
 		}
@@ -82,7 +81,7 @@
 		100% {
 			transform: rotate(0deg) scale(1);
 			stroke-width: 4;
-			stroke: black;
+			stroke: var(--displayColor);
 			stroke-dashoffset: 0;
 			stroke-dasharray: 40 121;
 		}

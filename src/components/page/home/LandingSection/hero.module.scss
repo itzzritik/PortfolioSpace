@@ -1,3 +1,5 @@
+@use 'media' as *;
+
 .hero {
 	position: relative;
 	width: 100%;
@@ -12,20 +14,20 @@
 	> .greeting,
 	> .intro {
 		margin: 0;
-		font-size: 14vw;
+		font-size: min(14vw, 24dvh);
 		line-height: 1;
 		font-weight: 500;
 		user-select: none;
-		letter-spacing: -0.5vw;
+		letter-spacing: -0.035em;
 		transition: transform var(--landingDuration) ease-out;
 
 		> span {
-			margin-left: -1.5vw;
+			margin-left: -0.11em;
 		}
 	}
 
 	> .intro {
-		margin-top: -1.5vw;
+		margin-top: -0.11em;
 		user-select: auto;
 
 		> span {
@@ -35,16 +37,16 @@
 
 	> .role {
 		margin: 1.5vh 0 0;
-		padding: 0.5vw 1.2vw;
+		padding: 0.42em 1em;
 		font-weight: 400;
-		font-size: 1.2vw;
+		font-size: max(0.75rem, 1.2vw);
 		line-height: 1;
-		border-radius: 0.4vw;
+		border-radius: 0.33em;
 		text-transform: uppercase;
 		color: black;
 		background: var(--colorContentPrimaryDark);
 		box-shadow: 0 0 20px 2px rgb(255 255 255 / 20%);
-		letter-spacing: 0.7vw;
+		letter-spacing: 0.58em;
 		transition: transform var(--landingDuration) ease-out;
 	}
 
@@ -70,7 +72,7 @@
 
 			> p {
 				margin: 0;
-				font-size: 1.9vw;
+				font-size: max(1.05rem, 1.9vw);
 				font-weight: 200;
 				line-height: 1.5;
 				clip-path: polygon(0 0, 0% 0, 0% 100%, 0% 100%);
@@ -92,10 +94,44 @@
 			box-shadow: 0 0 20px 2px rgb(var(--colorAccentRGB) / 40%);
 		}
 
-		> .footer {
-			> .separator {
-				display: none;
+		> .footer > .separator {
+			display: none;
+		}
+	}
+
+	@include compact {
+		> .role {
+			font-size: 0.85rem;
+		}
+
+		// portrait: the two lines fill the width
+		@include portrait {
+			> .greeting,
+			> .intro {
+				font-size: min(23vw, 17dvh);
 			}
+		}
+	}
+
+	// single column: the bio spans the full width, so it no longer tucks under the pill
+	@include phone {
+		> .role {
+			font-size: 0.8rem;
+		}
+
+		> .footer {
+			margin: 1.25rem 0 3rem;
+
+			> .heroBio > p {
+				font-size: 1.1rem;
+			}
+		}
+	}
+
+	@include short {
+		> .greeting,
+		> .intro {
+			font-size: min(14vw, 20dvh);
 		}
 	}
 }

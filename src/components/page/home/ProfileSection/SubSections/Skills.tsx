@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { chunk } from "lodash";
 import { useRef } from "react";
 
+import SectionHeader from "#components/layouts/SectionHeader";
 import { useUserData } from "#data/context";
 import { EStartFieldSpeed } from "#data/types/common";
 import useInView from "#utils/hooks/useInView";
@@ -26,11 +27,7 @@ export default function Skills(props: ISkillsProps) {
 	return (
 		<div className={skillsClass} ref={ref}>
 			<h1>Skills</h1>
-			<div className={styles.header}>
-				<span>What I build with</span>
-				<span className={styles.line} />
-				<span className={styles.summary}>{topSkills.length} core technologies</span>
-			</div>
+			<SectionHeader className={styles.header} label="What I build with" summary={`${topSkills.length} core technologies`} visible={inView} />
 			<div
 				className={styles.core}
 				onMouseEnter={() => {
@@ -46,11 +43,13 @@ export default function Skills(props: ISkillsProps) {
 					</span>
 				))}
 			</div>
-			<div className={clsx(styles.header, styles.secondary)}>
-				<span>Also fluent in</span>
-				<span className={styles.line} />
-				<span className={styles.summary}>{rest.length} more tools and practices</span>
-			</div>
+			<SectionHeader
+				className={clsx(styles.header, styles.secondary)}
+				delay={0.5}
+				label="Also fluent in"
+				summary={`${rest.length} more tools and practices`}
+				visible={inView}
+			/>
 			<div className={styles.belts}>
 				{rows.map((row, index) => (
 					<div className={clsx(styles.belt, index % 2 && styles.reverse)} key={index}>

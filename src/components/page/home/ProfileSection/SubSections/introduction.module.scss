@@ -1,14 +1,13 @@
+@use 'media' as *;
+
 .introduction {
-	width: 100%;
-	height: 100vh;
-	flex-direction: column;
 	justify-content: center;
 	align-items: flex-start;
 
 	> .hello {
 		width: 40%;
 		stroke: var(--colorContentPrimaryDark);
-		margin-bottom: 20px;
+		margin-bottom: 1.25rem;
 		stroke-width: 10;
 		stroke-linecap: round;
 		stroke-dasharray: 3330;
@@ -19,30 +18,37 @@
 	> .about {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		margin: 10px 0 30px;
+		max-width: 64ch;
+		margin: 0.625rem 0 1.875rem;
 
 		> span {
 			color: var(--colorContentPrimaryDark);
-			font-size: 1.2vw;
+			font-size: 1.2rem;
 			font-weight: 200;
-			line-height: 1.3;
+			line-height: 1.35;
 
 			&:last-of-type {
-				margin-top: 0.9vw;
+				margin-top: 0.75em;
 			}
 		}
 	}
 
 	> .more {
-		--backgroundSize: 1.5vw;
-
 		color: white;
-		margin-bottom: 40px;
+		margin-bottom: 2.5rem;
+	}
+
+	@include compact {
+		> .hello {
+			width: min(55%, 15rem);
+		}
+
+		> .more {
+			margin-bottom: 0;
+		}
 	}
 }
 
 .introductionPlanet {
-	width: 70vmin;
+	width: 100%;
 }

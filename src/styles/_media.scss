@@ -1,0 +1,31 @@
+// Layout breakpoints.
+// `compact`: the two-column profile layout (copy left, planet right) stacks and the active planet moves to the top.
+// `phone`: internals go single-column and touch-sized.
+// `short`: landscape phones, where height is the scarce axis.
+$compact: 1280px;
+$phone: 700px;
+$short: 480px;
+
+@mixin compact {
+	@media (width <= $compact) {
+		@content;
+	}
+}
+
+@mixin phone {
+	@media (width <= $phone) {
+		@content;
+	}
+}
+
+@mixin portrait {
+	@media (orientation: portrait) {
+		@content;
+	}
+}
+
+@mixin short {
+	@media (height <= $short) {
+		@content;
+	}
+}

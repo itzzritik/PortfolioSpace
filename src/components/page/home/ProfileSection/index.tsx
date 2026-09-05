@@ -13,8 +13,8 @@ export default function ProfileSection() {
 			<Scroller id={PROFILE_SCROLL} />
 			<ProfileNavigation />
 			<div className={styles.sections}>
-				{profileSections.map(({ View }, i) => (
-					<div className={styles.sectionItem} key={i}>
+				{profileSections.map(({ View, id }) => (
+					<div className={styles.sectionItem} data-section="" key={id}>
 						<View />
 					</div>
 				))}

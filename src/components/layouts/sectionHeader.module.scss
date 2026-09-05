@@ -1,0 +1,46 @@
+@use 'media' as *;
+
+.sectionHeader {
+	display: flex;
+	align-items: center;
+	gap: 1.25rem;
+	font-size: 0.95rem;
+	font-weight: 300;
+	color: var(--colorMuted);
+	opacity: 0;
+	transform: translateY(12px);
+	transition: opacity 0.6s var(--ease) var(--delay), transform 0.6s var(--ease) var(--delay);
+
+	> .line {
+		flex: 0 0 3rem;
+		height: 1px;
+		background: linear-gradient(90deg, var(--colorAccent), transparent);
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 0.8s var(--ease) calc(var(--delay) + 0.2s);
+	}
+
+	> .summary {
+		color: var(--colorContentPrimaryDark);
+		font-weight: 200;
+	}
+
+	&.visible {
+		opacity: 1;
+		transform: none;
+
+		> .line {
+			transform: scaleX(1);
+		}
+	}
+
+	// the summary drops to its own line instead of breaking mid-phrase
+	@include phone {
+		flex-wrap: wrap;
+		gap: 0.25rem 0.75rem;
+
+		> .line {
+			flex-basis: 1.5rem;
+		}
+	}
+}

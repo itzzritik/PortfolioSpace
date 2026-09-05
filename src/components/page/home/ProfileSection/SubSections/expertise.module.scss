@@ -1,53 +1,26 @@
-$ease: cubic-bezier(0.2, 0.8, 0.2, 1);
-$spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+@use 'media' as *;
+
 $items: 6;
 
 .expertise {
-	--muted: rgb(255 255 255 / 45%);
 	--lavender: #B9A6FF;
 
-	width: 100%;
-	height: 100vh;
-	flex-direction: column;
 	justify-content: flex-start;
-	padding: clamp(64px, 13vh, 150px) 3vw 0 0;
+	padding: clamp(4rem, 13vh, 9.375rem) 3vw 0 0;
 	color: var(--colorContentPrimaryDark);
 
 	> .header {
-		display: flex;
-		align-items: center;
-		gap: 1.2vw;
 		margin-bottom: 4vh;
-		font-size: clamp(12px, 0.95vw, 17px);
-		font-weight: 300;
-		color: var(--muted);
-		opacity: 0;
-		transform: translateY(12px);
-		transition: opacity 0.6s $ease, transform 0.6s $ease;
-
-		> .line {
-			flex: 0 0 3vw;
-			height: 1px;
-			background: linear-gradient(90deg, var(--colorAccent), transparent);
-			transform: scaleX(0);
-			transform-origin: left;
-			transition: transform 0.8s $ease 0.2s;
-		}
-
-		> .summary {
-			color: var(--colorContentPrimaryDark);
-			font-weight: 200;
-		}
 	}
 
 	> .body {
 		display: grid;
-		grid-template-columns: minmax(10vw, 12vw) 1fr;
-		gap: 2vw;
+		grid-template-columns: 13rem 1fr;
+		gap: 2rem;
 		align-items: start;
 
 		// narrow desktops: the rail collapses to logos so the detail panel keeps a readable measure
-		@media (max-width: 1500px) {
+		@media ($compact < width <= 1500px) {
 			grid-template-columns: auto 1fr;
 
 			.rail > .item > .company {
@@ -61,27 +34,27 @@ $items: 6;
 		display: flex;
 		flex-direction: column;
 		gap: 0.6vh;
-		padding-left: 0.2vw;
+		padding-left: 0.2rem;
 
 		// orbit path the company planets sit on
 		&::before {
 			content: '';
 			position: absolute;
-			left: calc(1.35vw + 0.2vw);
+			left: calc(0.2rem + 1.375rem);
 			top: 1.5vh;
 			bottom: 1.5vh;
 			border-left: 1px dashed rgb(255 255 255 / 18%);
 			transform: scaleY(0);
 			transform-origin: top;
-			transition: transform 1.1s $ease 0.15s;
+			transition: transform 1.1s var(--ease) 0.15s;
 		}
 
 		> .item {
 			position: relative;
 			display: flex;
 			align-items: center;
-			gap: 1vw;
-			padding: 1.1vh 1vw 1.1vh 0;
+			gap: 1rem;
+			padding: 0.6rem 1rem 0.6rem 0;
 			border: none;
 			border-radius: 0 999px 999px 0;
 			background: transparent;
@@ -90,31 +63,25 @@ $items: 6;
 			text-align: left;
 			cursor: pointer;
 			opacity: 0;
-			transform: translateX(-28px);
-			transition: opacity 0.55s $ease, transform 0.55s $ease, background 0.3s ease-out;
-
-			@for $i from 1 through $items {
-				&:nth-child(#{$i}) {
-					transition-delay: 0s;
-				}
-			}
+			transform: translateX(-1.75rem);
+			transition: opacity 0.55s var(--ease), transform 0.55s var(--ease), background 0.3s ease-out;
 
 			> .logo {
 				flex: none;
-				width: 2.7vw;
-				height: 2.7vw;
+				width: 2.75rem;
+				height: 2.75rem;
 				border-radius: 999px;
 				border: 1px solid rgb(255 255 255 / 15%);
 				background-color: #111;
 				background-size: cover;
 				background-position: center;
 				filter: grayscale(1) brightness(0.75);
-				transition: filter 0.4s ease-out, transform 0.45s $spring, box-shadow 0.45s ease-out;
+				transition: filter 0.4s ease-out, transform 0.45s var(--spring), box-shadow 0.45s ease-out;
 			}
 
 			> .company {
 				min-width: 0;
-				font-size: clamp(12px, 0.95vw, 16px);
+				font-size: 0.95rem;
 				font-weight: 400;
 				line-height: 1.2;
 				color: rgb(255 255 255 / 65%);
@@ -159,16 +126,14 @@ $items: 6;
 	}
 
 	.panel {
-		min-height: 42vh;
-		max-height: 66vh; // ponytail: bleed guard so a long role never spills into the next section
-		overflow: hidden;
-		padding: 0.6vh 0 0 1.8vw;
+		min-height: 28rem; // keeps the education row still while roles auto-advance
+		padding: 0.4rem 0 0 1.75rem;
 		border-left: 1px solid rgb(255 255 255 / 8%);
 		opacity: 0;
-		transition: opacity 0.6s $ease;
+		transition: opacity 0.6s var(--ease);
 
 		> * {
-			animation: rise 0.6s $ease both;
+			animation: rise 0.6s var(--ease) both;
 		}
 
 		@for $i from 1 through 4 {
@@ -179,7 +144,7 @@ $items: 6;
 
 		> .role {
 			margin: 0;
-			font-size: clamp(20px, 1.75vw, 30px);
+			font-size: 1.8rem;
 			font-weight: 300;
 			line-height: 1.15;
 			letter-spacing: -0.01em;
@@ -189,9 +154,9 @@ $items: 6;
 		> .org {
 			display: flex;
 			flex-wrap: wrap;
-			gap: 0.4vh 1.2vw;
-			margin: 1.2vh 0 0;
-			font-size: clamp(12px, 0.9vw, 15px);
+			gap: 0.25rem 1.25rem;
+			margin: 0.75rem 0 0;
+			font-size: 0.9rem;
 			font-weight: 300;
 
 			> .company {
@@ -200,8 +165,8 @@ $items: 6;
 
 			> .meta {
 				position: relative;
-				color: var(--muted);
-				padding-left: 1.2vw;
+				color: var(--colorMuted);
+				padding-left: 1.25rem;
 
 				&.period {
 					text-transform: capitalize;
@@ -223,17 +188,17 @@ $items: 6;
 
 		> .bullets {
 			list-style: none;
-			margin: 2.4vh 0 0;
+			margin: 1.5rem 0 0;
 			padding: 0;
 			display: flex;
 			flex-direction: column;
-			gap: 1vh;
+			gap: 0.6rem;
 			max-width: 62ch;
 
 			> li {
 				position: relative;
-				padding-left: 1.5vw;
-				font-size: clamp(12px, 0.9vw, 15px);
+				padding-left: 1.5rem;
+				font-size: 0.9rem;
 				font-weight: 200;
 				line-height: 1.5;
 				color: rgb(255 255 255 / 88%);
@@ -243,19 +208,19 @@ $items: 6;
 					position: absolute;
 					left: 0;
 					top: 0.78em;
-					width: 0.7vw;
+					width: 0.7rem;
 					height: 1px;
 					background: var(--colorAccent);
 					box-shadow: 0 0 8px rgb(var(--colorAccentRGB) / 80%);
 				}
 
 				&.sub {
-					padding-left: 2.8vw;
+					padding-left: 2.75rem;
 					color: rgb(255 255 255 / 65%);
 
 					&::before {
-						left: 1.5vw;
-						width: 0.4vw;
+						left: 1.5rem;
+						width: 0.4rem;
 						background: rgb(255 255 255 / 35%);
 						box-shadow: none;
 					}
@@ -266,15 +231,15 @@ $items: 6;
 		> .tech {
 			display: flex;
 			flex-wrap: wrap;
-			gap: 0.5vw;
-			margin-top: 2.4vh;
+			gap: 0.5rem;
+			margin-top: 1.5rem;
 
 			> span {
-				padding: 0.35vw 0.85vw;
+				padding: 0.35rem 0.85rem;
 				border-radius: 999px;
 				border: 1px solid rgb(255 255 255 / 12%);
 				background: rgb(255 255 255 / 3%);
-				font-size: clamp(10px, 0.72vw, 12px);
+				font-size: 0.72rem;
 				font-weight: 400;
 				letter-spacing: 0.08em;
 				text-transform: uppercase;
@@ -295,21 +260,22 @@ $items: 6;
 
 	> .education {
 		display: flex;
+		flex-wrap: wrap;
 		align-items: center;
-		gap: 1.2vw;
+		gap: 0.75rem 1.25rem;
 		margin-top: 4vh;
-		padding-top: 2.4vh;
+		padding-top: 1.5rem;
 		border-top: 1px solid rgb(255 255 255 / 8%);
-		font-size: clamp(11px, 0.82vw, 14px);
+		font-size: 0.82rem;
 		font-weight: 300;
-		color: var(--muted);
+		color: var(--colorMuted);
 		opacity: 0;
 		transform: translateY(12px);
-		transition: opacity 0.6s $ease, transform 0.6s $ease;
+		transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
 
 		> .logo {
-			width: 2vw;
-			height: 2vw;
+			width: 2rem;
+			height: 2rem;
 			border-radius: 999px;
 			border: 1px solid rgb(255 255 255 / 15%);
 			background-color: #111;
@@ -320,7 +286,7 @@ $items: 6;
 		> .text {
 			display: flex;
 			flex-direction: column;
-			gap: 0.4vh;
+			gap: 0.25rem;
 			min-width: 0;
 
 			> .school {
@@ -337,15 +303,6 @@ $items: 6;
 	}
 
 	&.visible {
-		> .header {
-			opacity: 1;
-			transform: none;
-
-			> .line {
-				transform: scaleX(1);
-			}
-		}
-
 		.rail {
 			&::before {
 				transform: scaleY(1);
@@ -375,6 +332,68 @@ $items: 6;
 		}
 	}
 
+	// stacked: the rail becomes a row of company pills above the detail panel
+	@include compact {
+		padding: 0;
+
+		> .header {
+			margin-bottom: 1.5rem;
+		}
+
+		> .body {
+			grid-template-columns: minmax(0, 1fr);
+			gap: 1.5rem;
+		}
+
+		.rail {
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: 0.5rem;
+			padding: 0;
+
+			&::before {
+				display: none;
+			}
+
+			> .item {
+				gap: 0.6rem;
+				padding: 0.3rem 0.9rem 0.3rem 0.3rem;
+				border-radius: 999px;
+				border: 1px solid rgb(255 255 255 / 8%);
+
+				> .logo {
+					width: 2.25rem;
+					height: 2.25rem;
+				}
+
+				&.active {
+					background: rgb(var(--colorAccentRGB) / 14%);
+					border-color: rgb(var(--colorAccentRGB) / 40%);
+				}
+			}
+		}
+
+		.panel {
+			min-height: 0;
+			padding: 0;
+			border-left: none;
+		}
+
+		> .education {
+			margin-top: 2rem;
+		}
+	}
+
+	@include phone {
+		.rail > .item {
+			padding: 0.3rem;
+
+			> .company {
+				display: none;
+			}
+		}
+	}
+
 	@keyframes rise {
 		from {
 			opacity: 0;
@@ -397,5 +416,5 @@ $items: 6;
 }
 
 .expertisePlanet {
-	width: 70vmin;
+	width: 100%;
 }

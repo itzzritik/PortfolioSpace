@@ -3,13 +3,28 @@
 	cursor: pointer;
 }
 
+// Follows the pointer (--x/--y) but never leaves the viewport; on touch it docks to the bottom instead.
 .birthdayModal {
+	--cardWidth: min(34.375rem, 100vw - 2rem);
+	--cardHeight: calc(var(--cardWidth) * 7 / 11);
+
 	position: fixed;
-	top: 50%; left: 50%;
-	width: 550px; height: 350px;
+	left: clamp(0.5rem, var(--x) + 1.5rem, 100vw - var(--cardWidth) - 0.5rem);
+	top: clamp(0.5rem, var(--y) + 1.5rem, 100dvh - var(--cardHeight) - 0.5rem);
+	width: var(--cardWidth);
+	height: var(--cardHeight);
 	display: flex;
+	container-type: inline-size;
+	padding: 6.9cqi 4.4cqi 5.8cqi;
 	background: white;
-	padding: 38px 24px 32px;
-	border-radius: 24px;
+	border-radius: 4.4cqi;
+	pointer-events: none;
 	z-index: 99;
+
+	@media (pointer: coarse) {
+		left: 50%;
+		top: auto;
+		bottom: 1rem;
+		translate: -50% 0;
+	}
 }

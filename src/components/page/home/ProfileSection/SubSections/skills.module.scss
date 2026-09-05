@@ -1,42 +1,14 @@
-$ease: cubic-bezier(0.2, 0.8, 0.2, 1);
-$spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+@use 'media' as *;
+
 $pills: 20;
 
 .skills {
-	--muted: rgb(255 255 255 / 45%);
-
-	width: 100%;
-	height: 100vh;
-	flex-direction: column;
 	justify-content: center;
 	padding-right: 3vw;
 	color: var(--colorContentPrimaryDark);
 
 	> .header {
-		display: flex;
-		align-items: center;
-		gap: 1.2vw;
-		margin-bottom: 3.2vh;
-		font-size: clamp(12px, 0.95vw, 17px);
-		font-weight: 300;
-		color: var(--muted);
-		opacity: 0;
-		transform: translateY(12px);
-		transition: opacity 0.6s $ease, transform 0.6s $ease;
-
-		> .line {
-			flex: 0 0 3vw;
-			height: 1px;
-			background: linear-gradient(90deg, var(--colorAccent), transparent);
-			transform: scaleX(0);
-			transform-origin: left;
-			transition: transform 0.8s $ease 0.2s;
-		}
-
-		> .summary {
-			color: var(--colorContentPrimaryDark);
-			font-weight: 200;
-		}
+		margin-bottom: 2rem;
 
 		&.secondary {
 			margin-top: 7vh;
@@ -46,19 +18,19 @@ $pills: 20;
 	> .core {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 1.1vh 0.7vw;
-		max-width: 46vw;
+		gap: 0.6rem 0.7rem;
+		max-width: 50rem;
 
 		> .pill {
 			position: relative;
 			display: inline-flex;
 			align-items: center;
-			gap: 0.55vw;
-			padding: 0.95vh 1.15vw;
+			gap: 0.55rem;
+			padding: 0.55rem 1.15rem;
 			border-radius: 999px;
 			border: 1px solid rgb(255 255 255 / 20%);
 			background: rgb(255 255 255 / 3%);
-			font-size: clamp(11px, 0.82vw, 14px);
+			font-size: 0.82rem;
 			font-weight: 400;
 			letter-spacing: 0.1em;
 			text-transform: uppercase;
@@ -68,7 +40,7 @@ $pills: 20;
 			overflow: hidden;
 			opacity: 0;
 			transform: translateY(18px) scale(0.9);
-			transition: opacity 0.5s $ease, transform 0.55s $spring, border-color 0.25s ease-out, box-shadow 0.3s ease-out, color 0.25s ease-out;
+			transition: opacity 0.5s var(--ease), transform 0.55s var(--spring), border-color 0.25s ease-out, box-shadow 0.3s ease-out, color 0.25s ease-out;
 
 			// gradient fill wiping up from the bottom, same gesture as the site's buttons
 			&::before {
@@ -82,8 +54,8 @@ $pills: 20;
 			}
 
 			> .dot {
-				width: 0.38vw;
-				height: 0.38vw;
+				width: 0.38rem;
+				height: 0.38rem;
 				border-radius: 999px;
 				background: var(--colorAccent);
 				box-shadow: 0 0 8px var(--colorAccent);
@@ -113,16 +85,16 @@ $pills: 20;
 	> .belts {
 		display: flex;
 		flex-direction: column;
-		gap: 1.4vh;
-		margin-left: -1vw;
-		width: calc(100% + 1vw);
+		gap: 0.8rem;
+		margin-left: -1rem;
+		width: calc(100% + 1rem);
 
 		> .belt {
 			overflow: hidden;
 			mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
 			opacity: 0;
 			transform: translateX(-24px);
-			transition: opacity 0.7s $ease, transform 0.7s $ease;
+			transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
 
 			> .lane {
 				display: flex;
@@ -130,11 +102,11 @@ $pills: 20;
 				animation: drift var(--speed, 50s) linear infinite;
 
 				> .chip {
-					margin-right: 0.6vw;
-					padding: 0.7vh 1vw;
+					margin-right: 0.6rem;
+					padding: 0.4rem 1rem;
 					border-radius: 999px;
 					border: 1px solid rgb(255 255 255 / 9%);
-					font-size: clamp(11px, 0.8vw, 14px);
+					font-size: 0.8rem;
 					font-weight: 300;
 					white-space: nowrap;
 					color: rgb(255 255 255 / 55%);
@@ -180,23 +152,6 @@ $pills: 20;
 	}
 
 	&.visible {
-		> .header {
-			opacity: 1;
-			transform: none;
-
-			> .line {
-				transform: scaleX(1);
-			}
-
-			&.secondary {
-				transition-delay: 0.5s;
-
-				> .line {
-					transition-delay: 0.7s;
-				}
-			}
-		}
-
 		> .core > .pill {
 			opacity: 1;
 			transform: none;
@@ -217,6 +172,18 @@ $pills: 20;
 					transition-delay: 0.6s + ($i - 1) * 0.12s;
 				}
 			}
+		}
+	}
+
+	@include compact {
+		padding-right: 0;
+
+		> .header.secondary {
+			margin-top: 2.5rem;
+		}
+
+		> .core {
+			max-width: none;
 		}
 	}
 
@@ -242,7 +209,7 @@ $pills: 20;
 // Navigation planet: violet gas giant with glasses, ring and moon
 // ---------------------------------------------------------------------------
 .skillsPlanet {
-	--size: 27vmin;
+	--size: calc(var(--planetSize) * 0.385);
 	--ink: #2A1B44;
 	--planet: #6E4BFF;
 	--bandLight: #9B84FF;
@@ -251,8 +218,8 @@ $pills: 20;
 	--line: calc(var(--size) * 0.03);
 
 	position: relative;
-	width: 70vmin;
-	height: 70vmin;
+	width: 100%;
+	height: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;

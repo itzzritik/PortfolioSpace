@@ -1,5 +1,10 @@
+@use 'media' as *;
+
 html {
+	// One fluid knob: 14px on phones, ~16px on a 1728px laptop, 24px at 4K. Everything else is sized in rem.
+	font-size: clamp(14px, 10px + 0.35vw, 24px);
 	overflow-x: hidden;
+	text-size-adjust: 100%;
 
 	// Gradients
 	--gradientRed: linear-gradient(320deg, #F9224B, #F44);
@@ -17,16 +22,29 @@ html {
 	// Text Colors
 	--colorContentPrimary: black;
 	--colorContentPrimaryDark: #EEE;
+	--colorMuted: rgb(255 255 255 / 45%);
 
 	// Other Colors
 	--colorAccentRGB: 127 81 255;
 	--colorAccent: rgb(var(--colorAccentRGB));
 
-	// Fonts
-	--headerThickness: 100px;
-	--headerLogoSize: 44px;
+	// Motion
+	--ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+	--spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+	// Layout
+	--headerThickness: 6.25rem;
+	--headerLogoSize: 2.75rem;
 	--landingHeight: 260vh;
-	--profileHeight: 400vh;
+	--planetSize: 70vmin;
+
+	@include compact {
+		--headerThickness: 4.5rem;
+		--headerLogoSize: 2.125rem;
+		--planetSize: min(64vw, 32dvh);
+		--planetTop: 19dvh; // centre line of the active planet
+		--planetArea: calc(var(--planetTop) + var(--planetSize) / 2 + 2.5rem); // section copy starts below this
+	}
 }
 
 html,
@@ -36,8 +54,6 @@ body {
 	padding: 0;
 	margin: 0;
 	background: var(--gradientWhite);
-
-	// scroll-snap-type: y proximity;
 	scroll-behavior: smooth;
 	scrollbar-width: none;
 

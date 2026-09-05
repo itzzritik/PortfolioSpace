@@ -7,23 +7,14 @@ export default function ProfileNavigation() {
 	return (
 		<div className={styles.profileNavigation}>
 			<div className={styles.solarSystem} id={EProfileID.PROFILE_NAVIGATION}>
-				{Array(1)
-					.fill(0)
-					.map((_v, i) => (
-						<span className={styles.navOrbit} key={i} />
-					))}
-				{profileSectionReversed.map((item, index) => {
-					const Planet = item?.Planet;
-					return (
-						<div className={styles.navDiscItem} key={index} id={item?.id}>
-							{item?.rings &&
-								Array(15)
-									.fill(0)
-									.map((_v, i) => <span className={styles.spinner} key={i} />)}
-							{Planet ? <Planet key={index} /> : <div className={styles.background}>{item?.name}</div>}
+				<span className={styles.navOrbit} />
+				{profileSectionReversed.map(({ id, Planet }) => (
+					<div className={styles.navDiscItem} id={id} key={id}>
+						<div className={styles.planet}>
+							<Planet />
 						</div>
-					);
-				})}
+					</div>
+				))}
 			</div>
 		</div>
 	);

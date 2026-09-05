@@ -3,14 +3,11 @@ import LandingAnimation from "./landingAnim";
 import ProfileAnimation from "./profileAnim";
 
 export default function ScrollAnimation() {
-	["scroll", "resize"].forEach((event) =>
-		window.addEventListener(event, () => {
-			// console.time('ScrollAnimation');
-			LandingAnimation();
-			HeaderAnimation();
-			ProfileAnimation();
+	const animate = () => {
+		HeaderAnimation(LandingAnimation());
+		ProfileAnimation();
+	};
 
-			// console.timeEnd('ScrollAnimation');
-		}),
-	);
+	for (const event of ["scroll", "resize"]) window.addEventListener(event, animate);
+	animate();
 }

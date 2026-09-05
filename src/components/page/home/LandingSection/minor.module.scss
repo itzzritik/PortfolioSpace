@@ -1,4 +1,4 @@
-@use 'sass:math';
+@use 'media' as *;
 
 .minor {
 	position: absolute;
@@ -9,6 +9,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;
+	gap: 1rem 2rem;
 	padding: 3vw 4vw;
 
 	> .welcome {
@@ -16,36 +17,36 @@
 		flex-direction: column;
 
 		> p {
-			font-size: 3vw;
+			margin: 0;
+			font-size: max(1.375rem, 3vw);
 			font-weight: 300;
 			user-select: none;
 			text-transform: uppercase;
-			margin: 0;
 
 			&:last-of-type {
-				font-size: 1.7vw;
+				font-size: max(0.875rem, 1.7vw);
 				font-weight: 200;
-				margin-left: 0.2vw;
+				margin-left: 0.07em;
 			}
 		}
 	}
 
 	> .location {
-		$flagSize: 3vw;
+		--flagSize: max(1.75rem, 3vw);
 
 		display: flex;
 		align-items: center;
-		font-size: math.div($flagSize, 1.5);
+		font-size: calc(var(--flagSize) / 1.5);
 		font-weight: 200;
-		letter-spacing: -0.05vw;
-		margin-top: 2vh;
+		letter-spacing: -0.02em;
 		user-select: all;
 		transition: transform var(--landingDuration) ease-out;
 
 		> .flag {
-			width: $flagSize;
-			height: $flagSize;
-			margin: 0 1vw;
+			flex: none;
+			width: var(--flagSize);
+			height: var(--flagSize);
+			margin: 0 0.5em;
 			background-size: 210%;
 			background-position: center;
 			background-repeat: no-repeat;
@@ -55,7 +56,7 @@
 	}
 
 	> .descMail {
-		height: 60px;
+		height: 3.75rem;
 
 		> svg {
 			fill: transparent;
@@ -63,11 +64,31 @@
 		}
 
 		> p {
-			font-size: 1.3vw !important;
+			font-size: max(0.875rem, 1.3vw);
 			line-height: 1;
 			font-weight: 300;
 			text-transform: none;
-			margin: 12px 0;
+			margin: 0.75rem 0;
+		}
+	}
+
+	// single column, everything flush right
+	@include phone {
+		flex-direction: column;
+		align-items: flex-end;
+		justify-content: flex-end;
+		padding: 1.5rem 5vw;
+
+		> .welcome {
+			display: none;
+		}
+
+		> .location {
+			--flagSize: 2rem;
+		}
+
+		> .descMail > p {
+			font-size: 1rem;
 		}
 	}
 }

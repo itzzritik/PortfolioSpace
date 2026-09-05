@@ -3,6 +3,7 @@
 import clsx from "clsx";
 import { useRef } from "react";
 
+import SectionHeader from "#components/layouts/SectionHeader";
 import { useUserData } from "#data/context";
 import useInView from "#utils/hooks/useInView";
 
@@ -36,11 +37,7 @@ export default function Languages(props: ILanguagesProps) {
 	return (
 		<div className={languageClass} ref={ref}>
 			<h1>Languages</h1>
-			<div className={styles.header}>
-				<span>How I talk to people</span>
-				<span className={styles.line} />
-				<span className={styles.summary}>{language.length} spoken languages</span>
-			</div>
+			<SectionHeader className={styles.header} label="How I talk to people" summary={`${language.length} spoken languages`} visible={inView} />
 			<div className={styles.orbits}>
 				{language.map(({ name, proficiency }) => {
 					const level = proficiencyLevel[proficiency] ?? 50;

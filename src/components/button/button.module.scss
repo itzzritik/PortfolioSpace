@@ -5,7 +5,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 12px 20px;
+	padding: 0.75rem 1.25rem;
 	overflow: hidden;
 	border-radius: 999px;
 	border: 1px solid var(--colorBorderPrimary);
@@ -31,7 +31,7 @@
 
 		> span {
 			width: 20%;
-			transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+			transition: all 0.5s var(--spring);
 		}
 	}
 
@@ -66,7 +66,6 @@
 
 	&.icon {
 		padding: 0;
-		border: none;
 		border: 1px solid transparent;
 	}
 
@@ -74,12 +73,12 @@
 		border: 1px solid var(--colorBorderPrimary);
 
 		&.icon {
-			padding: 10px 20px;
+			padding: 0.625rem 1.25rem;
 			border-radius: 0;
 			border: 1px solid transparent;
 
 			> .label {
-				margin: 0 10px;
+				margin: 0 0.625rem;
 			}
 
 			> .icon {
@@ -95,14 +94,14 @@
 		border: 1px solid transparent;
 
 		&.icon {
-			padding: 10px;
+			padding: 0.625rem;
 
 			> .label {
 				margin: 0;
 			}
 
 			> .icon {
-				width: 100px;
+				width: 6.25rem;
 				margin: 0;
 			}
 		}
@@ -133,10 +132,8 @@
 				color: white;
 			}
 
-			> .underline {
-				> span {
-					width: 100%;
-				}
+			> .underline > span {
+				width: 100%;
 			}
 		}
 	}
