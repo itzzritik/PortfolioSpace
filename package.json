@@ -2,17 +2,17 @@
 	"name": "portfolio",
 	"version": "0.1.0",
 	"private": true,
+	"packageManager": "bun@1.3.13",
 	"scripts": {
-		"dev": "doppler run --command=\"PORT=4040 next dev --turbopack\"",
-		"build:dev": "doppler run --command=\"next build --turbopack\"",
+		"dev": "next dev --turbopack --port 4040",
+		"build:dev": "next build --turbopack",
 		"build": "next build",
 		"start": "next start",
 		"lint": "biome check",
 		"format": "biome format --write",
-		"clean": "rm -rf node_modules pnpm-lock.yaml .next && pnpm install"
+		"clean": "rm -rf node_modules .next && bun install"
 	},
 	"dependencies": {
-		"@hotjar/browser": "^1.0.9",
 		"clsx": "^2.1.1",
 
 		"lodash": "^4.18.1",

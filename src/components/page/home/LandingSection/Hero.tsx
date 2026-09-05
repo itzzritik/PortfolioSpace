@@ -14,9 +14,9 @@ const { HERO, HERO_OVERLAY, GREETING, GREETING_OVERLAY, INTRO, INTRO_OVERLAY, RO
 
 export default function Hero(props: HeroProps) {
 	const { isOverlay } = props;
-	const { name, currentRole, bio } = useUserData();
+	const { personal } = useUserData();
 
-	const SplitBio = useMemo(() => splitSentence(bio) ?? [], [bio]);
+	const SplitBio = useMemo(() => splitSentence(personal.about) ?? [], [personal.about]);
 
 	const heroClass = clsx(styles.hero, isOverlay && styles.overlay);
 
@@ -27,10 +27,10 @@ export default function Hero(props: HeroProps) {
 			</div>
 			<div className={styles.intro} id={isOverlay ? INTRO_OVERLAY : INTRO}>
 				<span>I’m </span>
-				{name?.replace(/ .*/, "")}
+				{personal.name.replace(/ .*/, "")}
 			</div>
 			<h1 className={styles.role} id={isOverlay ? ROLE_OVERLAY : ROLE}>
-				{currentRole}
+				{personal.currentRole}
 			</h1>
 			<div className={styles.footer}>
 				<span className={styles.separator} id={isOverlay ? SEPARATOR_OVERLAY : SEPARATOR} />

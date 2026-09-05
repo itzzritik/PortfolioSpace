@@ -1,8 +1,7 @@
-import React, { type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import Navigation from "#components/layouts/Navigation";
 import Splash from "#components/layouts/Splash";
-import HotjarPlugin from "#components/plugins/HotjarPlugin";
 import { getUserData } from "#utils/function/getUserData";
 import { montserrat } from "#utils/helper/fontHelper";
 
@@ -20,7 +19,6 @@ export default async function RootLayout(props: IRootProps) {
 
 	return (
 		<html lang="en">
-			<HotjarPlugin />
 			<body className={montserrat.variable} suppressHydrationWarning>
 				<GlobalContextProvider userData={userData}>
 					{children}

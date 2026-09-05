@@ -8,16 +8,16 @@ export const getCssProperty = (property: string, element: Element) => {
 };
 
 export const getCssPropertyPx = (property: string, element: Element) => {
-	return parseInt(getCssProperty(property, element).replace(/px/g, ""));
+	return parseInt(getCssProperty(property, element).replace(/px/g, ""), 10);
 };
 
 export const getCssPropertyVh = (property: string, element: Element) => {
-	const height = parseInt(getCssProperty(property, element).replace(/vh/g, ""));
+	const height = parseInt(getCssProperty(property, element).replace(/vh/g, ""), 10);
 	return [((dom?.innerHeight ?? 0) * height) / 100, height];
 };
 
 export const getCssPropertyVw = (property: string, element: Element) => {
-	const width = parseInt(getCssProperty(property, element).replace(/vw/g, ""));
+	const width = parseInt(getCssProperty(property, element).replace(/vw/g, ""), 10);
 	return [((dom?.innerWidth ?? 0) * width) / 100, width];
 };
 

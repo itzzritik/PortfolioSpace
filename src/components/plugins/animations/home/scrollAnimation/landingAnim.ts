@@ -58,7 +58,7 @@ const OverlayAnimation = (scrollPart1: number) => {
 		"clip-path",
 		useCircleOverlay
 			? `circle(${150 - overlayIndex}% at 90px 70px)`
-			: `polygon(100% 0, 100% 100%, ${overlayIndex - 20}% 100%, ${overlayIndex - 5}% 50%, ${overlayIndex - 20}% 0)`
+			: `polygon(100% 0, 100% 100%, ${overlayIndex - 20}% 100%, ${overlayIndex - 5}% 50%, ${overlayIndex - 20}% 0)`,
 	);
 };
 

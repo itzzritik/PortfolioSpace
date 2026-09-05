@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { useLottie } from "lottie-react";
+import { Lottie } from "lottie-react";
 
 import AnimHelloSaturn from "#assets/animations/space/HelloSaturn.json";
 import Hello from "#assets/img/text/hello.svg";
@@ -16,7 +16,8 @@ const { INTRODUCTION_HELLO } = EProfileID;
 
 export default function Introduction(props: IIntroductionProps) {
 	const { className } = props;
-	const { name, dob, location, hobbies = [] } = useUserData();
+	const { personal } = useUserData();
+	const { name, dob, hobbies, location } = personal;
 
 	const introductionClass = clsx(styles.introduction, className);
 
@@ -26,7 +27,7 @@ export default function Introduction(props: IIntroductionProps) {
 			<Hello className={styles.hello} id={INTRODUCTION_HELLO} />
 			<div className={styles.about}>
 				<span>
-					I’m {name}, a {<Birthday dob={dob} label="-year-old" />} tech enthusiast based in {location}. Heavily fueled by my passion and embrace the mindset of a
+					I’m {name}, a {<Birthday dob={dob} label="-year-old" />} tech enthusiast based in {location.full}. Heavily fueled by my passion and embrace the mindset of a
 					“lifelong learner” constantly striving to enhance both my technical expertise and personal growth!
 				</span>
 				<span>
@@ -39,11 +40,7 @@ export default function Introduction(props: IIntroductionProps) {
 }
 
 export const IntroductionPlanet = () => {
-	const { View: LottieView } = useLottie({
-		className: styles.introductionPlanet,
-		animationData: AnimHelloSaturn,
-	});
-	return LottieView;
+	return <Lottie className={styles.introductionPlanet} src={AnimHelloSaturn} />;
 };
 
 interface IIntroductionProps {

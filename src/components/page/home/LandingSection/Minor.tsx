@@ -9,7 +9,8 @@ import styles from "./minor.module.scss";
 
 export default function Hero(props: MinorProps) {
 	const { isOverlay } = props;
-	const { socialHandles, displayEmail, country, location } = useUserData();
+	const { personal, socialHandles } = useUserData();
+	const { displayEmail, location } = personal;
 
 	return !isOverlay ? (
 		<div className={styles.minor}>
@@ -23,8 +24,8 @@ export default function Hero(props: MinorProps) {
 				<p>to my portfolio</p>
 			</div>
 			<div className={styles.location}>
-				<span className={styles.flag} style={{ backgroundImage: `url(${country?.flag})` }} />
-				{location}
+				<span className={styles.flag} style={{ backgroundImage: `url(https://flagcdn.com/${location.country_code.toLowerCase()}.svg)` }} />
+				{location.full}
 			</div>
 		</div>
 	);

@@ -39,7 +39,7 @@ export default function DrawStarField() {
 	};
 	const putPixel = (x: number, y: number, brightness: number) => {
 		const intensity = brightness * 255;
-		const rgb = "rgb(" + intensity + "," + intensity + "," + intensity + ")";
+		const rgb = `rgb(${intensity},${intensity},${intensity})`;
 
 		pen.beginPath();
 		pen.fillStyle = rgb;

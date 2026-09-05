@@ -9,7 +9,7 @@ export default function ProfileNavigation() {
 			<div className={styles.solarSystem} id={EProfileID.PROFILE_NAVIGATION}>
 				{Array(1)
 					.fill(0)
-					.map((v, i) => (
+					.map((_v, i) => (
 						<span className={styles.navOrbit} key={i} />
 					))}
 				{profileSectionReversed.map((item, index) => {
@@ -19,7 +19,7 @@ export default function ProfileNavigation() {
 							{item?.rings &&
 								Array(15)
 									.fill(0)
-									.map((v, i) => <span className={styles.spinner} key={i} />)}
+									.map((_v, i) => <span className={styles.spinner} key={i} />)}
 							{Planet ? <Planet key={index} /> : <div className={styles.background}>{item?.name}</div>}
 						</div>
 					);

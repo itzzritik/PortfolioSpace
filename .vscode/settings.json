@@ -25,7 +25,7 @@
 			"description": "Typescript (TS) related updates"
 		}
 	],
-	"cSpell.words": ["clsx", "Hotjar", "keyframes", "scroller", "stylelint", "svgr", "xtreme"],
+	"cSpell.words": ["clsx", "keyframes", "scroller", "stylelint", "svgr", "xtreme"],
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"[javascript]": {
 		"editor.defaultFormatter": "biomejs.biome"

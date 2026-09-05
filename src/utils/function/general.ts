@@ -18,11 +18,6 @@ export const splitSentence = (sentence: string) => {
 	}
 };
 
-export const base64ToJson = <T = object>(base64String: string) => {
-	const json = Buffer.from(base64String, "base64").toString();
-	return JSON.parse(json) as T;
-};
-
 export const calculateAge = (birthDateString: string): IDateFormat => {
 	const currentDate = new Date();
 	const birthDate = new Date(birthDateString);

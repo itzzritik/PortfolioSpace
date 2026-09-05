@@ -36,7 +36,7 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true,
+			"preset": "recommended",
 			"a11y": {
 				"useButtonType": "off",
 				"noStaticElementInteractions": "off",
@@ -75,5 +75,5 @@
 			}
 		}
 	},
-	"extends": ["ultracite/next"]
+	"extends": ["ultracite/biome/next"]
 }

@@ -1,8 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { useLottie } from "lottie-react";
-import { useEffect } from "react";
+import { Lottie } from "lottie-react";
 
 import AnimDancingNeptune from "#assets/animations/space/DancingNeptune.json";
 
@@ -21,14 +20,7 @@ export default function Expertise(props: IExpertiseProps) {
 }
 
 export const ExpertisePlanet = () => {
-	const { View: LottieView, setSpeed } = useLottie({
-		className: styles.expertisePlanet,
-		animationData: AnimDancingNeptune,
-	});
-
-	useEffect(() => setSpeed(0.8), [setSpeed]);
-
-	return LottieView;
+	return <Lottie className={styles.expertisePlanet} speed={0.8} src={AnimDancingNeptune} />;
 };
 
 interface IExpertiseProps {

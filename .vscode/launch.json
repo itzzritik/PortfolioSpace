@@ -5,8 +5,8 @@
 			"name": "node: server",
 			"type": "node",
 			"request": "launch",
-			"runtimeExecutable": "doppler",
-			"runtimeArgs": ["run", "--", "pnpm", "dev"]
+			"runtimeExecutable": "bun",
+			"runtimeArgs": ["run", "dev"]
 		}
 	]
 }

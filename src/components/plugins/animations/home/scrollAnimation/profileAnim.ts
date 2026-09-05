@@ -48,7 +48,7 @@ const NavigationAnimation = (scrollPercent: number) => {
 			`rotate(-${totalAngle}deg)
 			translate(${(Profile.ProfileNavigation?.clientWidth ?? 0) / orbitDistance[item.orbit]}px)
 			rotate(${totalAngle}deg)
-			scale(${Math.max(scaleMin, 1 - Math.abs(totalAngle - midAngle) / diffAngleScale)})`
+			scale(${Math.max(scaleMin, 1 - Math.abs(totalAngle - midAngle) / diffAngleScale)})`,
 		);
 
 		totalAngle += angleBetweenItem;
