@@ -20,7 +20,7 @@ export default function Expertise(props: IExpertiseProps) {
 }
 
 export const ExpertisePlanet = () => {
-	return <Lottie className={styles.expertisePlanet} speed={0.8} src={AnimDancingNeptune} />;
+	return <Lottie autoplay className={styles.expertisePlanet} loop speed={0.8} src={AnimDancingNeptune} />;
 };
 
 interface IExpertiseProps {

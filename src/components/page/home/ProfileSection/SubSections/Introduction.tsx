@@ -40,7 +40,7 @@ export default function Introduction(props: IIntroductionProps) {
 }
 
 export const IntroductionPlanet = () => {
-	return <Lottie className={styles.introductionPlanet} src={AnimHelloSaturn} />;
+	return <Lottie autoplay className={styles.introductionPlanet} loop src={AnimHelloSaturn} />;
 };
 
 interface IIntroductionProps {

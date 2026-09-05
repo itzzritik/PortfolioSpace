@@ -9,7 +9,7 @@ export default function UnderConstruction(props: IUnderConstructionProps) {
 
 	return (
 		<div className={`${styles.underConstruction} ${className ? className : ""}`}>
-			<Lottie className={styles.animation} src={AnimUnderConstruction} />
+			<Lottie autoplay className={styles.animation} loop src={AnimUnderConstruction} />
 			<h1>Under Construction!</h1>
 			<p>{message ? message : "This page is under development!"}</p>
 		</div>
