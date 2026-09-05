@@ -1,7 +1,7 @@
 import Expertise, { ExpertisePlanet } from "#components/page/home/ProfileSection/SubSections/Expertise";
 import Introduction, { IntroductionPlanet } from "#components/page/home/ProfileSection/SubSections/Introduction";
-import Languages from "#components/page/home/ProfileSection/SubSections/Languages";
-import Skills from "#components/page/home/ProfileSection/SubSections/Skills";
+import Languages, { LanguagesPlanet } from "#components/page/home/ProfileSection/SubSections/Languages";
+import Skills, { SkillsPlanet } from "#components/page/home/ProfileSection/SubSections/Skills";
 import { EOrbit, type IProfileSection } from "#data/types/profile";
 
 import { EProfileNavigationID } from "./ReactID";
@@ -28,6 +28,7 @@ export const profileSections: IProfileSection[] = [
 	{
 		name: "skills",
 		View: Skills,
+		Planet: SkillsPlanet,
 		id: SKILLS,
 		orbit: EOrbit.RIGHT,
 		rings: false,
@@ -35,6 +36,7 @@ export const profileSections: IProfileSection[] = [
 	{
 		name: "languages",
 		View: Languages,
+		Planet: LanguagesPlanet,
 		id: LANGUAGES,
 		orbit: EOrbit.RIGHT,
 		rings: false,

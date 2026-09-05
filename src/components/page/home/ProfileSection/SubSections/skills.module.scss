@@ -1,3 +1,479 @@
+$ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+$spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+$pills: 20;
+
 .skills {
-    
+	--muted: rgb(255 255 255 / 45%);
+
+	width: 100%;
+	height: 100vh;
+	flex-direction: column;
+	justify-content: center;
+	padding-right: 3vw;
+	color: var(--colorContentPrimaryDark);
+
+	> .header {
+		display: flex;
+		align-items: center;
+		gap: 1.2vw;
+		margin-bottom: 3.2vh;
+		font-size: clamp(12px, 0.95vw, 17px);
+		font-weight: 300;
+		color: var(--muted);
+		opacity: 0;
+		transform: translateY(12px);
+		transition: opacity 0.6s $ease, transform 0.6s $ease;
+
+		> .line {
+			flex: 0 0 3vw;
+			height: 1px;
+			background: linear-gradient(90deg, var(--colorAccent), transparent);
+			transform: scaleX(0);
+			transform-origin: left;
+			transition: transform 0.8s $ease 0.2s;
+		}
+
+		> .summary {
+			color: var(--colorContentPrimaryDark);
+			font-weight: 200;
+		}
+
+		&.secondary {
+			margin-top: 7vh;
+		}
+	}
+
+	> .core {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.1vh 0.7vw;
+		max-width: 46vw;
+
+		> .pill {
+			position: relative;
+			display: inline-flex;
+			align-items: center;
+			gap: 0.55vw;
+			padding: 0.95vh 1.15vw;
+			border-radius: 999px;
+			border: 1px solid rgb(255 255 255 / 20%);
+			background: rgb(255 255 255 / 3%);
+			font-size: clamp(11px, 0.82vw, 14px);
+			font-weight: 400;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+			color: rgb(255 255 255 / 88%);
+			cursor: default;
+			isolation: isolate;
+			overflow: hidden;
+			opacity: 0;
+			transform: translateY(18px) scale(0.9);
+			transition: opacity 0.5s $ease, transform 0.55s $spring, border-color 0.25s ease-out, box-shadow 0.3s ease-out, color 0.25s ease-out;
+
+			// gradient fill wiping up from the bottom, same gesture as the site's buttons
+			&::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+				z-index: -1;
+				background: var(--gradientViolet);
+				clip-path: circle(0% at 50% 100%);
+				transition: clip-path 0.3s ease-out;
+			}
+
+			> .dot {
+				width: 0.38vw;
+				height: 0.38vw;
+				border-radius: 999px;
+				background: var(--colorAccent);
+				box-shadow: 0 0 8px var(--colorAccent);
+				transition: background 0.3s ease-out, box-shadow 0.3s ease-out;
+			}
+
+			@media (hover: hover) {
+				&:hover {
+					color: white;
+					border-color: transparent;
+					box-shadow: 0 10px 28px rgb(var(--colorAccentRGB) / 35%);
+					transform: translateY(-3px) !important;
+
+					&::before {
+						clip-path: circle(120% at 50% 100%);
+					}
+
+					> .dot {
+						background: white;
+						box-shadow: 0 0 10px white;
+					}
+				}
+			}
+		}
+	}
+
+	> .belts {
+		display: flex;
+		flex-direction: column;
+		gap: 1.4vh;
+		margin-left: -1vw;
+		width: calc(100% + 1vw);
+
+		> .belt {
+			overflow: hidden;
+			mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+			opacity: 0;
+			transform: translateX(-24px);
+			transition: opacity 0.7s $ease, transform 0.7s $ease;
+
+			> .lane {
+				display: flex;
+				width: max-content;
+				animation: drift var(--speed, 50s) linear infinite;
+
+				> .chip {
+					margin-right: 0.6vw;
+					padding: 0.7vh 1vw;
+					border-radius: 999px;
+					border: 1px solid rgb(255 255 255 / 9%);
+					font-size: clamp(11px, 0.8vw, 14px);
+					font-weight: 300;
+					white-space: nowrap;
+					color: rgb(255 255 255 / 55%);
+					transition: all 0.3s ease-out;
+
+					@media (hover: hover) {
+						&:hover {
+							color: white;
+							border-color: rgb(var(--colorAccentRGB) / 80%);
+							background: rgb(var(--colorAccentRGB) / 12%);
+							box-shadow: 0 0 18px rgb(var(--colorAccentRGB) / 30%);
+						}
+					}
+				}
+			}
+
+			&:nth-child(1) > .lane {
+				--speed: 58s;
+			}
+
+			&:nth-child(2) > .lane {
+				--speed: 72s;
+			}
+
+			&:nth-child(3) > .lane {
+				--speed: 64s;
+			}
+
+			&.reverse {
+				transform: translateX(24px);
+
+				> .lane {
+					animation-direction: reverse;
+				}
+			}
+
+			@media (hover: hover) {
+				&:hover > .lane {
+					animation-play-state: paused;
+				}
+			}
+		}
+	}
+
+	&.visible {
+		> .header {
+			opacity: 1;
+			transform: none;
+
+			> .line {
+				transform: scaleX(1);
+			}
+
+			&.secondary {
+				transition-delay: 0.5s;
+
+				> .line {
+					transition-delay: 0.7s;
+				}
+			}
+		}
+
+		> .core > .pill {
+			opacity: 1;
+			transform: none;
+
+			@for $i from 1 through $pills {
+				&:nth-child(#{$i}) {
+					transition-delay: 0.15s + ($i - 1) * 0.045s, 0.15s + ($i - 1) * 0.045s, 0s, 0s, 0s;
+				}
+			}
+		}
+
+		> .belts > .belt {
+			opacity: 1;
+			transform: none;
+
+			@for $i from 1 through 3 {
+				&:nth-child(#{$i}) {
+					transition-delay: 0.6s + ($i - 1) * 0.12s;
+				}
+			}
+		}
+	}
+
+	@keyframes drift {
+		to {
+			transform: translateX(-50%);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		> .belts > .belt > .lane {
+			animation: none;
+		}
+
+		*,
+		*::before {
+			transition-duration: 0.01ms !important;
+		}
+	}
+}
+
+// ---------------------------------------------------------------------------
+// Navigation planet: violet gas giant with glasses, ring and moon
+// ---------------------------------------------------------------------------
+.skillsPlanet {
+	--size: 27vmin;
+	--ink: #2A1B44;
+	--planet: #6E4BFF;
+	--bandLight: #9B84FF;
+	--bandDark: #5232D9;
+	--ringColor: #FF6BB5;
+	--line: calc(var(--size) * 0.03);
+
+	position: relative;
+	width: 70vmin;
+	height: 70vmin;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	animation: planetFloat 5s ease-in-out infinite alternate;
+
+	> .ring {
+		position: absolute;
+		width: calc(var(--size) * 1.85);
+		height: calc(var(--size) * 0.5);
+		border-radius: 50%;
+		border: calc(var(--size) * 0.09) solid var(--ringColor);
+		box-shadow:
+			0 0 0 var(--line) var(--ink),
+			inset 0 0 0 var(--line) var(--ink);
+		transform: rotate(-14deg);
+		z-index: 1;
+
+		&.front {
+			z-index: 3;
+			clip-path: inset(50% 0 0 0);
+		}
+	}
+
+	> .body {
+		position: relative;
+		width: var(--size);
+		height: var(--size);
+		border-radius: 50%;
+		background: var(--planet);
+		overflow: hidden;
+		z-index: 2;
+
+		> .bands {
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(
+				-14deg,
+				var(--bandDark) 0 13%,
+				transparent 13% 27%,
+				var(--bandLight) 27% 36%,
+				transparent 36% 58%,
+				var(--bandDark) 58% 68%,
+				transparent 68% 82%,
+				var(--bandLight) 82% 100%
+			);
+			background-size: 100% 200%;
+			animation: bandsDrift 14s ease-in-out infinite alternate;
+		}
+
+		> .shade {
+			position: absolute;
+			inset: 0;
+			border-radius: 50%;
+			box-shadow: inset calc(var(--size) * -0.13) calc(var(--size) * -0.05) 0 rgb(20 0 60 / 22%);
+		}
+
+		> .shine {
+			position: absolute;
+			top: 13%;
+			left: 15%;
+			width: 24%;
+			height: 9%;
+			border-radius: 999px;
+			background: rgb(255 255 255 / 60%);
+			transform: rotate(-38deg);
+
+			&::after {
+				content: '';
+				position: absolute;
+				top: -110%;
+				left: 92%;
+				width: 30%;
+				height: 100%;
+				border-radius: 999px;
+				background: inherit;
+			}
+		}
+
+		> .outline {
+			position: absolute;
+			inset: 0;
+			border-radius: 50%;
+			border: var(--line) solid var(--ink);
+		}
+	}
+
+	> .face {
+		position: absolute;
+		width: var(--size);
+		height: var(--size);
+		z-index: 4;
+
+		> .lens {
+			position: absolute;
+			top: 34%;
+			left: 21%;
+			width: 26%;
+			height: 26%;
+			border-radius: 50%;
+			border: var(--line) solid var(--ink);
+			background: rgb(255 255 255 / 22%);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			&::after {
+				content: '';
+				position: absolute;
+				top: 16%;
+				left: 14%;
+				width: 32%;
+				height: 12%;
+				border-radius: 999px;
+				background: rgb(255 255 255 / 75%);
+				transform: rotate(-40deg);
+			}
+
+			&.right {
+				left: auto;
+				right: 21%;
+			}
+
+			> .eye {
+				width: 34%;
+				height: 34%;
+				border-radius: 50%;
+				background: var(--ink);
+				animation: blink 4.6s ease-in-out infinite;
+			}
+		}
+
+		> .bridge {
+			position: absolute;
+			top: 44%;
+			left: 45%;
+			width: 10%;
+			height: var(--line);
+			background: var(--ink);
+		}
+
+		> .mouth {
+			position: absolute;
+			top: 66%;
+			left: 43%;
+			width: 14%;
+			height: 8%;
+			border: var(--line) solid transparent;
+			border-bottom-color: var(--ink);
+			border-radius: 0 0 50% 50% / 0 0 100% 100%;
+		}
+	}
+
+	> .moon {
+		position: absolute;
+		top: 21%;
+		right: 17%;
+		width: calc(var(--size) * 0.2);
+		height: calc(var(--size) * 0.2);
+		border-radius: 50%;
+		background: #D9D2FF;
+		border: var(--line) solid var(--ink);
+		box-shadow: inset calc(var(--size) * -0.03) calc(var(--size) * -0.02) 0 rgb(20 0 60 / 18%);
+		z-index: 4;
+		animation: planetFloat 3.6s ease-in-out infinite alternate-reverse;
+
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			border-radius: 50%;
+			background: #B7ABF2;
+			border: calc(var(--line) * 0.7) solid var(--ink);
+		}
+
+		&::before {
+			top: 22%;
+			left: 18%;
+			width: 28%;
+			height: 28%;
+		}
+
+		&::after {
+			top: 56%;
+			left: 52%;
+			width: 18%;
+			height: 18%;
+		}
+	}
+
+	@keyframes planetFloat {
+		from {
+			transform: translateY(-2.5%);
+		}
+
+		to {
+			transform: translateY(2.5%);
+		}
+	}
+
+	@keyframes bandsDrift {
+		to {
+			background-position: 0 100%;
+		}
+	}
+
+	@keyframes blink {
+		0%,
+		92%,
+		100% {
+			transform: scaleY(1);
+		}
+
+		96% {
+			transform: scaleY(0.1);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		& {
+			animation: none !important;
+		}
+	}
 }

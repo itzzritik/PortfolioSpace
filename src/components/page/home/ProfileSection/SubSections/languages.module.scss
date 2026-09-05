@@ -1,3 +1,441 @@
+$ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+$spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
 .languages {
-    
+	--muted: rgb(255 255 255 / 45%);
+	--gaugeSize: min(11.5vw, 26vh);
+
+	width: 100%;
+	height: 100vh;
+	flex-direction: column;
+	justify-content: center;
+	padding-right: 3vw;
+	color: var(--colorContentPrimaryDark);
+
+	> .header {
+		display: flex;
+		align-items: center;
+		gap: 1.2vw;
+		margin-bottom: 7vh;
+		font-size: clamp(12px, 0.95vw, 17px);
+		font-weight: 300;
+		color: var(--muted);
+		opacity: 0;
+		transform: translateY(12px);
+		transition: opacity 0.6s $ease, transform 0.6s $ease;
+
+		> .line {
+			flex: 0 0 3vw;
+			height: 1px;
+			background: linear-gradient(90deg, var(--colorAccent), transparent);
+			transform: scaleX(0);
+			transform-origin: left;
+			transition: transform 0.8s $ease 0.2s;
+		}
+
+		> .summary {
+			color: var(--colorContentPrimaryDark);
+			font-weight: 200;
+		}
+	}
+
+	> .orbits {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 2vw;
+		max-width: 46vw;
+
+		> .orbit {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			opacity: 0;
+			transform: translateY(28px);
+			transition: opacity 0.7s $ease, transform 0.7s $ease;
+
+			> .gauge {
+				position: relative;
+				width: var(--gaugeSize);
+				height: var(--gaugeSize);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin-bottom: 3vh;
+				transition: transform 0.5s $spring;
+
+				// slow dashed orbit, echoing the navigation rings
+				> .ring {
+					position: absolute;
+					inset: -12%;
+					border-radius: 999px;
+					border: 1px dashed rgb(255 255 255 / 14%);
+					animation: spin 40s linear infinite;
+					transition: border-color 0.4s ease-out;
+				}
+
+				> svg {
+					position: absolute;
+					inset: 0;
+					width: 100%;
+					height: 100%;
+					transform: rotate(-90deg);
+					overflow: visible;
+
+					> .track {
+						fill: none;
+						stroke: rgb(255 255 255 / 8%);
+						stroke-width: 3;
+					}
+
+					> .fill {
+						fill: none;
+						stroke-width: 3;
+						stroke-linecap: round;
+						stroke-dashoffset: 339.3;
+						filter: drop-shadow(0 0 6px rgb(var(--colorAccentRGB) / 70%));
+						transition: stroke-dashoffset 1.6s $ease;
+					}
+				}
+
+				> .greeting {
+					font-size: calc(var(--gaugeSize) * 0.2);
+					font-weight: 200;
+					line-height: 1;
+					letter-spacing: -0.01em;
+					color: white;
+					text-shadow: 0 0 24px rgb(var(--colorAccentRGB) / 0%);
+					transition: text-shadow 0.5s ease-out, transform 0.5s $spring;
+				}
+			}
+
+			> .name {
+				font-size: clamp(15px, 1.2vw, 20px);
+				font-weight: 400;
+				color: white;
+			}
+
+			> .level {
+				margin-top: 0.8vh;
+				font-size: clamp(11px, 0.8vw, 14px);
+				font-weight: 300;
+				line-height: 1.4;
+				color: var(--muted);
+			}
+
+			@media (hover: hover) {
+				&:hover > .gauge {
+					transform: scale(1.04);
+
+					> .ring {
+						border-color: rgb(var(--colorAccentRGB) / 55%);
+					}
+
+					> .greeting {
+						transform: scale(1.06);
+						text-shadow: 0 0 24px rgb(var(--colorAccentRGB) / 80%);
+					}
+				}
+			}
+		}
+	}
+
+	&.visible {
+		> .header {
+			opacity: 1;
+			transform: none;
+
+			> .line {
+				transform: scaleX(1);
+			}
+		}
+
+		> .orbits > .orbit {
+			opacity: 1;
+			transform: none;
+
+			> .gauge > svg > .fill {
+				stroke-dashoffset: var(--offset);
+			}
+
+			@for $i from 1 through 3 {
+				&:nth-child(#{$i}) {
+					transition-delay: 0.15s + ($i - 1) * 0.13s;
+
+					> .gauge > svg > .fill {
+						transition-delay: 0.45s + ($i - 1) * 0.13s;
+					}
+				}
+			}
+		}
+	}
+
+	@keyframes spin {
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		> .orbits > .orbit > .gauge > .ring {
+			animation: none;
+		}
+
+		* {
+			transition-duration: 0.01ms !important;
+		}
+	}
+}
+
+// ---------------------------------------------------------------------------
+// Navigation planet: blue world with rolling continents and a talking face
+// ---------------------------------------------------------------------------
+.languagesPlanet {
+	--size: 28vmin;
+	--ink: #2A1B44;
+	--ocean: #3AB4FF;
+	--land: #63E6A2;
+	--line: calc(var(--size) * 0.03);
+
+	position: relative;
+	width: 70vmin;
+	height: 70vmin;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	animation: planetFloat 5.5s ease-in-out infinite alternate;
+
+	> .body {
+		position: relative;
+		width: var(--size);
+		height: var(--size);
+		border-radius: 50%;
+		background: var(--ocean);
+		overflow: hidden;
+
+		> .land {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 200%;
+			height: 100%;
+			animation: landRoll 22s linear infinite;
+
+			> span {
+				position: absolute;
+				background: var(--land);
+				border: calc(var(--line) * 0.8) solid var(--ink);
+				box-shadow: inset calc(var(--size) * -0.02) calc(var(--size) * -0.02) 0 rgb(0 80 40 / 18%);
+			}
+
+			// one hemisphere of continents, then the same again shifted by one planet width so the roll loops
+			@each $i, $top, $left, $w, $h, $r in
+				(1, 10%, 0.05, 0.4, 0.26, '62% 38% 55% 45% / 48% 62% 38% 52%'),
+				(2, 46%, 0.28, 0.28, 0.32, '45% 55% 40% 60% / 55% 40% 60% 45%'),
+				(3, 74%, 0.6, 0.3, 0.2, '55% 45% 60% 40% / 60% 50% 50% 40%'),
+				(4, 6%, 0.64, 0.24, 0.18, '50% 60% 45% 55% / 60% 45% 55% 40%'),
+				(5, 40%, 0.78, 0.2, 0.22, '58% 42% 50% 50% / 45% 55% 45% 55%') {
+				> span:nth-child(#{$i}),
+				> span:nth-child(#{$i + 5}) {
+					top: $top;
+					width: calc(var(--size) * #{$w});
+					height: calc(var(--size) * #{$h});
+					border-radius: #{$r};
+				}
+
+				> span:nth-child(#{$i}) {
+					left: calc(var(--size) * #{$left});
+				}
+
+				> span:nth-child(#{$i + 5}) {
+					left: calc(var(--size) * #{$left + 1});
+				}
+			}
+		}
+
+		> .shade {
+			position: absolute;
+			inset: 0;
+			border-radius: 50%;
+			box-shadow: inset calc(var(--size) * -0.13) calc(var(--size) * -0.05) 0 rgb(0 30 90 / 20%);
+		}
+
+		> .shine {
+			position: absolute;
+			top: 13%;
+			left: 15%;
+			width: 24%;
+			height: 9%;
+			border-radius: 999px;
+			background: rgb(255 255 255 / 60%);
+			transform: rotate(-38deg);
+		}
+
+		> .outline {
+			position: absolute;
+			inset: 0;
+			border-radius: 50%;
+			border: var(--line) solid var(--ink);
+		}
+	}
+
+	> .face {
+		position: absolute;
+		width: var(--size);
+		height: var(--size);
+		z-index: 2;
+
+		> .eye {
+			position: absolute;
+			top: 38%;
+			left: 31%;
+			width: 11%;
+			height: 11%;
+			border-radius: 50%;
+			background: var(--ink);
+			animation: blink 5s ease-in-out infinite;
+
+			&::after {
+				content: '';
+				position: absolute;
+				top: 18%;
+				left: 22%;
+				width: 32%;
+				height: 32%;
+				border-radius: 50%;
+				background: white;
+			}
+
+			&.right {
+				left: auto;
+				right: 31%;
+			}
+		}
+
+		> .mouth {
+			position: absolute;
+			top: 58%;
+			left: 42%;
+			width: 16%;
+			height: 13%;
+			background: var(--ink);
+			border-radius: 15% 15% 50% 50% / 15% 15% 100% 100%;
+			overflow: hidden;
+			transform-origin: top;
+			animation: talk 1.6s ease-in-out infinite;
+
+			&::after {
+				content: '';
+				position: absolute;
+				bottom: -25%;
+				left: 22%;
+				width: 56%;
+				height: 55%;
+				border-radius: 50%;
+				background: #FF6BB5;
+			}
+		}
+	}
+
+	> .speech {
+		position: absolute;
+		top: 24%;
+		right: 15%;
+		display: flex;
+		gap: calc(var(--size) * 0.04);
+		padding: calc(var(--size) * 0.06) calc(var(--size) * 0.07);
+		border-radius: 999px;
+		background: white;
+		border: var(--line) solid var(--ink);
+		z-index: 3;
+		animation: planetFloat 3.8s ease-in-out infinite alternate-reverse;
+
+		&::after {
+			content: '';
+			position: absolute;
+			bottom: calc(var(--line) * -2.2);
+			left: 18%;
+			width: calc(var(--size) * 0.1);
+			height: calc(var(--size) * 0.1);
+			background: white;
+			border-right: var(--line) solid var(--ink);
+			border-bottom: var(--line) solid var(--ink);
+			transform: skewX(20deg) rotate(45deg);
+			z-index: -1;
+		}
+
+		> span {
+			width: calc(var(--size) * 0.06);
+			height: calc(var(--size) * 0.06);
+			border-radius: 50%;
+			background: var(--ink);
+			animation: pop 1.6s ease-in-out infinite;
+
+			@for $i from 1 through 3 {
+				&:nth-child(#{$i}) {
+					animation-delay: ($i - 1) * 0.22s;
+				}
+			}
+		}
+	}
+
+	@keyframes planetFloat {
+		from {
+			transform: translateY(-2.5%);
+		}
+
+		to {
+			transform: translateY(2.5%);
+		}
+	}
+
+	@keyframes landRoll {
+		to {
+			transform: translateX(-50%);
+		}
+	}
+
+	@keyframes blink {
+		0%,
+		92%,
+		100% {
+			transform: scaleY(1);
+		}
+
+		96% {
+			transform: scaleY(0.1);
+		}
+	}
+
+	@keyframes talk {
+		0%,
+		100% {
+			transform: scaleY(0.55);
+		}
+
+		50% {
+			transform: scaleY(1);
+		}
+	}
+
+	@keyframes pop {
+		0%,
+		60%,
+		100% {
+			transform: scale(0.55);
+			opacity: 0.35;
+		}
+
+		30% {
+			transform: scale(1);
+			opacity: 1;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		& {
+			animation: none !important;
+		}
+	}
 }

@@ -1,4 +1,399 @@
+$ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+$spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+$items: 6;
+
 .expertise {
+	--muted: rgb(255 255 255 / 45%);
+	--lavender: #B9A6FF;
+
+	width: 100%;
+	height: 100vh;
+	flex-direction: column;
+	justify-content: flex-start;
+	padding: clamp(64px, 13vh, 150px) 3vw 0 0;
+	color: var(--colorContentPrimaryDark);
+
+	> .header {
+		display: flex;
+		align-items: center;
+		gap: 1.2vw;
+		margin-bottom: 4vh;
+		font-size: clamp(12px, 0.95vw, 17px);
+		font-weight: 300;
+		color: var(--muted);
+		opacity: 0;
+		transform: translateY(12px);
+		transition: opacity 0.6s $ease, transform 0.6s $ease;
+
+		> .line {
+			flex: 0 0 3vw;
+			height: 1px;
+			background: linear-gradient(90deg, var(--colorAccent), transparent);
+			transform: scaleX(0);
+			transform-origin: left;
+			transition: transform 0.8s $ease 0.2s;
+		}
+
+		> .summary {
+			color: var(--colorContentPrimaryDark);
+			font-weight: 200;
+		}
+	}
+
+	> .body {
+		display: grid;
+		grid-template-columns: minmax(10vw, 12vw) 1fr;
+		gap: 2vw;
+		align-items: start;
+
+		// narrow desktops: the rail collapses to logos so the detail panel keeps a readable measure
+		@media (max-width: 1500px) {
+			grid-template-columns: auto 1fr;
+
+			.rail > .item > .company {
+				display: none;
+			}
+		}
+	}
+
+	.rail {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 0.6vh;
+		padding-left: 0.2vw;
+
+		// orbit path the company planets sit on
+		&::before {
+			content: '';
+			position: absolute;
+			left: calc(1.35vw + 0.2vw);
+			top: 1.5vh;
+			bottom: 1.5vh;
+			border-left: 1px dashed rgb(255 255 255 / 18%);
+			transform: scaleY(0);
+			transform-origin: top;
+			transition: transform 1.1s $ease 0.15s;
+		}
+
+		> .item {
+			position: relative;
+			display: flex;
+			align-items: center;
+			gap: 1vw;
+			padding: 1.1vh 1vw 1.1vh 0;
+			border: none;
+			border-radius: 0 999px 999px 0;
+			background: transparent;
+			color: inherit;
+			font: inherit;
+			text-align: left;
+			cursor: pointer;
+			opacity: 0;
+			transform: translateX(-28px);
+			transition: opacity 0.55s $ease, transform 0.55s $ease, background 0.3s ease-out;
+
+			@for $i from 1 through $items {
+				&:nth-child(#{$i}) {
+					transition-delay: 0s;
+				}
+			}
+
+			> .logo {
+				flex: none;
+				width: 2.7vw;
+				height: 2.7vw;
+				border-radius: 999px;
+				border: 1px solid rgb(255 255 255 / 15%);
+				background-color: #111;
+				background-size: cover;
+				background-position: center;
+				filter: grayscale(1) brightness(0.75);
+				transition: filter 0.4s ease-out, transform 0.45s $spring, box-shadow 0.45s ease-out;
+			}
+
+			> .company {
+				min-width: 0;
+				font-size: clamp(12px, 0.95vw, 16px);
+				font-weight: 400;
+				line-height: 1.2;
+				color: rgb(255 255 255 / 65%);
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				transition: color 0.3s ease-out;
+			}
+
+			&:focus-visible {
+				outline: 1px solid var(--colorAccent);
+				outline-offset: 2px;
+			}
+
+			@media (hover: hover) {
+				&:hover {
+					background: rgb(255 255 255 / 4%);
+
+					> .logo {
+						filter: none;
+					}
+				}
+			}
+
+			&.active {
+				background: linear-gradient(90deg, rgb(var(--colorAccentRGB) / 14%), transparent 80%);
+
+				> .logo {
+					filter: none;
+					transform: scale(1.12);
+					box-shadow:
+						0 0 0 3px black,
+						0 0 0 4px rgb(var(--colorAccentRGB) / 80%),
+						0 0 28px rgb(var(--colorAccentRGB) / 45%);
+				}
+
+				> .company {
+					color: white;
+				}
+			}
+		}
+	}
+
+	.panel {
+		min-height: 42vh;
+		max-height: 66vh; // ponytail: bleed guard so a long role never spills into the next section
+		overflow: hidden;
+		padding: 0.6vh 0 0 1.8vw;
+		border-left: 1px solid rgb(255 255 255 / 8%);
+		opacity: 0;
+		transition: opacity 0.6s $ease;
+
+		> * {
+			animation: rise 0.6s $ease both;
+		}
+
+		@for $i from 1 through 4 {
+			> :nth-child(#{$i}) {
+				animation-delay: ($i - 1) * 0.07s;
+			}
+		}
+
+		> .role {
+			margin: 0;
+			font-size: clamp(20px, 1.75vw, 30px);
+			font-weight: 300;
+			line-height: 1.15;
+			letter-spacing: -0.01em;
+			color: white;
+		}
+
+		> .org {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.4vh 1.2vw;
+			margin: 1.2vh 0 0;
+			font-size: clamp(12px, 0.9vw, 15px);
+			font-weight: 300;
+
+			> .company {
+				color: var(--lavender);
+			}
+
+			> .meta {
+				position: relative;
+				color: var(--muted);
+				padding-left: 1.2vw;
+
+				&.period {
+					text-transform: capitalize;
+				}
+
+				&::before {
+					content: '';
+					position: absolute;
+					left: 0;
+					top: 50%;
+					width: 0.35em;
+					height: 0.35em;
+					border-radius: 999px;
+					background: rgb(255 255 255 / 25%);
+					transform: translateY(-50%);
+				}
+			}
+		}
+
+		> .bullets {
+			list-style: none;
+			margin: 2.4vh 0 0;
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			gap: 1vh;
+			max-width: 62ch;
+
+			> li {
+				position: relative;
+				padding-left: 1.5vw;
+				font-size: clamp(12px, 0.9vw, 15px);
+				font-weight: 200;
+				line-height: 1.5;
+				color: rgb(255 255 255 / 88%);
+
+				&::before {
+					content: '';
+					position: absolute;
+					left: 0;
+					top: 0.78em;
+					width: 0.7vw;
+					height: 1px;
+					background: var(--colorAccent);
+					box-shadow: 0 0 8px rgb(var(--colorAccentRGB) / 80%);
+				}
+
+				&.sub {
+					padding-left: 2.8vw;
+					color: rgb(255 255 255 / 65%);
+
+					&::before {
+						left: 1.5vw;
+						width: 0.4vw;
+						background: rgb(255 255 255 / 35%);
+						box-shadow: none;
+					}
+				}
+			}
+		}
+
+		> .tech {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.5vw;
+			margin-top: 2.4vh;
+
+			> span {
+				padding: 0.35vw 0.85vw;
+				border-radius: 999px;
+				border: 1px solid rgb(255 255 255 / 12%);
+				background: rgb(255 255 255 / 3%);
+				font-size: clamp(10px, 0.72vw, 12px);
+				font-weight: 400;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				color: rgb(255 255 255 / 70%);
+				transition: all 0.3s ease-out;
+
+				@media (hover: hover) {
+					&:hover {
+						color: white;
+						border-color: rgb(var(--colorAccentRGB) / 80%);
+						box-shadow: 0 0 18px rgb(var(--colorAccentRGB) / 30%);
+						transform: translateY(-2px);
+					}
+				}
+			}
+		}
+	}
+
+	> .education {
+		display: flex;
+		align-items: center;
+		gap: 1.2vw;
+		margin-top: 4vh;
+		padding-top: 2.4vh;
+		border-top: 1px solid rgb(255 255 255 / 8%);
+		font-size: clamp(11px, 0.82vw, 14px);
+		font-weight: 300;
+		color: var(--muted);
+		opacity: 0;
+		transform: translateY(12px);
+		transition: opacity 0.6s $ease, transform 0.6s $ease;
+
+		> .logo {
+			width: 2vw;
+			height: 2vw;
+			border-radius: 999px;
+			border: 1px solid rgb(255 255 255 / 15%);
+			background-color: #111;
+			background-size: cover;
+			background-position: center;
+		}
+
+		> .text {
+			display: flex;
+			flex-direction: column;
+			gap: 0.4vh;
+			min-width: 0;
+
+			> .school {
+				color: white;
+				font-weight: 400;
+			}
+		}
+
+		> .period {
+			margin-left: auto;
+			letter-spacing: 0.04em;
+			white-space: nowrap;
+		}
+	}
+
+	&.visible {
+		> .header {
+			opacity: 1;
+			transform: none;
+
+			> .line {
+				transform: scaleX(1);
+			}
+		}
+
+		.rail {
+			&::before {
+				transform: scaleY(1);
+			}
+
+			> .item {
+				opacity: 1;
+				transform: none;
+
+				@for $i from 1 through $items {
+					&:nth-child(#{$i}) {
+						transition-delay: 0.12s + ($i - 1) * 0.08s, 0.12s + ($i - 1) * 0.08s, 0s;
+					}
+				}
+			}
+		}
+
+		.panel {
+			opacity: 1;
+			transition-delay: 0.35s;
+		}
+
+		> .education {
+			opacity: 1;
+			transform: none;
+			transition-delay: 0.7s;
+		}
+	}
+
+	@keyframes rise {
+		from {
+			opacity: 0;
+			transform: translateY(14px);
+		}
+
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before {
+			transition-duration: 0.01ms !important;
+			animation-duration: 0.01ms !important;
+		}
+	}
 }
 
 .expertisePlanet {
