@@ -1,20 +1,12 @@
 import type { NextConfig } from "next";
 
+const isGitHubActions = process.env.GITHUB_ACTIONS === "true";
+
 const nextConfig: NextConfig = {
-	async headers() {
-		return [
-			{
-				source: "/(.*)",
-				headers: [
-					{
-						key: "X-Robots-Tag",
-						value: "index, follow",
-					},
-				],
-			},
-		];
-	},
+	output: "export",
+	basePath: isGitHubActions ? "/PortfolioSpace" : "",
 	images: {
+		unoptimized: true,
 		remotePatterns: [
 			{
 				protocol: "https",

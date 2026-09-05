@@ -1,8 +1,6 @@
 import type { ReactNode } from "react";
 
 import Navigation from "#components/layouts/Navigation";
-import Splash from "#components/layouts/Splash";
-import { getUserData } from "#utils/function/getUserData";
 import { montserrat } from "#utils/helper/fontHelper";
 
 import GlobalContextProvider from "../data/context";
@@ -13,17 +11,15 @@ export const metadata = {
 	title: "Ritik Srivastava",
 };
 
-export default async function RootLayout(props: IRootProps) {
+export default function RootLayout(props: IRootProps) {
 	const { children } = props;
-	const userData = await getUserData();
 
 	return (
 		<html lang="en">
 			<body className={montserrat.variable} suppressHydrationWarning>
-				<GlobalContextProvider userData={userData}>
+				<GlobalContextProvider>
 					{children}
 					<Navigation />
-					<Splash />
 				</GlobalContextProvider>
 			</body>
 		</html>

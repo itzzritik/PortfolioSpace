@@ -11,7 +11,8 @@ import styles from "./splash.module.scss";
 
 const noAnimationPaths = ["/cv"];
 
-export default function Splash() {
+export default function Splash(props: ISplashProps) {
+	const { ready = true } = props;
 	const pathname = usePathname();
 	const [loaded, setLoaded] = useState(false);
 	const [animateSplash, setAnimateSplash] = useState(false);
@@ -19,16 +20,23 @@ export default function Splash() {
 	const splashClass = clsx(styles.splash, animateSplash && styles.loaded);
 
 	useEffect(() => {
-		if (animateSplash) setTimeout(() => setLoaded(true), 2200);
+		if (!animateSplash) {
+			return;
+		}
+		const timeout = setTimeout(() => setLoaded(true), 2200);
+		return () => clearTimeout(timeout);
 	}, [animateSplash]);
 
 	useLayoutEffect(() => {
-		if (!noAnimationPaths.includes(pathname))
-			setTimeout(() => {
-				window.scrollTo(0, 0);
-				setAnimateSplash(true);
-			}, 300);
-	}, [pathname]);
+		if (!ready || noAnimationPaths.includes(pathname)) {
+			return;
+		}
+		const timeout = setTimeout(() => {
+			window.scrollTo(0, 0);
+			setAnimateSplash(true);
+		}, 300);
+		return () => clearTimeout(timeout);
+	}, [pathname, ready]);
 
 	if (loaded) return null;
 
@@ -44,4 +52,8 @@ export default function Splash() {
 			<S className={styles.srivastava} />
 		</div>
 	);
+}
+
+interface ISplashProps {
+	ready?: boolean;
 }
