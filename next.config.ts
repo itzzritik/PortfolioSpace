@@ -3,6 +3,8 @@ import type { NextConfig } from "next";
 const isGitHubActions = process.env.GITHUB_ACTIONS === "true";
 
 const nextConfig: NextConfig = {
+	// Next writes AGENTS.md and CLAUDE.md into the repo root on every build unless this is off.
+	agentRules: false,
 	output: "export",
 	sassOptions: {
 		loadPaths: ["src/styles"],
