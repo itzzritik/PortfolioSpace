@@ -102,7 +102,7 @@ and no per-section measurement is cached.
 ### Data layer
 
 ```
-GET https://ritik.me/api/profile
+GET https://cv.ritik.me/api/profile
         │
         ▼
 GlobalContextProvider          pending → Splash holds

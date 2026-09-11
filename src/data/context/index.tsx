@@ -15,7 +15,9 @@ export default function GlobalContextProvider(props: IGlobalContextProviderProps
 
 	useEffect(() => {
 		const loadUserData = async () => {
-			const response = await fetch("https://ritik.me/api/profile");
+			// The cv app owns profile.json and serves it read-only, CORS open, validated against its schema before it
+			// leaves. ritik.me has no API of its own: it is a static landing that reads the same endpoint server-side.
+			const response = await fetch("https://cv.ritik.me/api/profile");
 			if (!response.ok) {
 				throw new Error(`Profile request failed: ${response.status}`);
 			}

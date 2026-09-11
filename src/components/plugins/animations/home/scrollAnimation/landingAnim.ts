@@ -59,8 +59,7 @@ const OverlayAnimation = (scrollPart1: number) => {
 };
 
 /** Slides a line from where it sits to the hero's left edge; `overshoot` carries it further, off the stage. */
-const slide = (element: HTMLElement | null, scrollPart1: number, overshoot = 0) =>
-	`translate3d(-${((element?.offsetLeft ?? 0) + overshoot) * Math.min(scrollPart1, 1)}px, 0, 0)`;
+const slide = (element: HTMLElement | null, scrollPart1: number, overshoot = 0) => `translate3d(-${((element?.offsetLeft ?? 0) + overshoot) * Math.min(scrollPart1, 1)}px, 0, 0)`;
 
 const HeroPart1Animation = (scrollPart1: number) => {
 	const GreetingX = slide(Landing.Greeting, scrollPart1);
